@@ -1,0 +1,27 @@
+############
+### PAGE ###
+############
+page {
+    meta {
+        description =
+        author =
+        keywords =
+        viewport = width=device-width, initial-scale=1
+        robots = index,follow
+        apple-mobile-web-app-capable = no
+        compatible = IE=edge
+        google = notranslate
+    }
+}
+
+##############
+### CONFIG ###
+##############
+config {
+    no_cache = 0
+    prefixLocalAnchors = all
+    removeDefaultJS = 1
+    admPanel = 0
+    headerComment = Created by Aricura - https://www.aricura.com
+    sendCacheHeaders = 1
+}

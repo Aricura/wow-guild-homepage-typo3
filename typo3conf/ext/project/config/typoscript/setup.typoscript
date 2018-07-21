@@ -1,0 +1,131 @@
+################
+#### HELPER ####
+################
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:project/config/typoscript/helper/ParseFunc.typoscript">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:project/config/typoscript/helper/PageClass.typoscript">
+
+##############
+#### PAGE ####
+##############
+page = PAGE
+page {
+    typeNum = 0
+
+    bodyTagCObject = COA
+    bodyTagCObject {
+        20 =< lib.page.class
+        20.stdWrap.noTrimWrap = | class="|"|
+        wrap = <body|>
+    }
+
+    headerData {
+        10 = USER
+        10.userFunc = Project\Classes\Template\Header->render
+    }
+
+    10 = TEMPLATE
+    10 {
+        template = USER
+        template.userFunc = Project\Classes\Template\Master->render
+
+        marks {
+            CONTENT0 < bartacus.content.get
+        }
+    }
+
+    meta {
+        # New notation available since TYPO3 7.4
+        # see https://forge.typo3.org/issues/67360 for more details
+        viewport = {$page.meta.viewport}
+        robots = {$page.meta.robots}
+        google = {$page.meta.google}
+        apple-mobile-web-app-capable = {$page.meta.apple-mobile-web-app-capable}
+        description = {$page.meta.description}
+        description {
+            override.field = description
+        }
+        author = {$page.meta.author}
+        author {
+            override.field = author
+        }
+        keywords = {$page.meta.keywords}
+        keywords {
+            override.field = keywords
+        }
+        X-UA-Compatible = {$page.meta.compatible}
+        X-UA-Compatible {
+            attribute = http-equiv
+        }
+    }
+
+    theme-color = #d21518
+}
+
+###################################################
+#### EXCLUDE PAGE FROM EXTERNAL SEARCH RESULTS ####
+#### IF NO SEARCH IS SET FOR THIS PAGE         ####
+###################################################
+[globalVar = TSFE:page|no_search = 1]
+    page.meta.robots = noodp,noindex,nofollow
+[end]
+
+################
+#### CONFIG ####
+################
+config {
+    absRefPrefix = /
+    no_cache = {$config.no_cache}
+    linkVars = L(int)
+    prefixLocalAnchors = {$config.prefixLocalAnchors}
+    doctype = html5
+    removeDefaultJS = {$config.removeDefaultJS}
+    inlineStyle2TempFile = 1
+    admPanel = {$config.admPanel}
+    debug = 0
+    cache_period = 86400
+    sendCacheHeaders = {$config.sendCacheHeaders}
+    index_enable = 1
+    index_externals = 1
+    index_metatags = 1
+    headerComment = {$config.headerComment}
+
+    # Default <html> attributes (language, dir)
+    htmlTag_stdWrap {
+        setContentToCurrent = 1
+
+        cObject = COA
+        cObject {
+            20 =< lib.page.class
+            20.stdWrap.noTrimWrap = | class="|"|
+
+            80 = TEXT
+            80.value = de
+            80.stdWrap.noTrimWrap = | lang="|"|
+
+            90 = TEXT
+            90.value = ltr
+            90.stdWrap.noTrimWrap = | dir="|"|
+
+            wrap = <html|>
+        }
+    }
+
+    defaultGetVars {
+        L = 0
+    }
+
+    // Default Language Settings
+    sys_language_overlay = hideNonTranslated
+    sys_language_mode = strict
+
+    // Compression and Concatenation of CSS and JS Files
+    compressJs = 0
+    compressCss = 0
+    concatenateJs = 0
+    concatenateCss = 0
+}
+
+#############################
+#### LANGUAGE CONDITIONS ####
+#############################
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:project/config/typoscript/include/l10n.typoscript">

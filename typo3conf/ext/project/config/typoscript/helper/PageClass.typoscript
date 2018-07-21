@@ -1,0 +1,54 @@
+####################
+#### PAGE CLASS ####
+####################
+lib.page.class = COA
+lib.page.class {
+    // Page alias or id as fallback
+    10 = TEXT
+    10 {
+        field = alias // uid
+        noTrimWrap = |page-||
+    }
+    // Current level of the page within the tree structure
+    20 = TEXT
+    20 {
+        data = level:1
+        noTrimWrap = | pagelevel-||
+    }
+    // Language
+    30 = TEXT
+    30 {
+        data = TSFE:sys_language_uid
+        noTrimWrap = | language-||
+    }
+    // Backend layout
+    40 = TEXT
+    40 {
+        data = levelfield:-1, backend_layout_next_level, slide
+        override.field = backend_layout
+        ifEmpty = default
+        noTrimWrap = | backendlayout-||
+    }
+    // Layout
+    50 = TEXT
+    50 {
+        field = layout
+        noTrimWrap = | layout-||
+    }
+    // IE (optional)
+    60 = TEXT
+    60.value =
+}
+
+######################
+#### IE DETECTION ####
+######################
+[browser = msie] && [version < 7]
+    lib.page.class.60.value = ie6
+[browser = msie] && [version = 7]
+    lib.page.class.60.value = ie7
+[browser = msie] && [version = 8]
+    lib.page.class.60.value = ie8
+[browser = msie] && [version = 9]
+    lib.page.class.60.value = ie9
+[end]
