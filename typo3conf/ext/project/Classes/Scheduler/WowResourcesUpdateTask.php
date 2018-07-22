@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Project\Classes\Scheduler;
 
+use Project\Classes\ContentService\Models\TxWowBattleGroup;
+use Project\Classes\ContentService\Models\TxWowRealm;
 use TYPO3\CMS\Scheduler\Task\AbstractTask;
 
 /**
@@ -16,6 +18,9 @@ class WowResourcesUpdateTask extends AbstractTask
 	 */
 	public function execute(): int
 	{
+		TxWowBattleGroup::seed();
+		TxWowRealm::seed();
+
 		return 1;
 	}
 }

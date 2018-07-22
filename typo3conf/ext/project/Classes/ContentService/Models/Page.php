@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Project\Classes\ContentServic\Models;
+namespace Project\Classes\ContentService\Models;
 
 use Project\Classes\ContentService\Model;
 

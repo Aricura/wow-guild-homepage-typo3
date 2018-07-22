@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Project\Classes\ContentServic\Models;
+namespace Project\Classes\ContentService\Models;
 
 use Project\Classes\ContentService\Model;
 
@@ -118,4 +118,8 @@ use Project\Classes\ContentService\Model;
  */
 class TtContent extends Model
 {
+	/**
+	 * @var string
+	 */
+	protected $table = 'tt_content';
 }
