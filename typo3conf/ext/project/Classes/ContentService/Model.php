@@ -8,6 +8,7 @@ use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Resource\FileRepository;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\AbstractController;
 
 /**
@@ -85,6 +86,12 @@ abstract class Model extends AbstractController
 	 */
 	protected $attributes = [];
 	/**
+	 * Flag if this model already exists in the database or not.
+	 *
+	 * @var bool
+	 */
+	protected $exists = false;
+	/**
 	 * Database connection pool.
 	 *
 	 * @var ConnectionPool
@@ -94,7 +101,6 @@ abstract class Model extends AbstractController
 	 * @var FileRepository
 	 */
 	protected $fileRepository;
-
 
 	/**
 	 * Model constructor.
@@ -195,6 +201,7 @@ abstract class Model extends AbstractController
 		$clone = clone $this;
 
 		$clone->fill($this->attributes);
+		$clone->exists = $this->exists;
 
 		return $clone;
 	}
@@ -206,6 +213,7 @@ abstract class Model extends AbstractController
 	 */
 	public function fresh(): self
 	{
+		$this->exists = false;
 		return $this->fill([]);
 	}
 
@@ -256,7 +264,7 @@ abstract class Model extends AbstractController
 	 */
 	public function exists(): bool
 	{
-		return $this->getKey() > 0;
+		return $this->getKey() > 0 && $this->exists;
 	}
 
 	/**
@@ -266,17 +274,21 @@ abstract class Model extends AbstractController
 	 */
 	public function query(): QueryBuilder
 	{
-		return $this->connectionPool->getQueryBuilderForTable($this->getTableName());
+		return $this->connectionPool()->getQueryBuilderForTable($this->getTableName());
 	}
 
 	/**
 	 * Returns the connection pool instance.
 	 *
-	 * @return ConnectionPool
+	 * @return ConnectionPool|object
 	 */
-	public function connectionPool(): ConnectionPool
+	public function connectionPool()
 	{
-		return $this->connectionPool;
+		if ($this->connectionPool instanceof ConnectionPool) {
+			return $this->connectionPool;
+		}
+
+		return GeneralUtility::makeInstance(ConnectionPool::class);
 	}
 
 	/**
@@ -286,7 +298,21 @@ abstract class Model extends AbstractController
 	 */
 	public function getConnection(): Connection
 	{
-		return $this->connectionPool->getConnectionForTable($this->getTableName());
+		return $this->connectionPool()->getConnectionForTable($this->getTableName());
+	}
+
+	/**
+	 * Returns the file repository instance.
+	 *
+	 * @return object|\TYPO3\CMS\Core\Resource\FileRepository
+	 */
+	public function fileRepository()
+	{
+		if ($this->fileRepository instanceof FileRepository) {
+			return $this->fileRepository;
+		}
+
+		return GeneralUtility::makeInstance(FileRepository::class);
 	}
 
 	/**
@@ -397,6 +423,8 @@ abstract class Model extends AbstractController
 			$fillables[$this->createdAtKeyName] = $this->{$this->createdAtKeyName};
 		}
 
+		$this->exists = true;
+
 		// insert the database row and return its status
 		return 1 === $this->getConnection()->insert($this->getTableName(), $fillables);
 	}
@@ -489,10 +517,21 @@ abstract class Model extends AbstractController
 				$query->expr()->eq($columnName, \is_int($value) ? (int)$value : $query->quote($value))
 			)
 			->execute()
-			->fetchAll();
+			->fetch();
 
 		// fetch all attributes and update the model
-		return $this->fill(1 === \count($rows) ? \array_values($rows)[0] : []);
+		if (false === $rows) {
+			$rows = [
+				$columnName => $value,
+			];
+
+			$model = $this->fill($rows);
+		} else {
+			$model = $this->fill($rows);
+			$model->exists = true;
+		}
+
+		return $model;
 	}
 
 	/**
@@ -537,7 +576,9 @@ abstract class Model extends AbstractController
 
 		// convert each row into a model
 		$collection = \array_map(function(array $row) use ($dummyModel) {
-			return $dummyModel->clone()->fresh()->fill($row);
+			$model = $dummyModel->clone()->fresh()->fill($row);
+			$model->exists = true;
+			return $model;
 		}, $query->execute()->fetchAll());
 
 		return $collection;
@@ -642,7 +683,7 @@ abstract class Model extends AbstractController
 	 */
 	protected function resolveFiles(string $table, string $column, array $data): array
 	{
-		$files = $this->fileRepository->findByRelation($table, $column, $data['_LOCALIZED_UID'] ?? $data['uid']);
+		$files = $this->fileRepository()->findByRelation($table, $column, $data['_LOCALIZED_UID'] ?? $data['uid']);
 
 		return \is_array($files) ? $files : [];
 	}
