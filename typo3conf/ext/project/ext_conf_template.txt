@@ -1,0 +1,29 @@
+# cat=PAGES; type=string; label=Battle.Net API Client Id
+battle_net_api_client_id =
+
+# cat=PAGES; type=string; label=Battle.Net API secret
+battle_net_api_secret =
+
+# cat=PAGES; type=int+; label=Folder UID where all World of Warcraft Battle Groups will be stored in
+tx_wow_battle_group_folder_uid = 1
+
+# cat=PAGES; type=int+; label=Folder UID where all World of Warcraft Realms will be stored in
+tx_wow_realm_folder_uid = 1
+
+# cat=PAGES; type=int+; label=Folder UID where all World of Warcraft Fractions will be stored in
+tx_wow_fraction_folder_uid = 1
+
+# cat=PAGES; type=int+; label=Folder UID where all World of Warcraft Races will be stored in
+tx_wow_race_folder_uid = 1
+
+# cat=PAGES; type=int+; label=Folder UID where all World of Warcraft Classes will be stored in
+tx_wow_class_folder_uid = 1
+
+# cat=PAGES; type=int+; label=Folder UID where all World of Warcraft Class Specialisations will be stored in
+tx_wow_class_specialisation_folder_uid = 1
+
+# cat=PAGES; type=int+; label=Folder UID where all World of Warcraft Guilds will be stored in
+tx_wow_guild_folder_uid = 1
+
+# cat=PAGES; type=int+; label=Folder UID where all World of Warcraft Guild Members will be stored in
+tx_wow_guild_member_folder_uid = 1

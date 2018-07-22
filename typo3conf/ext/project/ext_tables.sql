@@ -50,6 +50,7 @@ CREATE TABLE tx_wow_fractions (
   sys_language_uid INT(11)    NOT NULL DEFAULT '0',
 
   slug             VARCHAR(255),
+  name             VARCHAR(255),
 
   PRIMARY KEY (uid),
   KEY parent (pid)
@@ -96,20 +97,20 @@ CREATE TABLE tx_wow_classes (
 );
 
 CREATE TABLE tx_wow_class_specialisations (
-  uid               INT(11)    NOT NULL AUTO_INCREMENT,
-  pid               INT(11)    NOT NULL DEFAULT '0',
-  tstamp            INT(11)    NOT NULL DEFAULT '0',
-  crdate            INT(11)    NOT NULL DEFAULT '0',
-  cruser_id         INT(11)    NOT NULL DEFAULT '0',
-  sorting           INT(11)    NOT NULL DEFAULT '0',
-  deleted           TINYINT(1) NOT NULL DEFAULT '0',
-  hidden            TINYINT(1) NOT NULL DEFAULT '0',
-  sys_language_uid  INT(11)    NOT NULL DEFAULT '0',
+  uid              INT(11)    NOT NULL AUTO_INCREMENT,
+  pid              INT(11)    NOT NULL DEFAULT '0',
+  tstamp           INT(11)    NOT NULL DEFAULT '0',
+  crdate           INT(11)    NOT NULL DEFAULT '0',
+  cruser_id        INT(11)    NOT NULL DEFAULT '0',
+  sorting          INT(11)    NOT NULL DEFAULT '0',
+  deleted          TINYINT(1) NOT NULL DEFAULT '0',
+  hidden           TINYINT(1) NOT NULL DEFAULT '0',
+  sys_language_uid INT(11)    NOT NULL DEFAULT '0',
 
-  tx_wow_class_uid  INT(11),
-  name              VARCHAR(255),
-  background_image  VARCHAR(255),
-  icon              VARCHAR(255),
+  tx_wow_class_uid INT(11),
+  name             VARCHAR(255),
+  background_image VARCHAR(255),
+  icon             VARCHAR(255),
 
   PRIMARY KEY (uid),
   KEY parent (pid)
@@ -126,7 +127,6 @@ CREATE TABLE tx_wow_guilds (
   hidden              TINYINT(1) NOT NULL DEFAULT '0',
   sys_language_uid    INT(11)    NOT NULL DEFAULT '0',
 
-  foreign_id          INT(11),
   tx_wow_realm_uid    INT(11),
   tx_wow_fraction_uid INT(11),
   name                VARCHAR(255),
@@ -149,7 +149,6 @@ CREATE TABLE tx_wow_guild_members (
   hidden                          TINYINT(1) NOT NULL DEFAULT '0',
   sys_language_uid                INT(11)    NOT NULL DEFAULT '0',
 
-  foreign_id                      INT(11),
   tx_wow_guild_uid                INT(11),
   tx_wow_realm_uid                INT(11),
   tx_wow_race_uid                 INT(11),

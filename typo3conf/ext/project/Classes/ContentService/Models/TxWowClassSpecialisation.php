@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Project\Classes\ContentService\Models;
 
 use Project\Classes\ContentService\Model;
+use Project\Classes\Helper\Config;
 
 /**
  * Base model representing any record of the tx_wow_class_specialisations table.
@@ -213,7 +214,7 @@ class TxWowClassSpecialisation extends Model
 	private static function create(TxWowClass $class, string $name, string $bgImage, string $icon)
 	{
 		$model = self::findByClassAndName($class, $name);
-		$model->pid = 1;
+		$model->pid = (int)Config::get('tx_wow_class_specialisation_folder_uid');
 		$model->cruser_id = 1;
 		$model->background_image = \strtolower($bgImage);
 		$model->icon = \strtolower($icon);

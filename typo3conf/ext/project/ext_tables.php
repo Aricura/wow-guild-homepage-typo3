@@ -6,7 +6,6 @@ if (!\defined('TYPO3_MODE')) {
 	die('Access denied.');
 }
 
-ExtensionManagementUtility::allowTableOnStandardPages('tx_wow_settings');
 ExtensionManagementUtility::allowTableOnStandardPages('tx_wow_battle_groups');
 ExtensionManagementUtility::allowTableOnStandardPages('tx_wow_realms');
 ExtensionManagementUtility::allowTableOnStandardPages('tx_wow_fractions');

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Project\Classes\ContentService\Models;
 
 use Project\Classes\ContentService\Model;
+use Project\Classes\Helper\Config;
 
 /**
  * Base model representing any record of the tx_wow_fractions table.
@@ -19,6 +20,7 @@ use Project\Classes\ContentService\Model;
  * @property int hidden
  * @property int sys_language_uid
  * @property string slug
+ * @property string name
  */
 class TxWowFraction extends Model
 {
@@ -102,8 +104,24 @@ class TxWowFraction extends Model
 	 */
 	public static function seed()
 	{
-		self::getAlliance()->store();
-		self::getHorde()->store();
-		self::getNeutral()->store();
+		$pid = (int)Config::get('tx_wow_fraction_folder_uid');
+
+		$alliance = self::getAlliance();
+		$alliance->pid = $pid;
+		$alliance->cruser_id = 1;
+		$alliance->name = \ucfirst($alliance->slug);
+		$alliance->store();
+
+		$horde = self::getHorde();
+		$horde->pid = $pid;
+		$horde->cruser_id = 1;
+		$horde->name = \ucfirst($horde->slug);
+		$horde->store();
+
+		$neutral = self::getNeutral();
+		$neutral->pid = $pid;
+		$neutral->cruser_id = 1;
+		$neutral->name = \ucfirst($neutral->slug);
+		$neutral->store();
 	}
 }

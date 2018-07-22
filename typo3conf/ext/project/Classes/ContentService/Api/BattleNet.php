@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Project\Classes\ContentService\Api;
 
 use GuzzleHttp\Client;
+use Project\Classes\Helper\Config;
 
 /**
  * World of Warcraft battle.net API connector.
@@ -32,8 +33,8 @@ class BattleNet
 	 */
 	public function __construct()
 	{
-		$this->clientId = (string)$GLOBALS['API']['battle.net']['client_id'];
-		$this->secret = (string)$GLOBALS['API']['battle.net']['secret'];
+		$this->clientId = (string)Config::get('battle_net_api_client_id');
+		$this->secret = (string)Config::get('battle_net_api_secret');
 	}
 
 	/**

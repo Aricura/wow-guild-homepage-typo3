@@ -6,6 +6,7 @@ namespace Project\Classes\ContentService\Models;
 
 use Project\Classes\ContentService\Api\BattleNet;
 use Project\Classes\ContentService\Model;
+use Project\Classes\Helper\Config;
 
 /**
  * Base model representing any record of the tx_wow_races table.
@@ -72,12 +73,13 @@ class TxWowRace extends Model
 		}
 
 		$races = $response->getResponseByKey('races');
+		$pid = (int)Config::get('tx_wow_race_folder_uid');
 
 		foreach($races as $race) {
 			$fraction = TxWowFraction::findBySlug($race['side']);
 
 			$model = self::findByForeignId((int) $race['id']);
-			$model->pid = 1;
+			$model->pid = $pid;
 			$model->cruser_id = 1;
 			$model->tx_wow_fraction_uid = $fraction->getKey();
 			$model->mask = (int) $race['mask'];

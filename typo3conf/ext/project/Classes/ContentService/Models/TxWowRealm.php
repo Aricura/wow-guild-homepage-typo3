@@ -6,6 +6,7 @@ namespace Project\Classes\ContentService\Models;
 
 use Project\Classes\ContentService\Api\BattleNet;
 use Project\Classes\ContentService\Model;
+use Project\Classes\Helper\Config;
 
 /**
  * Base model representing any record of the tx_wow_realms table.
@@ -60,6 +61,7 @@ class TxWowRealm extends Model
 		}
 
 		$realms = $response->getResponseByKey('realms');
+		$pid = (int)Config::get('tx_wow_realm_folder_uid');
 
 		foreach($realms as $realm) {
 			$battleGroup = TxWowBattleGroup::findBySlug($realm['battlegroup']);
@@ -68,7 +70,7 @@ class TxWowRealm extends Model
 			}
 
 			$model = self::findBySlug($realm['slug']);
-			$model->pid = 1;
+			$model->pid = $pid;
 			$model->cruser_id = 1;
 			$model->tx_wow_battle_group_uid = $battleGroup->getKey();
 			$model->name = $realm['name'];

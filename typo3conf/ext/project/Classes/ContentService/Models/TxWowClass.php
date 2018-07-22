@@ -6,6 +6,7 @@ namespace Project\Classes\ContentService\Models;
 
 use Project\Classes\ContentService\Api\BattleNet;
 use Project\Classes\ContentService\Model;
+use Project\Classes\Helper\Config;
 
 /**
  * Base model representing any record of the tx_wow_classes table.
@@ -86,10 +87,11 @@ class TxWowClass extends Model
 		}
 
 		$classes = $response->getResponseByKey('classes');
+		$pid = (int)Config::get('tx_wow_class_folder_uid');
 
 		foreach($classes as $class) {
 			$model = self::findByForeignId((int) $class['id']);
-			$model->pid = 1;
+			$model->pid = $pid;
 			$model->cruser_id = 1;
 			$model->mask = (int) $class['mask'];
 			$model->name = $class['name'];

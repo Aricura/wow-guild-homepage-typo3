@@ -18,7 +18,6 @@ use Project\Classes\ContentService\Model;
  * @property int deleted
  * @property int hidden
  * @property int sys_language_uid
- * @property int foreign_id
  * @property int tx_wow_realm_uid
  * @property int tx_wow_fraction_uid
  * @property string name
