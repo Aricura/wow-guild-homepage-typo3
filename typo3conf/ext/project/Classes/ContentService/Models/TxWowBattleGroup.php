@@ -54,7 +54,7 @@ class TxWowBattleGroup extends Model
 	{
 		$self = new self();
 
-		return $self->loadBy('name', $name);
+		return $self->loadBy('name', \trim($name));
 	}
 
 	/**

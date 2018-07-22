@@ -106,10 +106,8 @@ CREATE TABLE tx_wow_class_specialisations (
   hidden            TINYINT(1) NOT NULL DEFAULT '0',
   sys_language_uid  INT(11)    NOT NULL DEFAULT '0',
 
-  foreign_id        INT(11),
   tx_wow_class_uid  INT(11),
   name              VARCHAR(255),
-  role              VARCHAR(255),
   background_image  VARCHAR(255),
   icon              VARCHAR(255),
 

@@ -507,27 +507,38 @@ abstract class Model extends AbstractController
 	 */
 	public function loadBy(string $columnName, $value)
 	{
-		$query = $this->query();
+		return $this->loadByMultiple([$columnName => $value]);
+	}
 
-		// fetch all rows which matches the specified column / key combination
-		$rows = $query
-			->select('*')
-			->from($this->getTableName())
-			->where(
-				$query->expr()->eq($columnName, \is_int($value) ? (int)$value : $query->quote($value))
-			)
-			->execute()
-			->fetch();
+	/**
+	 * Fetches a single model by its unique key-value pairs.
+	 *
+	 * @param array $where
+	 *
+	 * @return static
+	 */
+	public function loadByMultiple(array $where)
+	{
+		$builder = $this->query();
 
-		// fetch all attributes and update the model
-		if (false === $rows) {
-			$rows = [
-				$columnName => $value,
-			];
+		$builder->select('*')->from($this->getTableName());
 
-			$model = $this->fill($rows);
+		$first = true;
+		foreach($where as $column => $value) {
+			$whereClause = $builder->expr()->eq($column, \is_int($value) ? (int)$value : $builder->quote($value));
+			if ($first) {
+				$builder->where($whereClause);
+			} else {
+				$builder->andWhere($whereClause);
+			}
+		}
+
+		$row = $builder->execute()->fetch();
+
+		if (false === $row) {
+			$model = $this->fill($where);
 		} else {
-			$model = $this->fill($rows);
+			$model = $this->fill($row);
 			$model->exists = true;
 		}
 

@@ -60,6 +60,20 @@ class TxWowClass extends Model
 	}
 
 	/**
+	 * Fetches a single class model by its unique name.
+	 *
+	 * @param string $name
+	 *
+	 * @return \Project\Classes\ContentService\Models\TxWowClass
+	 */
+	public static function findByName(string $name): self
+	{
+		$self = new self();
+
+		return $self->loadBy('name', \trim($name));
+	}
+
+	/**
 	 * Seeds the World of Warcraft class database table.
 	 */
 	public static function seed()
