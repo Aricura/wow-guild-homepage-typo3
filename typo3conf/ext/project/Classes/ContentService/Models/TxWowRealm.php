@@ -48,7 +48,7 @@ class TxWowRealm extends Model
 	}
 
 	/**
-	 * Seeds the World of Warcraft battle group database table.
+	 * Seeds the World of Warcraft realm database table.
 	 */
 	public static function seed()
 	{

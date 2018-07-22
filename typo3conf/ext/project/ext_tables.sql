@@ -49,7 +49,6 @@ CREATE TABLE tx_wow_fractions (
   hidden           TINYINT(1) NOT NULL DEFAULT '0',
   sys_language_uid INT(11)    NOT NULL DEFAULT '0',
 
-  foreign_id       INT(11),
   slug             VARCHAR(255),
 
   PRIMARY KEY (uid),
