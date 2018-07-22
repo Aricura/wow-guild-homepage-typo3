@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Project\Classes\Scheduler;
 
 use Project\Classes\ContentService\Models\TxWowBattleGroup;
+use Project\Classes\ContentService\Models\TxWowFraction;
+use Project\Classes\ContentService\Models\TxWowRace;
 use Project\Classes\ContentService\Models\TxWowRealm;
 use TYPO3\CMS\Scheduler\Task\AbstractTask;
 
@@ -20,6 +22,8 @@ class WowResourcesUpdateTask extends AbstractTask
 	{
 		TxWowBattleGroup::seed();
 		TxWowRealm::seed();
+		TxWowFraction::seed();
+		TxWowRace::seed();
 
 		return 1;
 	}
