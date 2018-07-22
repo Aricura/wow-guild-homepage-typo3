@@ -20,7 +20,7 @@ return [
 		'sortby' => 'sorting',
 		'delete' => 'deleted',
 		'dividers2tabs' => true,
-		'languageField' => 'sys_language_uid',
+		'languageField' => '',
 		'enablecolumns' => [
 			'disabled' => 'hidden',
 		],
@@ -32,17 +32,6 @@ return [
 			'config' => [
 				'type' => 'check',
 				'default' => '0',
-			],
-		],
-		'sys_language_uid' => [
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.language',
-			'config' => [
-				'type' => 'select',
-				'foreign_table' => 'sys_language',
-				'foreign_table_where' => 'ORDER BY sys_language.title',
-				'items' => [
-					['LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1],
-				],
 			],
 		],
 		'tx_wow_realm_uid' => [
@@ -62,8 +51,8 @@ return [
 			'label' => 'Fraction',
 			'config' => [
 				'type' => 'select',
-				'foreign_table' => 'tx_wow_fraction_uid',
-				'foreign_table_where' => 'AND tx_wow_fraction_uid.deleted = 0 AND tx_wow_fraction_uid.hidden = 0',
+				'foreign_table' => 'tx_wow_fractions',
+				'foreign_table_where' => 'AND tx_wow_fractions.deleted = 0 AND tx_wow_fractions.hidden = 0',
 				'minitems' => 1,
 				'maxitems' => 1,
 				'multiple' => false,
@@ -79,21 +68,23 @@ return [
 			],
 		],
 		'level' => [
-			'label' => 'Level',
+			'label' => 'Level (will be set by the battle.net API)',
 			'config' => [
 				'type' => 'text',
 				'max' => 2,
-				'eval' => 'trim,required',
+				'eval' => 'trim',
 				'rows' => 1,
+				'default' => 0,
 			],
 		],
 		'achievement_points' => [
-			'label' => 'Achievement Points',
+			'label' => 'Achievement Points (will be set by the battle.net API)',
 			'config' => [
 				'type' => 'text',
 				'max' => 6,
-				'eval' => 'trim,required',
+				'eval' => 'trim',
 				'rows' => 1,
+				'default' => 0,
 			],
 		],
 	],

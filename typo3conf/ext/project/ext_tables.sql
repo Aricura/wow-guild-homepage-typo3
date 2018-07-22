@@ -125,7 +125,6 @@ CREATE TABLE tx_wow_guilds (
   sorting             INT(11)    NOT NULL DEFAULT '0',
   deleted             TINYINT(1) NOT NULL DEFAULT '0',
   hidden              TINYINT(1) NOT NULL DEFAULT '0',
-  sys_language_uid    INT(11)    NOT NULL DEFAULT '0',
 
   tx_wow_realm_uid    INT(11),
   tx_wow_fraction_uid INT(11),
@@ -147,7 +146,6 @@ CREATE TABLE tx_wow_guild_members (
   sorting                         INT(11)    NOT NULL DEFAULT '0',
   deleted                         TINYINT(1) NOT NULL DEFAULT '0',
   hidden                          TINYINT(1) NOT NULL DEFAULT '0',
-  sys_language_uid                INT(11)    NOT NULL DEFAULT '0',
 
   tx_wow_guild_uid                INT(11),
   tx_wow_realm_uid                INT(11),
