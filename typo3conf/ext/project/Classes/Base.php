@@ -24,7 +24,7 @@ abstract class Base extends AbstractController
 	/**
 	 * @var TypoScriptFrontendController
 	 */
-	protected $frontendController;
+	private $frontendController;
 
 	/**
 	 * Renders a template.
@@ -59,5 +59,19 @@ abstract class Base extends AbstractController
 	public function injectTypoScriptFrontendController(TypoScriptFrontendController $frontendController)
 	{
 		$this->frontendController = $frontendController;
+	}
+
+	/**
+	 * Returns the typoscript frontend controller instance.
+	 *
+	 * @return mixed|\TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
+	 */
+	protected function frontendController()
+	{
+		if ($this->frontendController instanceof TypoScriptFrontendController) {
+			return $this->frontendController;
+		}
+
+		return $GLOBALS['TSFE'];
 	}
 }

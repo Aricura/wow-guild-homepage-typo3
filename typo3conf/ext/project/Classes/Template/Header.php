@@ -43,7 +43,7 @@ class Header extends Base
 		$twigData = [
 			'css' => $this->css(),
 			'js' => $this->js(),
-			'L' => (int)$this->frontendController->sys_language_uid,
+			'L' => (int)$this->frontendController()->sys_language_uid,
 		];
 
 		return $this->twig('page/head/default.html.twig', $twigData);

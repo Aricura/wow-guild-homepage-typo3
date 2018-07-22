@@ -1,21 +1,3 @@
-CREATE TABLE tx_wow_settings (
-  uid                      INT(11)    NOT NULL AUTO_INCREMENT,
-  pid                      INT(11)    NOT NULL DEFAULT '0',
-  tstamp                   INT(11)    NOT NULL DEFAULT '0',
-  crdate                   INT(11)    NOT NULL DEFAULT '0',
-  cruser_id                INT(11)    NOT NULL DEFAULT '0',
-  sorting                  INT(11)    NOT NULL DEFAULT '0',
-  deleted                  TINYINT(1) NOT NULL DEFAULT '0',
-  hidden                   TINYINT(1) NOT NULL DEFAULT '0',
-  sys_language_uid         INT(11)    NOT NULL DEFAULT '0',
-
-  battle_net_client_id     VARCHAR(255),
-  battle_net_client_secret VARCHAR(255),
-
-  PRIMARY KEY (uid),
-  KEY parent (pid)
-);
-
 CREATE TABLE tx_wow_battle_groups (
   uid              INT(11)    NOT NULL AUTO_INCREMENT,
   pid              INT(11)    NOT NULL DEFAULT '0',
@@ -27,7 +9,6 @@ CREATE TABLE tx_wow_battle_groups (
   hidden           TINYINT(1) NOT NULL DEFAULT '0',
   sys_language_uid INT(11)    NOT NULL DEFAULT '0',
 
-  foreign_id       INT(11),
   slug             VARCHAR(255),
   name             VARCHAR(255),
 
@@ -46,7 +27,6 @@ CREATE TABLE tx_wow_realms (
   hidden                  TINYINT(1) NOT NULL DEFAULT '0',
   sys_language_uid        INT(11)    NOT NULL DEFAULT '0',
 
-  foreign_id              INT(11),
   tx_wow_battle_group_uid INT(11),
   slug                    VARCHAR(255),
   name                    VARCHAR(255),
@@ -110,7 +90,7 @@ CREATE TABLE tx_wow_classes (
   foreign_id       INT(11),
   mask             INT(11),
   name             VARCHAR(255),
-  power_Type       VARCHAR(255),
+  power_type       VARCHAR(255),
 
   PRIMARY KEY (uid),
   KEY parent (pid)
@@ -131,7 +111,7 @@ CREATE TABLE tx_wow_class_specialisations (
   tx_wow_class_uid  INT(11),
   name              VARCHAR(255),
   role              VARCHAR(255),
-  background_image_ VARCHAR(255),
+  background_image  VARCHAR(255),
   icon              VARCHAR(255),
 
   PRIMARY KEY (uid),
