@@ -50,6 +50,20 @@ class TxWowRealm extends Model
 	}
 
 	/**
+	 * Fetches a single realm model by its unique name.
+	 *
+	 * @param string $name
+	 *
+	 * @return \Project\Classes\ContentService\Models\TxWowRealm
+	 */
+	public static function findByName(string $name): self
+	{
+		$self = new self();
+
+		return $self->loadBy('name', $name);
+	}
+
+	/**
 	 * Seeds the World of Warcraft realm database table.
 	 */
 	public static function seed()

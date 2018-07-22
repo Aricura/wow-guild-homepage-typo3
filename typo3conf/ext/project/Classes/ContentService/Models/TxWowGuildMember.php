@@ -17,7 +17,6 @@ use Project\Classes\ContentService\Model;
  * @property int    sorting
  * @property int    deleted
  * @property int    hidden
- * @property int    sys_language_uid
  * @property int    tx_wow_guild_uid
  * @property int    tx_wow_realm_uid
  * @property int    tx_wow_race_uid
@@ -41,4 +40,19 @@ class TxWowGuildMember extends Model
 	 * @var string
 	 */
 	protected $table = 'tx_wow_guild_members';
+
+	/**
+	 * Fetches a single guild member model by its unique parent guild and name combination.
+	 *
+	 * @param TxWowGuild $guild
+	 * @param string     $name
+	 *
+	 * @return \Project\Classes\ContentService\Models\TxWowGuildMember
+	 */
+	public static function findByGuildAndName(TxWowGuild $guild, string $name): self
+	{
+		$model = new self();
+
+		return $model->loadByMultiple(['tx_wow_guild_uid' => $guild->getKey(), 'name' => $name]);
+	}
 }

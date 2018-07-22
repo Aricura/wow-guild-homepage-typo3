@@ -18,7 +18,6 @@ use Project\Classes\ContentService\Model;
  * @property int    sorting
  * @property int    deleted
  * @property int    hidden
- * @property int    sys_language_uid
  * @property int    tx_wow_realm_uid
  * @property int    tx_wow_fraction_uid
  * @property string name
@@ -45,7 +44,7 @@ class TxWowGuild extends Model
 		/** @var self $guild */
 		foreach ($guilds as $guild) {
 			$realm = (new TxWowRealm())->load($guild->tx_wow_realm_uid);
-			$response = $battleNet->get(\sprintf('guild/%s/%s', $realm->name, $guild->name));
+			$response = $battleNet->get(\sprintf('guild/%s/%s', $realm->name, $guild->name), ['fields' => 'members']);
 
 			if (!$response->success()) {
 				continue;
@@ -60,6 +59,32 @@ class TxWowGuild extends Model
 			$guild->achievement_points = (int)$response->getResponseByKey('achievementPoints');
 			$guild->last_modified = \date('Y-m-d H:i:s', $lastModified);
 			$guild->store();
+
+			$members = $response->getResponseByKey('members');
+
+			foreach($members as $member) {
+				$character = (array)$member['character'];
+
+				$realm = TxWowRealm::findBySlug($character['realm']);
+				if (!$realm->exists()) {
+					$realm = TxWowRealm::findByName($character['realm']);
+				}
+				$class = TxWowClass::findByForeignId((int)$character['class']);
+				$race = TxWowRace::findByForeignId((int)$character['race']);
+				$lastModified = (int)$character['lastModified'] / 1000;
+
+				$guildMember = TxWowGuildMember::findByGuildAndName($guild, $character['name']);
+				$guildMember->tx_wow_realm_uid = $realm->getKey();
+				$guildMember->tx_wow_race_uid = $race->getKey();
+				$guildMember->tx_wow_class_uid = $class->getKey();
+				$guildMember->guild_rank = (int)$member['rank'];
+				$guildMember->gender = (int)$character['gender'];
+				$guildMember->level = (int)$character['level'];
+				$guildMember->achievement_points = (int)$character['achievementPoints'];
+				$guildMember->thumbnail = $character['thumbnail'];
+				$guildMember->last_modified = \date('Y-m-d H:i:s', $lastModified);
+				$guildMember->store();
+			}
 		}
 	}
 }
