@@ -587,7 +587,8 @@ abstract class Model extends AbstractController
 
 		// convert each row into a model
 		$collection = \array_map(function(array $row) use ($dummyModel) {
-			$model = $dummyModel->clone()->fresh()->fill($row);
+			$model = new static();
+			$model->fill($row);
 			$model->exists = true;
 			return $model;
 		}, $query->execute()->fetchAll());
