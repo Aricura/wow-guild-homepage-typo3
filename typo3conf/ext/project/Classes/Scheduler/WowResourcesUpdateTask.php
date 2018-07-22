@@ -17,6 +17,7 @@ use TYPO3\CMS\Scheduler\Task\AbstractTask;
  */
 class WowResourcesUpdateTask extends AbstractTask
 {
+
 	/**
 	 * @return int
 	 */

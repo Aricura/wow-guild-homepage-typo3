@@ -11,22 +11,23 @@ use Project\Classes\Helper\Config;
 /**
  * Base model representing any record of the tx_wow_races table.
  *
- * @property int uid
- * @property int pid
- * @property int tstamp
- * @property int crdate
- * @property int cruser_id
- * @property int sorting
- * @property int deleted
- * @property int hidden
- * @property int sys_language_uid
- * @property int foreign_id
- * @property int tx_wow_fraction_uid
- * @property int mask
+ * @property int    uid
+ * @property int    pid
+ * @property int    tstamp
+ * @property int    crdate
+ * @property int    cruser_id
+ * @property int    sorting
+ * @property int    deleted
+ * @property int    hidden
+ * @property int    sys_language_uid
+ * @property int    foreign_id
+ * @property int    tx_wow_fraction_uid
+ * @property int    mask
  * @property string name
  */
 class TxWowRace extends Model
 {
+
 	/**
 	 * @var string
 	 */
@@ -75,14 +76,14 @@ class TxWowRace extends Model
 		$races = $response->getResponseByKey('races');
 		$pid = (int)Config::get('tx_wow_race_folder_uid');
 
-		foreach($races as $race) {
+		foreach ($races as $race) {
 			$fraction = TxWowFraction::findBySlug($race['side']);
 
-			$model = self::findByForeignId((int) $race['id']);
+			$model = self::findByForeignId((int)$race['id']);
 			$model->pid = $pid;
 			$model->cruser_id = 1;
 			$model->tx_wow_fraction_uid = $fraction->getKey();
-			$model->mask = (int) $race['mask'];
+			$model->mask = (int)$race['mask'];
 			$model->name = $race['name'];
 			$model->store();
 		}

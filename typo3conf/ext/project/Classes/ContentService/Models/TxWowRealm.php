@@ -11,16 +11,16 @@ use Project\Classes\Helper\Config;
 /**
  * Base model representing any record of the tx_wow_realms table.
  *
- * @property int uid
- * @property int pid
- * @property int tstamp
- * @property int crdate
- * @property int cruser_id
- * @property int sorting
- * @property int deleted
- * @property int hidden
- * @property int sys_language_uid
- * @property int tx_wow_battle_group_uid
+ * @property int    uid
+ * @property int    pid
+ * @property int    tstamp
+ * @property int    crdate
+ * @property int    cruser_id
+ * @property int    sorting
+ * @property int    deleted
+ * @property int    hidden
+ * @property int    sys_language_uid
+ * @property int    tx_wow_battle_group_uid
  * @property string slug
  * @property string name
  * @property string type
@@ -29,6 +29,7 @@ use Project\Classes\Helper\Config;
  */
 class TxWowRealm extends Model
 {
+
 	/**
 	 * @var string
 	 */
@@ -63,7 +64,7 @@ class TxWowRealm extends Model
 		$realms = $response->getResponseByKey('realms');
 		$pid = (int)Config::get('tx_wow_realm_folder_uid');
 
-		foreach($realms as $realm) {
+		foreach ($realms as $realm) {
 			$battleGroup = TxWowBattleGroup::findBySlug($realm['battlegroup']);
 			if (!$battleGroup->exists()) {
 				$battleGroup = TxWowBattleGroup::findByName($realm['battlegroup']);

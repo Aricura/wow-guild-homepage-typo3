@@ -524,7 +524,7 @@ abstract class Model extends AbstractController
 		$builder->select('*')->from($this->getTableName());
 
 		$first = true;
-		foreach($where as $column => $value) {
+		foreach ($where as $column => $value) {
 			$whereClause = $builder->expr()->eq($column, \is_int($value) ? (int)$value : $builder->quote($value));
 			if ($first) {
 				$builder->where($whereClause);

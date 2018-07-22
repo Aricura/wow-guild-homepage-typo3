@@ -28,7 +28,7 @@ class Config
 	public static function get(string $configKeyName, $fallback = '')
 	{
 		if (!\count(self::$cache)) {
-			$extensionConfigString = (string) $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['project'];
+			$extensionConfigString = (string)$GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['project'];
 
 			self::$cache = \unserialize($extensionConfigString, ['allowed_classes' => true]);
 

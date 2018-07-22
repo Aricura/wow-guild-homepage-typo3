@@ -10,20 +10,21 @@ use Project\Classes\Helper\Config;
 /**
  * Base model representing any record of the tx_wow_fractions table.
  *
- * @property int uid
- * @property int pid
- * @property int tstamp
- * @property int crdate
- * @property int cruser_id
- * @property int sorting
- * @property int deleted
- * @property int hidden
- * @property int sys_language_uid
+ * @property int    uid
+ * @property int    pid
+ * @property int    tstamp
+ * @property int    crdate
+ * @property int    cruser_id
+ * @property int    sorting
+ * @property int    deleted
+ * @property int    hidden
+ * @property int    sys_language_uid
  * @property string slug
  * @property string name
  */
 class TxWowFraction extends Model
 {
+
 	/**
 	 * @var string
 	 */
@@ -88,7 +89,7 @@ class TxWowFraction extends Model
 	 */
 	public static function findByIndex(int $index): self
 	{
-		switch($index) {
+		switch ($index) {
 			case 0:
 			default:
 				return self::getAlliance();

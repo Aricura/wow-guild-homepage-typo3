@@ -12,6 +12,7 @@ use TYPO3\CMS\Scheduler\Task\AbstractTask;
  */
 class WowGuildsUpdateTask extends AbstractTask
 {
+
 	/**
 	 * @return int
 	 */

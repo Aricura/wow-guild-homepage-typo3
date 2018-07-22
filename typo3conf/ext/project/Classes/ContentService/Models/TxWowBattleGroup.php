@@ -11,20 +11,21 @@ use Project\Classes\Helper\Config;
 /**
  * Base model representing any record of the tx_wow_battle_groups table.
  *
- * @property int uid
- * @property int pid
- * @property int tstamp
- * @property int crdate
- * @property int cruser_id
- * @property int sorting
- * @property int deleted
- * @property int hidden
- * @property int sys_language_uid
+ * @property int    uid
+ * @property int    pid
+ * @property int    tstamp
+ * @property int    crdate
+ * @property int    cruser_id
+ * @property int    sorting
+ * @property int    deleted
+ * @property int    hidden
+ * @property int    sys_language_uid
  * @property string slug
  * @property string name
  */
 class TxWowBattleGroup extends Model
 {
+
 	/**
 	 * @var string
 	 */
@@ -73,7 +74,7 @@ class TxWowBattleGroup extends Model
 		$battleGroups = $response->getResponseByKey('battlegroups');
 		$pid = (int)Config::get('tx_wow_battle_group_folder_uid');
 
-		foreach($battleGroups as $battleGroup) {
+		foreach ($battleGroups as $battleGroup) {
 			$model = self::findBySlug($battleGroup['slug']);
 			$model->pid = $pid;
 			$model->cruser_id = 1;

@@ -11,22 +11,23 @@ use Project\Classes\Helper\Config;
 /**
  * Base model representing any record of the tx_wow_classes table.
  *
- * @property int uid
- * @property int pid
- * @property int tstamp
- * @property int crdate
- * @property int cruser_id
- * @property int sorting
- * @property int deleted
- * @property int hidden
- * @property int sys_language_uid
- * @property int foreign_id
- * @property int mask
+ * @property int    uid
+ * @property int    pid
+ * @property int    tstamp
+ * @property int    crdate
+ * @property int    cruser_id
+ * @property int    sorting
+ * @property int    deleted
+ * @property int    hidden
+ * @property int    sys_language_uid
+ * @property int    foreign_id
+ * @property int    mask
  * @property string name
  * @property string power_type
  */
 class TxWowClass extends Model
 {
+
 	/**
 	 * @var string
 	 */
@@ -89,11 +90,11 @@ class TxWowClass extends Model
 		$classes = $response->getResponseByKey('classes');
 		$pid = (int)Config::get('tx_wow_class_folder_uid');
 
-		foreach($classes as $class) {
-			$model = self::findByForeignId((int) $class['id']);
+		foreach ($classes as $class) {
+			$model = self::findByForeignId((int)$class['id']);
 			$model->pid = $pid;
 			$model->cruser_id = 1;
-			$model->mask = (int) $class['mask'];
+			$model->mask = (int)$class['mask'];
 			$model->name = $class['name'];
 			$model->power_type = \strtolower($class['powerType']);
 			$model->store();
