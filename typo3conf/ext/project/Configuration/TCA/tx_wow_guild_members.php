@@ -24,7 +24,7 @@ return [
 		'enablecolumns' => [
 			'disabled' => 'hidden',
 		],
-		'iconfile' => ExtensionManagementUtility::siteRelPath('core').'Resources/Public/Icons/T3Icons/content/content-info.svg',
+		'iconfile' => ExtensionManagementUtility::siteRelPath('core') . 'Resources/Public/Icons/T3Icons/content/content-info.svg',
 	],
 	'columns' => [
 		'hidden' => [
@@ -110,7 +110,7 @@ return [
 				'items' => [
 					['Female', 0],
 					['Male', 1],
-				]
+				],
 			],
 		],
 		'name' => [
