@@ -6,6 +6,7 @@ namespace Project\Classes\ContentService\Models;
 
 use Project\Classes\ContentService\Api\BattleNet;
 use Project\Classes\ContentService\Model;
+use Project\Classes\Helper\Config;
 
 /**
  * Base model representing any record of the tx_wow_guilds table.
@@ -41,6 +42,9 @@ class TxWowGuild extends Model
 		$battleNet = new BattleNet();
 		$guilds = self::all();
 
+		$guildPid = (int)Config::get('tx_wow_guild_folder_uid');
+		$guildMemberPid = (int)Config::get('tx_wow_guild_member_folder_uid');
+
 		/** @var self $guild */
 		foreach ($guilds as $guild) {
 			$realm = (new TxWowRealm())->load($guild->tx_wow_realm_uid);
@@ -53,6 +57,7 @@ class TxWowGuild extends Model
 			$fraction = TxWowFraction::findByIndex((int)$response->getResponseByKey('side'));
 			$lastModified = (int)$response->getResponseByKey('lastModified') / 1000;
 
+			$guild->pid = $guildPid;
 			$guild->tx_wow_fraction_uid = $fraction->getKey();
 			$guild->name = $response->getResponseByKey('name');
 			$guild->level = (int)$response->getResponseByKey('level');
@@ -62,7 +67,7 @@ class TxWowGuild extends Model
 
 			$members = $response->getResponseByKey('members');
 
-			foreach($members as $member) {
+			foreach ($members as $member) {
 				$character = (array)$member['character'];
 
 				$realm = TxWowRealm::findBySlug($character['realm']);
@@ -74,6 +79,8 @@ class TxWowGuild extends Model
 				$lastModified = (int)$character['lastModified'] / 1000;
 
 				$guildMember = TxWowGuildMember::findByGuildAndName($guild, $character['name']);
+				$guildMember->pid = $guildMemberPid;
+				$guildMember->cruser_id = 1;
 				$guildMember->tx_wow_realm_uid = $realm->getKey();
 				$guildMember->tx_wow_race_uid = $race->getKey();
 				$guildMember->tx_wow_class_uid = $class->getKey();
