@@ -12,13 +12,11 @@
 /typo3_src/vendor/
 /typo3conf/*
 !/typo3conf/LocalConfiguration.php
-!/typo3conf/AdditionalConfiguration.php
-!/typo3conf/realurl_conf.php
+!/typo3conf/AdditionalConfiguration.php.dist
 !/typo3conf/l10n
 !/typo3conf/ext
 /typo3conf/ext/*
 !/typo3conf/ext/project
-# !/typo3conf/ext/<your_site_package>
 
 /FIRST_INSTALL
 /fileadmin
@@ -26,26 +24,6 @@
 /typo3temp
 /typo3
 /index.php
-
-/app/config/typoscript/constants_local.typoscript
-
-### Symfony
-/app/config/parameters.yml
-/var/*
-!/var/cache
-/var/cache/*
-!var/cache/.gitkeep
-!/var/logs
-/var/logs/*
-!var/logs/.gitkeep
-!/var/sessions
-/var/sessions/*
-!var/sessions/.gitkeep
-!var/SymfonyRequirements.php
-/bundles/
-
-### GrumPHP
-/grumphp.yml
 
 ### Assets
 /node_modules/
