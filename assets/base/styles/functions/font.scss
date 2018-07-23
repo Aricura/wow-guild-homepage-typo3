@@ -1,0 +1,9 @@
+@import '../variables/fonts';
+
+@function font($key, $map: $fonts) {
+    @if not map-has-key($map, $key) {
+        @error '#{$key} is no valid font.';
+    }
+
+    @return map-get($map, $key);
+}

@@ -12,7 +12,6 @@
 /typo3_src/vendor/
 /typo3conf/*
 !/typo3conf/LocalConfiguration.php
-!/typo3conf/AdditionalConfiguration.php.dist
 !/typo3conf/l10n
 !/typo3conf/ext
 /typo3conf/ext/*
@@ -27,16 +26,7 @@
 
 ### Assets
 /node_modules/
-/assets/components/
-/assets/tasks/configuration_local.js
+/assets/vendor/
 
 ### Compiled assets
-/css/*
-!/css/.gitkeep
-!/css/rte.css
-/js/*
-!/js/.gitkeep
-/images/*
-!/images/.gitkeep
-/**/*.br
-/**/*.gz
+/dist

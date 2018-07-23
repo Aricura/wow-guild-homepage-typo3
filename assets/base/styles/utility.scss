@@ -1,0 +1,49 @@
+.u-hidden {
+    display: none;
+}
+
+.u {
+    @for $i from 1 through 10 {
+        &-mt-#{$i} {
+            margin-top: #{$i}rem;
+        }
+
+        &-mb-#{$i} {
+            margin-bottom: #{$i}rem;
+        }
+    }
+}
+
+.hidden,
+button.hidden {
+    display: none;
+}
+
+.invisible,
+button.invisible {
+    visibility: hidden;
+}
+
+/*
+  This will hide the focus indicator if the element receives focus via the mouse,
+  but it will still show up on keyboard focus.
+*/
+.js-focus-visible :focus:not(.focus-visible) {
+    outline: 0;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-justify {
+    text-align: justify;
+}

@@ -1,0 +1,22 @@
+{
+	"private": true,
+	"scripts": {
+		"dev": "npm run development",
+		"development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+		"prod": "npm run production",
+		"production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+	},
+	"dependencies": {
+		"core-js": "^2.5.3",
+		"fontfaceobserver": "^2.0.13"
+	},
+	"devDependencies": {
+		"@types/fontfaceobserver": "0.0.6",
+		"ts-loader": "^3.5.0",
+		"typescript": "^2.7.2",
+		"axios": "^0.17",
+		"cross-env": "^5.1",
+		"laravel-mix": "^1.0",
+		"lodash": "^4.17.4"
+	}
+}

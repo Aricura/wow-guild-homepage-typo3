@@ -13,23 +13,21 @@ class Header extends Base
 {
 
 	/**
-	 * Collection of all css files inside the assets/css/ directory being rendered in the website's <head>.
+	 * Collection of all css files inside the / directory being rendered in the website's <head>.
 	 *
 	 * @var array
 	 */
 	private static $cssFiles = [
-		'vendor.min.css',
-		'main.min.css',
+		'dist/main.css',
 	];
 	/**
-	 * Collection of all js files inside the assets/js/ directory being rendered in the website's <head>.
+	 * Collection of all js files inside the / directory being rendered in the website's <head>.
 	 * The array key is the relative file name and its value is the render type/attribute (inline, async or defer).
 	 *
 	 * @var array
 	 */
 	private static $jsFiles = [
-		'vendor.js' => 'defer',
-		'main.js' => 'defer',
+		'dist/main.js' => 'defer',
 	];
 
 	/**
@@ -46,7 +44,7 @@ class Header extends Base
 			'L' => (int)$this->frontendController()->sys_language_uid,
 		];
 
-		return $this->twig('page/head/default.html.twig', $twigData);
+		return $this->twig('page/head.html.twig', $twigData);
 	}
 
 	/**
@@ -87,7 +85,7 @@ class Header extends Base
 	 * Appends a version information (last modified timestamp) as query parameter to the specified file.
 	 * Returns an empty string if the file does not exist.
 	 *
-	 * @param string $filePath relative file path and name inside the web/ directory
+	 * @param string $filePath relative file path and name inside the / directory
 	 *
 	 * @return string
 	 */
@@ -103,14 +101,14 @@ class Header extends Base
 	 * Returns the html tag to include the specified css file.
 	 * Returns an empty string if the file does not exist.
 	 *
-	 * @param string $filePath relative file path and name inside the web/css/ directory
+	 * @param string $filePath relative file path and name inside the / directory
 	 *
 	 * @return string
 	 */
 	private function includeCss(string $filePath): string
 	{
 		// prepend the directory name where all css files are located in
-		$filePath = 'assets/css/' . \trim($filePath, '/');
+		$filePath = \trim($filePath, '/');
 
 		// get the versioned file path and name
 		$filePath = $this->appendVersionToFilePath($filePath);
@@ -122,7 +120,7 @@ class Header extends Base
 	 * Returns either the html tag to include the specified js file as external resource or the inline js code.
 	 * Returns an empty string if the file does not exist.
 	 *
-	 * @param string $filePath  relative file path and name inside the web/js/ directory
+	 * @param string $filePath  relative file path and name inside the / directory
 	 * @param string $attribute the type/attribute how the js code/file should be included (ether inline, async or
 	 *                          defer)
 	 *
@@ -131,7 +129,7 @@ class Header extends Base
 	private function includeJs(string $filePath, string $attribute): string
 	{
 		// prepend the directory name where all js files are located in
-		$filePath = 'assets/js/' . \trim($filePath, '/');
+		$filePath = \trim($filePath, '/');
 
 		// check if the js file should be included as inline resource
 		if ('inline' === \mb_strtolower($attribute)) {
