@@ -29,7 +29,7 @@ page {
         template.userFunc = Project\Classes\Template\Master->render
 
         marks {
-            CONTENT0 < bartacus.content.get
+            CONTENT0 < styles.content.get
         }
     }
 
