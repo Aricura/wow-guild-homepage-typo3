@@ -2,12 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Project\Classes\ContentService\Models;
-
-use Project\Classes\ContentService\Model;
+namespace Project\Classes\ContentService;
 
 /**
- * Base model representing any record of the tt_content table.
+ * Model representing a single record of the tt_content database table.
  *
  * @property int    uid
  * @property int    pid
@@ -116,11 +114,23 @@ use Project\Classes\ContentService\Model;
  * @property string l10n_state
  * @property int    l10n_source
  */
-class TtContent extends Model
+class TtContent extends AbstractModel
 {
 
 	/**
+	 * Database table name this model is associated with.
+	 *
 	 * @var string
 	 */
 	protected $table = 'tt_content';
+
+	/**
+	 * Returns the page model this content element is used on.
+	 *
+	 * @return Page
+	 */
+	public function getPage(): Page
+	{
+		return Page::find($this->getParentKey());
+	}
 }

@@ -12,16 +12,16 @@
 /typo3_src/vendor/
 /typo3conf/*
 !/typo3conf/LocalConfiguration.php
-!/typo3conf/l10n
-!/typo3conf/ext
+!/typo3conf/l10n/
+!/typo3conf/ext/
 /typo3conf/ext/*
-!/typo3conf/ext/project
+!/typo3conf/ext/project/
 
 /FIRST_INSTALL
-/fileadmin
-/uploads
-/typo3temp
-/typo3
+/fileadmin/
+/uploads/
+/typo3temp/
+/typo3/
 /index.php
 
 ### Assets
@@ -29,4 +29,5 @@
 /assets/vendor/
 
 ### Compiled assets
-/dist
+/dist/
+mix-manifest.json

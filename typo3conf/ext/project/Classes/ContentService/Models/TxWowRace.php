@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Project\Classes\ContentService\Models;
 
 use Project\Classes\ContentService\Api\BattleNet;
-use Project\Classes\ContentService\Model;
+use Project\Classes\ContentService\AbstractModel;
 use Project\Classes\Helper\Config;
 
 /**
@@ -25,7 +25,7 @@ use Project\Classes\Helper\Config;
  * @property int    mask
  * @property string name
  */
-class TxWowRace extends Model
+class TxWowRace extends AbstractModel
 {
 
 	/**
@@ -42,9 +42,7 @@ class TxWowRace extends Model
 	 */
 	public static function findByForeignId(int $foreignId): self
 	{
-		$self = new self();
-
-		return $self->loadBy('foreign_id', $foreignId);
+		return self::findBy('foreign_id', $foreignId);
 	}
 
 	/**
@@ -56,9 +54,7 @@ class TxWowRace extends Model
 	 */
 	public static function findByMask(int $mask): self
 	{
-		$self = new self();
-
-		return $self->loadBy('mask', $mask);
+		return self::findBy('mask', $mask);
 	}
 
 	/**
@@ -82,9 +78,10 @@ class TxWowRace extends Model
 			$model = self::findByForeignId((int)$race['id']);
 			$model->pid = $pid;
 			$model->cruser_id = 1;
+			$model->foreign_id = (int)$race['id'];
 			$model->tx_wow_fraction_uid = $fraction->getKey();
 			$model->mask = (int)$race['mask'];
-			$model->name = $race['name'];
+			$model->name = \trim($race['name']);
 			$model->store();
 		}
 	}

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Project\Classes\ContentService\Models;
 
+use Project\Classes\ContentService\AbstractModel;
 use Project\Classes\ContentService\Api\BattleNet;
-use Project\Classes\ContentService\Model;
 use Project\Classes\Helper\Config;
 
 /**
@@ -25,7 +25,7 @@ use Project\Classes\Helper\Config;
  * @property string name
  * @property string power_type
  */
-class TxWowClass extends Model
+class TxWowClass extends AbstractModel
 {
 
 	/**
@@ -42,9 +42,7 @@ class TxWowClass extends Model
 	 */
 	public static function findByForeignId(int $foreignId): self
 	{
-		$self = new self();
-
-		return $self->loadBy('foreign_id', $foreignId);
+		return self::findBy('foreign_id', $foreignId);
 	}
 
 	/**
@@ -56,9 +54,7 @@ class TxWowClass extends Model
 	 */
 	public static function findByMask(int $mask): self
 	{
-		$self = new self();
-
-		return $self->loadBy('mask', $mask);
+		return self::findBy('mask', $mask);
 	}
 
 	/**
@@ -70,9 +66,7 @@ class TxWowClass extends Model
 	 */
 	public static function findByName(string $name): self
 	{
-		$self = new self();
-
-		return $self->loadBy('name', \trim($name));
+		return self::findBy('name', \trim($name));
 	}
 
 	/**
@@ -94,9 +88,10 @@ class TxWowClass extends Model
 			$model = self::findByForeignId((int)$class['id']);
 			$model->pid = $pid;
 			$model->cruser_id = 1;
+			$model->foreign_id = (int)$class['id'];
 			$model->mask = (int)$class['mask'];
-			$model->name = $class['name'];
-			$model->power_type = \strtolower($class['powerType']);
+			$model->name = \trim($class['name']);
+			$model->power_type = \mb_strtolower(\trim($class['powerType']));
 			$model->store();
 		}
 	}

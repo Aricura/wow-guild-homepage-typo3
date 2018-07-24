@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Project\Classes;
 
-use TYPO3\CMS\Extbase\Mvc\Controller\AbstractController;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Abstract base class for the entire Typo3 extension.
  */
-abstract class Base extends AbstractController
+abstract class Base
 {
 
 	/**

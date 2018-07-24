@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Project\Classes\ContentService\Models;
 
+use Project\Classes\ContentService\AbstractModel;
 use Project\Classes\ContentService\Api\BattleNet;
-use Project\Classes\ContentService\Model;
 use Project\Classes\Helper\Config;
 
 /**
@@ -23,7 +23,7 @@ use Project\Classes\Helper\Config;
  * @property string slug
  * @property string name
  */
-class TxWowBattleGroup extends Model
+class TxWowBattleGroup extends AbstractModel
 {
 
 	/**
@@ -40,9 +40,7 @@ class TxWowBattleGroup extends Model
 	 */
 	public static function findBySlug(string $slug): self
 	{
-		$self = new self();
-
-		return $self->loadBy('slug', \strtolower($slug));
+		return self::findBy('slug', \mb_strtolower(\trim($slug)));
 	}
 
 	/**
@@ -54,9 +52,7 @@ class TxWowBattleGroup extends Model
 	 */
 	public static function findByName(string $name): self
 	{
-		$self = new self();
-
-		return $self->loadBy('name', \trim($name));
+		return self::findBy('name', \trim($name));
 	}
 
 	/**
@@ -78,7 +74,8 @@ class TxWowBattleGroup extends Model
 			$model = self::findBySlug($battleGroup['slug']);
 			$model->pid = $pid;
 			$model->cruser_id = 1;
-			$model->name = $battleGroup['name'];
+			$model->slug = \mb_strtolower(\trim($battleGroup['slug']));
+			$model->name = \trim($battleGroup['name']);
 			$model->store();
 		}
 	}

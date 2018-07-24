@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Project\Classes\ContentService\Models;
 
-use Project\Classes\ContentService\Model;
+use Project\Classes\ContentService\AbstractModel;
 use Project\Classes\Helper\Config;
 
 /**
@@ -24,7 +24,7 @@ use Project\Classes\Helper\Config;
  * @property string background_image
  * @property string icon
  */
-class TxWowClassSpecialisation extends Model
+class TxWowClassSpecialisation extends AbstractModel
 {
 
 	/**
@@ -54,9 +54,7 @@ class TxWowClassSpecialisation extends Model
 	public function getClassModel(): TxWowClass
 	{
 		if (!$this->classModelCache) {
-			$class = new TxWowClass();
-
-			$this->classModelCache = $class->load($this->tx_wow_class_uid);
+			$this->classModelCache = TxWowClass::find($this->tx_wow_class_uid);
 		}
 
 		return $this->classModelCache;
@@ -69,7 +67,7 @@ class TxWowClassSpecialisation extends Model
 	 */
 	public function isTank(): bool
 	{
-		$classNameCombination = \strtolower($this->name . ' ' . $this->getClassModel()->name);
+		$classNameCombination = \mb_strtolower($this->name . ' ' . $this->getClassModel()->name);
 
 		switch ($classNameCombination) {
 			case 'blood death knight':
@@ -91,7 +89,7 @@ class TxWowClassSpecialisation extends Model
 	 */
 	public function isMeleeDps(): bool
 	{
-		$classNameCombination = \strtolower($this->name . ' ' . $this->getClassModel()->name);
+		$classNameCombination = \mb_strtolower($this->name . ' ' . $this->getClassModel()->name);
 
 		switch ($classNameCombination) {
 			case 'frost death knight':
@@ -120,7 +118,7 @@ class TxWowClassSpecialisation extends Model
 	 */
 	public function isRangedDps(): bool
 	{
-		$classNameCombination = \strtolower($this->name . ' ' . $this->getClassModel()->name);
+		$classNameCombination = \mb_strtolower($this->name . ' ' . $this->getClassModel()->name);
 
 		switch ($classNameCombination) {
 			case 'balance druid':
@@ -147,7 +145,7 @@ class TxWowClassSpecialisation extends Model
 	 */
 	public function isHealer(): bool
 	{
-		$classNameCombination = \strtolower($this->name . ' ' . $this->getClassModel()->name);
+		$classNameCombination = \mb_strtolower($this->name . ' ' . $this->getClassModel()->name);
 
 		switch ($classNameCombination) {
 			case 'restoration druid':
@@ -198,9 +196,14 @@ class TxWowClassSpecialisation extends Model
 	 */
 	public static function findByClassAndName(TxWowClass $class, string $name): self
 	{
-		$model = new self();
+		$where = [
+			'tx_wow_class_uid' => $class->getKey(),
+			'name' => \trim($name),
+		];
 
-		return $model->loadByMultiple(['tx_wow_class_uid' => $class->getKey(), 'name' => $name]);
+		$specialisations = self::findAllBy($where, 'AND', 0, 1);
+
+		return \count($specialisations) ? $specialisations[0] : new self;
 	}
 
 	/**
@@ -216,8 +219,10 @@ class TxWowClassSpecialisation extends Model
 		$model = self::findByClassAndName($class, $name);
 		$model->pid = (int)Config::get('tx_wow_class_specialisation_folder_uid');
 		$model->cruser_id = 1;
-		$model->background_image = \strtolower($bgImage);
-		$model->icon = \strtolower($icon);
+		$model->tx_wow_class_uid = $class->getKey();
+		$model->name = \trim($name);
+		$model->background_image = \mb_strtolower(\trim($bgImage));
+		$model->icon = \mb_strtolower(\trim($icon));
 		$model->store();
 	}
 

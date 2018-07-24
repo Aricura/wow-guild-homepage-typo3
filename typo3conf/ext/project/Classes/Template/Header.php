@@ -29,6 +29,26 @@ class Header extends Base
 	private static $jsFiles = [
 		'dist/main.js' => 'defer',
 	];
+	/**
+	 * Content of the laravel mix manifest json file (mis-manifest.json).
+	 *
+	 * @var array
+	 */
+	protected $mixManifest = [];
+
+	/**
+	 * Header constructor.
+	 */
+	public function __construct()
+	{
+		// get the laravel mix manifest file
+		$mixManifestContent = \file_get_contents(PATH_site . 'mix-manifest.json');
+		$this->mixManifest = \json_decode($mixManifestContent, true);
+
+		if (!\is_array($this->mixManifest)) {
+			$this->mixManifest = [];
+		}
+	}
 
 	/**
 	 * Returns all header data.
@@ -91,10 +111,20 @@ class Header extends Base
 	 */
 	private function appendVersionToFilePath(string $filePath): string
 	{
-		// get the absolute file path as we need to read its last modified timestamp
+		// get the absolute file path of this asset
 		$absoluteFilePath = PATH_site . $filePath;
 
-		return \file_exists($absoluteFilePath) ? '/' . $filePath . '?v=' . \filemtime($absoluteFilePath) : '';
+		if (!\file_exists($absoluteFilePath)) {
+			return '';
+		}
+
+		// return a custom hashed version of the asset as there was an error reading the manifest file
+		if (!\array_key_exists('/' . $filePath, $this->mixManifest)) {
+			return '/' . $filePath . '?v=' . \filemtime($absoluteFilePath);
+		}
+
+		// return the manifest version of this asset
+		return $this->mixManifest['/' . $filePath];
 	}
 
 	/**

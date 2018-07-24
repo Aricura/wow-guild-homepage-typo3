@@ -2,12 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Project\Classes\ContentService\Models;
-
-use Project\Classes\ContentService\Model;
+namespace Project\Classes\ContentService;
 
 /**
- * Base model representing any record of the pages table.
+ * Model representing a single record of the pages database table.
  *
  * @property int    uid
  * @property int    pid
@@ -78,33 +76,92 @@ use Project\Classes\ContentService\Model;
  * @property string ts_config_includes
  * @property int    categories
  */
-class Page extends Model
+class Page extends AbstractModel
 {
 
 	/**
-	 * @var string
-	 */
-	protected $table = 'pages';
-	/**
-	 * Pages does not have a language information column as their translations are stored in a separate table.
+	 * Database table name this model is associated with.
 	 *
 	 * @var string
 	 */
-	protected $languageKeyName = '';
+	protected $table = 'page';
+	/**
+	 * Column name where the language index of the model is stored in.
+	 * This information may be empty if the model has no language index / isn't translatable.
+	 * Default set to 'sys_language_uid'.
+	 *
+	 * @var string
+	 */
+	protected $languageIndexColumnName = '';
 
 	/**
-	 * Returns the parent page model of this page.
+	 * Returns the pages overlay model for the specified language index / uid.
 	 *
-	 * @return Page
+	 * @param int $targetLanguageIndex
+	 *
+	 * @return PageOverlay
 	 */
-	public function parentPage(): self
+	public function translate(int $targetLanguageIndex): PageOverlay
 	{
-		// initialize a new pages model
-		$parentPage = new self();
+		$translatedPage = $this->pageRepository->getPagesOverlay($this->toArray(), $targetLanguageIndex);
 
-		// load the parent page by its unique id
-		$parentPage->load($this->getParentKey());
+		return PageOverlay::mapModel($translatedPage);
+	}
 
-		return $parentPage;
+	/**
+	 * Returns the parent page model.
+	 *
+	 * @return self
+	 */
+	public function getParentPage(): self
+	{
+		return self::find($this->getParentKey());
+	}
+
+	/**
+	 * Returns all content elements which are defined on this page.
+	 * Only content elements in their origin language are returned (ignore translations).
+	 *
+	 * @return array|TtContent[]
+	 */
+	public function getContentElements(): array
+	{
+		return $this->getContentElementsByLanguage(0);
+	}
+
+	/**
+	 * Returns all content elements which are defined on this page.
+	 * Only content elements for the specified language / translation are returned.
+	 *
+	 * @param int $languageIndex
+	 *
+	 * @return array
+	 */
+	public function getContentElementsByLanguage(int $languageIndex): array
+	{
+		$dummy = new TtContent();
+
+		$where = [
+			$dummy->getParentColumnName() => ['eq' => $this->getKey()],
+			$dummy->getLanguageIndexColumnName() => $languageIndex,
+		];
+
+		return TtContent::findAllBy($where);
+	}
+
+	/**
+	 * Returns all pages which matches the specified doktype.
+	 *
+	 * @param int $dokType
+	 *
+	 * @return array|self[]
+	 */
+	public static function getAllByDokType(int $dokType): array
+	{
+		$where = [
+			'doktype' => ['eq' => $dokType],
+		];
+
+		return self::findAllBy($where);
 	}
 }

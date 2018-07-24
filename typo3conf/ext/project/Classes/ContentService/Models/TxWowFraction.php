@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Project\Classes\ContentService\Models;
 
-use Project\Classes\ContentService\Model;
+use Project\Classes\ContentService\AbstractModel;
 use Project\Classes\Helper\Config;
 
 /**
@@ -22,7 +22,7 @@ use Project\Classes\Helper\Config;
  * @property string slug
  * @property string name
  */
-class TxWowFraction extends Model
+class TxWowFraction extends AbstractModel
 {
 
 	/**
@@ -39,9 +39,13 @@ class TxWowFraction extends Model
 	 */
 	public static function findBySlug(string $slug): self
 	{
-		$self = new self();
+		$model = self::findBy('slug', \mb_strtolower(\trim($slug)));
 
-		return $self->loadBy('slug', \strtolower($slug));
+		if (!$model->exists()) {
+			$model->slug = \mb_strtolower(\trim($slug));
+		}
+
+		return $model;
 	}
 
 	/**
@@ -51,9 +55,7 @@ class TxWowFraction extends Model
 	 */
 	public static function getAlliance(): self
 	{
-		$self = new self();
-
-		return $self->findBySlug('alliance');
+		return self::findBySlug('alliance');
 	}
 
 	/**
@@ -63,9 +65,7 @@ class TxWowFraction extends Model
 	 */
 	public static function getHorde(): self
 	{
-		$self = new self();
-
-		return $self->findBySlug('horde');
+		return self::findBySlug('horde');
 	}
 
 	/**
@@ -75,9 +75,7 @@ class TxWowFraction extends Model
 	 */
 	public static function getNeutral(): self
 	{
-		$self = new self();
-
-		return $self->findBySlug('neutral');
+		return self::findBySlug('neutral');
 	}
 
 	/**

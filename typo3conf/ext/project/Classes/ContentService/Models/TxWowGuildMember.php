@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Project\Classes\ContentService\Models;
 
 use Project\Classes\ContentService\Api\BattleNet;
-use Project\Classes\ContentService\Model;
+use Project\Classes\ContentService\AbstractModel;
 use Project\Classes\Helper\Config;
 
 /**
@@ -35,13 +35,21 @@ use Project\Classes\Helper\Config;
  * @property string last_modified
  * @property int    is_raid_member
  */
-class TxWowGuildMember extends Model
+class TxWowGuildMember extends AbstractModel
 {
 
 	/**
 	 * @var string
 	 */
 	protected $table = 'tx_wow_guild_members';
+	/**
+	 * Column name where the language index of the model is stored in.
+	 * This information may be empty if the model has no language index / isn't translatable.
+	 * Default set to 'sys_language_uid'.
+	 *
+	 * @var string
+	 */
+	protected $languageIndexColumnName = '';
 
 	/**
 	 * Fetches a single guild member model by its unique parent guild and name combination.
@@ -53,9 +61,14 @@ class TxWowGuildMember extends Model
 	 */
 	public static function findByGuildAndName(TxWowGuild $guild, string $name): self
 	{
-		$model = new self();
+		$where = [
+			'tx_wow_guild_uid' => $guild->getKey(),
+			'name' => \trim($name),
+		];
 
-		return $model->loadByMultiple(['tx_wow_guild_uid' => $guild->getKey(), 'name' => $name]);
+		$members = self::findAllBy($where, 'AND', 0, 1);
+
+		return \count($members) ? $members[0] : new self;
 	}
 
 	/**
@@ -64,12 +77,12 @@ class TxWowGuildMember extends Model
 	public static function seed()
 	{
 		$battleNet = new BattleNet();
-		$guildMembers = self::all();
+		$guildMembers = self::getAll();
 		$pid = (int)Config::get('tx_wow_guild_member_folder_uid');
 
 		/** @var self $guildMember */
 		foreach ($guildMembers as $guildMember) {
-			$realm = (new TxWowRealm())->load($guildMember->tx_wow_realm_uid);
+			$realm = TxWowRealm::find($guildMember->tx_wow_realm_uid);
 			$response = $battleNet->get(\sprintf('character/%s/%s', $realm->name, $guildMember->name), ['fields' => 'items']);
 
 			if (!$response->success()) {
@@ -86,14 +99,14 @@ class TxWowGuildMember extends Model
 
 			$guildMember->pid = $pid;
 			$guildMember->cruser_id = 1;
-			$guildMember->name = $response->getResponseByKey('name');
+			$guildMember->name = \trim($response->getResponseByKey('name'));
 			$guildMember->tx_wow_realm_uid = $realm->getKey();
 			$guildMember->tx_wow_race_uid = $race->getKey();
 			$guildMember->tx_wow_class_uid = $class->getKey();
 			$guildMember->gender = (int)$response->getResponseByKey('gender');
 			$guildMember->level = (int)$response->getResponseByKey('level');
 			$guildMember->achievement_points = (int)$response->getResponseByKey('achievementPoints');
-			$guildMember->thumbnail = $response->getResponseByKey('thumbnail');
+			$guildMember->thumbnail = \mb_strtolower(\trim($response->getResponseByKey('thumbnail')));
 			$guildMember->last_modified = \date('Y-m-d H:i:s', $lastModified);
 
 			$items = $response->getResponseByKey('items');

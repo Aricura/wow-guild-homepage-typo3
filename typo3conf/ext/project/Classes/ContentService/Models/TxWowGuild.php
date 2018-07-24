@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Project\Classes\ContentService\Models;
 
 use Project\Classes\ContentService\Api\BattleNet;
-use Project\Classes\ContentService\Model;
+use Project\Classes\ContentService\AbstractModel;
 use Project\Classes\Helper\Config;
 
 /**
@@ -26,13 +26,21 @@ use Project\Classes\Helper\Config;
  * @property int    achievement_points
  * @property string last_modified
  */
-class TxWowGuild extends Model
+class TxWowGuild extends AbstractModel
 {
 
 	/**
 	 * @var string
 	 */
 	protected $table = 'tx_wow_guilds';
+	/**
+	 * Column name where the language index of the model is stored in.
+	 * This information may be empty if the model has no language index / isn't translatable.
+	 * Default set to 'sys_language_uid'.
+	 *
+	 * @var string
+	 */
+	protected $languageIndexColumnName = '';
 
 	/**
 	 * Seed all information about all guilds.
@@ -40,14 +48,14 @@ class TxWowGuild extends Model
 	public static function seed()
 	{
 		$battleNet = new BattleNet();
-		$guilds = self::all();
+		$guilds = self::getAll();
 
 		$guildPid = (int)Config::get('tx_wow_guild_folder_uid');
 		$guildMemberPid = (int)Config::get('tx_wow_guild_member_folder_uid');
 
 		/** @var self $guild */
 		foreach ($guilds as $guild) {
-			$realm = (new TxWowRealm())->load($guild->tx_wow_realm_uid);
+			$realm = TxWowRealm::find($guild->tx_wow_realm_uid);
 			$response = $battleNet->get(\sprintf('guild/%s/%s', $realm->name, $guild->name), ['fields' => 'members']);
 
 			if (!$response->success()) {
@@ -59,7 +67,7 @@ class TxWowGuild extends Model
 
 			$guild->pid = $guildPid;
 			$guild->tx_wow_fraction_uid = $fraction->getKey();
-			$guild->name = $response->getResponseByKey('name');
+			$guild->name = \trim($response->getResponseByKey('name'));
 			$guild->level = (int)$response->getResponseByKey('level');
 			$guild->achievement_points = (int)$response->getResponseByKey('achievementPoints');
 			$guild->last_modified = \date('Y-m-d H:i:s', $lastModified);
@@ -81,14 +89,16 @@ class TxWowGuild extends Model
 				$guildMember = TxWowGuildMember::findByGuildAndName($guild, $character['name']);
 				$guildMember->pid = $guildMemberPid;
 				$guildMember->cruser_id = 1;
+				$guildMember->tx_wow_guild_uid = $guild->getKey();
 				$guildMember->tx_wow_realm_uid = $realm->getKey();
 				$guildMember->tx_wow_race_uid = $race->getKey();
 				$guildMember->tx_wow_class_uid = $class->getKey();
+				$guildMember->name = \trim($character['name']);
 				$guildMember->guild_rank = (int)$member['rank'];
 				$guildMember->gender = (int)$character['gender'];
 				$guildMember->level = (int)$character['level'];
 				$guildMember->achievement_points = (int)$character['achievementPoints'];
-				$guildMember->thumbnail = $character['thumbnail'];
+				$guildMember->thumbnail = \mb_strtolower(\trim($character['thumbnail']));
 				$guildMember->last_modified = \date('Y-m-d H:i:s', $lastModified);
 				$guildMember->store();
 			}

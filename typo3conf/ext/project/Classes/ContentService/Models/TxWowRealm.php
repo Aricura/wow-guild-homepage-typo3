@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Project\Classes\ContentService\Models;
 
 use Project\Classes\ContentService\Api\BattleNet;
-use Project\Classes\ContentService\Model;
+use Project\Classes\ContentService\AbstractModel;
 use Project\Classes\Helper\Config;
 
 /**
@@ -27,7 +27,7 @@ use Project\Classes\Helper\Config;
  * @property string population
  * @property string locale
  */
-class TxWowRealm extends Model
+class TxWowRealm extends AbstractModel
 {
 
 	/**
@@ -44,9 +44,7 @@ class TxWowRealm extends Model
 	 */
 	public static function findBySlug(string $slug): self
 	{
-		$self = new self();
-
-		return $self->loadBy('slug', \strtolower($slug));
+		return self::findBy('slug', \mb_strtolower(\trim($slug)));
 	}
 
 	/**
@@ -58,9 +56,7 @@ class TxWowRealm extends Model
 	 */
 	public static function findByName(string $name): self
 	{
-		$self = new self();
-
-		return $self->loadBy('name', $name);
+		return self::findBy('name', \trim($name));
 	}
 
 	/**
@@ -88,10 +84,11 @@ class TxWowRealm extends Model
 			$model->pid = $pid;
 			$model->cruser_id = 1;
 			$model->tx_wow_battle_group_uid = $battleGroup->getKey();
-			$model->name = $realm['name'];
-			$model->type = \strtolower($realm['type']);
-			$model->population = \strtolower($realm['population']);
-			$model->locale = $realm['locale'];
+			$model->slug = \mb_strtolower(\trim($realm['slug']));
+			$model->name = \trim($realm['name']);
+			$model->type = \mb_strtolower(\trim($realm['type']));
+			$model->population = \mb_strtolower(\trim($realm['population']));
+			$model->locale = \trim($realm['locale']);
 			$model->store();
 		}
 	}
