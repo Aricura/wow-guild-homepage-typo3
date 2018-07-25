@@ -124,7 +124,7 @@ abstract class AbstractModel
 	 *
 	 * @var PageRepository
 	 */
-	protected $pageRepository;
+	private $pageRepository;
 
 	/**
 	 * Possibility to inject the connection pool reference
@@ -764,7 +764,7 @@ abstract class AbstractModel
 	 *
 	 * @return static
 	 */
-	protected static function mapModel(array $record)
+	protected static function mapArrayToModel(array $record)
 	{
 		$model = new static;
 		$model->attributes = $record;
@@ -772,6 +772,24 @@ abstract class AbstractModel
 		$model->isDirty = false;
 
 		return $model;
+	}
+
+	/**
+	 * Maps multiple records specified as array to an instance of this model.
+	 *
+	 * @param array $records
+	 *
+	 * @return array
+	 */
+	protected static function mapArraysToModels(array $records): array
+	{
+		$models = [];
+
+		foreach($records as $record) {
+			$models[] = self::mapArrayToModel($record);
+		}
+
+		return $models;
 	}
 
 	/**
@@ -835,14 +853,9 @@ abstract class AbstractModel
 			$builder->setMaxResults($limit);
 		}
 
-		// fetch all table rows matching the specified query
+		// fetch all table rows matching the specified query and map them to an instance of this model
 		$rows = $builder->execute()->fetchAll();
-		$models = [];
-
-		// map all rows as models
-		foreach ($rows as $row) {
-			$models[] = self::mapModel($row);
-		}
+		$models = self::mapArraysToModels($rows);
 
 		return $models;
 	}
@@ -902,7 +915,7 @@ abstract class AbstractModel
 	{
 		$files = $this->getFileRepository()->findByRelation($this->getTableName(), $columnName, $this->getKey());
 
-		return \is_array($files) ? $files : [];
+		return \is_array($files) && \count($files) ? $files : [];
 	}
 
 	/**
@@ -928,8 +941,13 @@ abstract class AbstractModel
 	 */
 	public function translate(int $targetLanguageIndex)
 	{
+		// nothing to translate if the model has no translation index or it's the same
+		if (!$this->hasLanguageIndexColumn() || $this->getLanguageIndex() === $targetLanguageIndex) {
+			return $this;
+		}
+
 		$translatedRecord = $this->pageRepository->getRecordOverlay($this->getTableName(), $this->toArray(), $targetLanguageIndex);
 
-		return self::mapModel($translatedRecord);
+		return self::mapArrayToModel($translatedRecord);
 	}
 }

@@ -105,7 +105,7 @@ class Page extends AbstractModel
 	{
 		$translatedPage = $this->pageRepository->getPagesOverlay($this->toArray(), $targetLanguageIndex);
 
-		return PageOverlay::mapModel($translatedPage);
+		return PageOverlay::mapArrayToModel($translatedPage);
 	}
 
 	/**
