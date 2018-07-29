@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Project\Classes\ContentService\Models;
 
 use Project\Classes\ContentService\Api\BattleNet;
-use Project\Classes\ContentService\AbstractModel;
+use Typo3ContentService\Models\AbstractModel;
 use Project\Classes\Helper\Config;
 
 /**

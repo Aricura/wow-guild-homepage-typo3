@@ -3,6 +3,10 @@
 		{
 			"type": "composer",
 			"url": "https://composer.typo3.org/"
+		},
+		{
+			"type": "vcs",
+			"url": "https://github.com/Aricura/Typo3-Content-Service.git"
 		}
 	],
 	"name": "aricura/wow-guild-homepage-typo3",
@@ -36,7 +40,8 @@
 		"typo3/cms-t3editor": "^8.7",
 		"typo3/cms-tstemplate": "^8.7",
 		"typo3/cms-viewpage": "^8.7",
-		"typo3/cms-lowlevel": "^8.7"
+		"typo3/cms-lowlevel": "^8.7",
+		"aricura/typo3-content-service": "dev-master"
 	},
 	"scripts": {
 		"typo3-cms-scripts": [
