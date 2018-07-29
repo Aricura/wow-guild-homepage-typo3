@@ -1,0 +1,44 @@
+@import '../../../variables';
+
+.container {
+    display: block;
+    width: #{$containerWidth};
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: #{$containerInnerSpacingLR};
+    padding-right: #{$containerInnerSpacingLR};
+
+    &::before,
+    &::after {
+        content: " ";
+        display: table;
+    }
+
+    &::after {
+        clear: both;
+    }
+}
+
+@media #{$mediaMinSM} {
+    .container {
+        width: #{$containerWidth_SM};
+    }
+}
+
+@media #{$mediaMinMD} {
+    .container {
+        width: #{$containerWidth_MD};
+    }
+}
+
+@media #{$mediaMinLG} {
+    .container {
+        width: #{$containerWidth_LG};
+    }
+}
+
+@media #{$mediaMinXL} {
+    .container {
+        width: #{$containerWidth_XL};
+    }
+}

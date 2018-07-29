@@ -1,0 +1,34 @@
+// SIZES
+// SM >= 768px
+// MD >= 1024px
+// LG >= 1320px
+// XL >= 1550px
+
+// media breakpoints
+$mediaMinSM: (min-width: 768px);
+$mediaMinMD: (min-width: 1024px);
+$mediaMinLG: (min-width: 1320px);
+$mediaMinXL: (min-width: 1550px);
+
+// default grid span
+$gridGutterWidth: 30px;
+
+// <header> height
+$headerHeight: 90px;
+
+// container width
+$containerWidth: 100%;
+$containerWidth_SM: calc(100% - #{$gridGutterWidth});
+$containerWidth_MD: 960px;
+$containerWidth_LG: 1018px;
+$containerWidth_XL: 1320px;
+
+// container inner spacing left + right
+$containerInnerSpacingLR: calc(#{$gridGutterWidth} / 2);
+
+// slider transition
+$sliderTransition: all 1000ms cubic-bezier(1.000, 0.000, 0.000, 1.000);
+$sliderTransitionTiming: cubic-bezier(1.000, 0.000, 0.000, 1.000);
+
+// overlay transition
+$defaultOverlayTransition: opacity 500ms ease;

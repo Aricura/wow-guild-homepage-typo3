@@ -65,12 +65,12 @@ abstract class Base
 	 *
 	 * @return mixed|\TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
 	 */
-	protected function frontendController()
+	protected function frontendController(): TypoScriptFrontendController
 	{
-		if ($this->frontendController instanceof TypoScriptFrontendController) {
-			return $this->frontendController;
+		if (!$this->frontendController instanceof TypoScriptFrontendController) {
+			$this->frontendController = $GLOBALS['TSFE'];
 		}
 
-		return $GLOBALS['TSFE'];
+		return $this->frontendController;
 	}
 }
