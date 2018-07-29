@@ -10,6 +10,9 @@ mix
 	// compile sass
 	.sass('assets/main.scss', 'dist/')
 
+	// copy images
+	.copy('assets/images/', 'dist/images/')
+
 	// customize the font output dir (created by sass compilation) relative to the root path
 	.options({
 		fileLoaderDirs: {

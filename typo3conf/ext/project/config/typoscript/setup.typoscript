@@ -11,6 +11,8 @@ page = PAGE
 page {
     typeNum = 0
 
+    shortcutIcon = /dist/images/favicon.png
+
     bodyTagCObject = COA
     bodyTagCObject {
         20 =< lib.page.class
@@ -58,7 +60,7 @@ page {
         }
     }
 
-    theme-color = #d21518
+    theme-color = #d1534b
 }
 
 ###################################################
