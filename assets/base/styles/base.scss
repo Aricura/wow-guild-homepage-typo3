@@ -1,4 +1,6 @@
 @import 'functions/color';
+@import 'functions/font';
+@import 'functions/size';
 
 ::selection {
     color: color('base');
@@ -15,6 +17,11 @@ body {
     cursor: default;
     overflow-y: scroll;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-family: font('base');
+    font-weight: 400;
+    font-size: calc(#{size('base')} + .05vw);
+    line-height: 1.5;
+    color: color('main');
 }
 
 button {

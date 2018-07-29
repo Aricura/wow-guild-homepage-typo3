@@ -6,15 +6,11 @@
 .heading {
     display: block;
     color: inherit;
-    font-family: font('fallback');
+    font-family: font('main');
     font-weight: inherit;
     text-decoration: none;
     overflow-wrap: break-word;
     line-height: 1.1;
-
-    .has-main-font & {
-        font-family: font('main');
-    }
 }
 
 // Null Heading

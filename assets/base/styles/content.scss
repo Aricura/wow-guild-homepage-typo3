@@ -5,9 +5,6 @@
 
 // Base Content
 .content {
-    font-size: calc(#{size('base')} + .05vw);
-    line-height: 1.5;
-
     > *:not(:last-child):not(br) {
         margin-bottom: 1em;
     }
