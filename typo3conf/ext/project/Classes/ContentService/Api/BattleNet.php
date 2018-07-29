@@ -6,6 +6,9 @@ namespace Project\Classes\ContentService\Api;
 
 use GuzzleHttp\Client;
 use Project\Classes\Helper\Config;
+use TYPO3\CMS\Core\Log\Logger;
+use TYPO3\CMS\Core\Log\LogManager;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * World of Warcraft battle.net API connector.
@@ -67,7 +70,10 @@ class BattleNet
 		try {
 			return new BattleNetResponse($client->get($url));
 		} catch (\Exception $exception) {
-			return null;
+			/** @var Logger $logger */
+			$logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
+			$logger->error('Battle.net API Exception: '.$exception->getMessage());
+			return new BattleNetResponse(null, $exception->getMessage());
 		}
 	}
 }

@@ -13,18 +13,24 @@ class BattleNetResponse
 {
 
 	/**
-	 * @var ResponseInterface
+	 * @var ResponseInterface|null
 	 */
 	private $response;
+	/**
+	 * @var string
+	 */
+	private $errorMessage;
 
 	/**
 	 * BattleNetResponse constructor.
 	 *
-	 * @param \Psr\Http\Message\ResponseInterface $response
+	 * @param ResponseInterface $response
+	 * @param string            $errorMessage
 	 */
-	public function __construct(ResponseInterface $response)
+	public function __construct(ResponseInterface $response = null, string $errorMessage = '')
 	{
 		$this->response = $response;
+		$this->errorMessage = $errorMessage;
 	}
 
 	/**
@@ -34,7 +40,7 @@ class BattleNetResponse
 	 */
 	public function getStatusCode(): int
 	{
-		return (int)$this->response->getStatusCode();
+		return $this->response ? (int)$this->response->getStatusCode() : 500;
 	}
 
 	/**
@@ -54,7 +60,7 @@ class BattleNetResponse
 	 */
 	public function getContent(): string
 	{
-		return (string)$this->response->getBody();
+		return $this->response ? (string)$this->response->getBody() : '';
 	}
 
 	/**
@@ -80,6 +86,10 @@ class BattleNetResponse
 	{
 		if ($this->success()) {
 			return '';
+		}
+
+		if ('' !== $this->errorMessage) {
+			return $this->errorMessage;
 		}
 
 		return $this->getContent();
