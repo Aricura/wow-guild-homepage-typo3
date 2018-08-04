@@ -1,5 +1,8 @@
 @import '../../../variables';
 @import '../../../base/styles/functions/color';
+@import '../../../base/styles/functions/size';
+
+$dotWidth: 24px;
 
 .content-wheel {
     margin: 40px 0;
@@ -11,6 +14,10 @@
 
     .col-left {
         display: none;
+
+        .wheel {
+            display: none;
+        }
     }
 
     .col-right {
@@ -67,6 +74,200 @@
                     &-body {
                         display: block;
                     }
+                }
+            }
+        }
+    }
+}
+
+@media #{$mediaMinSM} and (orientation: portrait), #{$mediaMinMD} {
+    .content-wheel {
+        margin-top: 60px;
+        margin-bottom: 60px;
+
+        .container {
+            overflow: hidden;
+        }
+
+        .heading {
+            margin-bottom: 50px;
+        }
+
+        .col-left {
+            display: block;
+            margin-bottom: 30px;
+
+            .wheel {
+                position: relative;
+                display: block;
+                width: 300px;
+                margin: 0 auto;
+                padding: 30px;
+                border: 2px solid color('primary');
+                border-radius: 50%;
+
+                &-items {
+                    position: absolute;
+                    top: calc(-#{$dotWidth} / 2);
+                    left: calc(-#{$dotWidth} / 2);
+                    right: calc(-#{$dotWidth} / 2);
+                    bottom: calc(-#{$dotWidth} / 2);
+                    list-style: none;
+                }
+
+                &-item {
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: rotate(0deg);
+                    display: block;
+                    width: 0;
+                    height: 100%;
+
+                    &.active {
+                        .wheel-dot {
+                            box-shadow: 0 0 0 4px rgba(color('primary'), .5);
+                        }
+                    }
+                }
+
+                &-dot {
+                    position: relative;
+                    display: block;
+                    width: #{$dotWidth};
+                    height: #{$dotWidth};
+                    background: color('base');
+                    border-radius: 50%;
+                    font-size: 0;
+                    line-height: 0;
+                    outline: 0;
+
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        display: block;
+                        width: calc(#{$dotWidth} - 8px);
+                        height: calc(#{$dotWidth} - 8px);
+                        background: color('primary');
+                        border-radius: 50%;
+                    }
+                }
+
+                &.wheel--3 {
+                    .wheel {
+                        &-item {
+                            &:nth-child(2) {
+                                transform: rotate(120deg);
+                            }
+
+                            &:nth-child(3) {
+                                transform: rotate(240deg);
+                            }
+                        }
+                    }
+                }
+
+                &.wheel--4 {
+                    .wheel {
+                        &-item {
+                            &:nth-child(2) {
+                                transform: rotate(90deg);
+                            }
+
+                            &:nth-child(3) {
+                                transform: rotate(180deg);
+                            }
+
+                            &:nth-child(4) {
+                                transform: rotate(270deg);
+                            }
+                        }
+                    }
+                }
+
+                &.wheel--5 {
+                    .wheel {
+                        &-item {
+                            &:nth-child(2) {
+                                transform: rotate(72deg);
+                            }
+
+                            &:nth-child(3) {
+                                transform: rotate(144deg);
+                            }
+
+                            &:nth-child(4) {
+                                transform: rotate(216deg);
+                            }
+
+                            &:nth-child(5) {
+                                transform: rotate(288deg);
+                            }
+                        }
+                    }
+                }
+
+                &.wheel--6 {
+                    .wheel {
+                        &-item {
+                            &:nth-child(2) {
+                                transform: rotate(60deg);
+                            }
+
+                            &:nth-child(3) {
+                                transform: rotate(120deg);
+                            }
+
+                            &:nth-child(4) {
+                                transform: rotate(180deg);
+                            }
+
+                            &:nth-child(5) {
+                                transform: rotate(240deg);
+                            }
+
+                            &:nth-child(6) {
+                                transform: rotate(300deg);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .col-right {
+            display: flex;
+            align-items: flex-start;
+            transition: #{$sliderTransition};
+            transition-timing-function: #{$sliderTransitionTiming};
+            transform: translateX(0);
+
+            .panel {
+                width: 100%;
+                height: 100%;
+                flex-shrink: 0;
+                padding: 0 #{$containerInnerSpacingLR};
+
+                &-header {
+                    background: none;
+                    border: none;
+                    border-radius: 0;
+                    padding: 0;
+
+                    .heading {
+                        font-size: calc(#{size('three')} + .25vw);
+                    }
+
+                    .icon {
+                        display: none;
+                    }
+                }
+
+                &-body {
+                    display: block;
                 }
             }
         }

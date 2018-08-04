@@ -3,13 +3,13 @@
         <h2 class="heading heading--2 heading--primary">{{ element.header }}</h2>
 
         <div clasS="col-left">
-            <div class="wheel">
+            <div class="wheel wheel--{{ element.getContentWheelSlides|length }} js-wheel-container">
                 <figure class="wheel-image">
                     <img src="{{ element.getImageSquare.getPublicUrl }}" alt="{{ slide.getImageSquare.getAlternative }}" title="{{ slide.getImageSquare.getTitle }}"/>
                 </figure>
                 <ul class="wheel-items">
                     {% for slide in element.getContentWheelSlides %}
-                        <li class="wheel-item">
+                        <li class="wheel-item js-wheel-item" data-index="{{ loop.index0 }}">
                             <button class="wheel-dot">{{ slide.getTitle }}</button>
                         </li>
                     {% endfor %}
