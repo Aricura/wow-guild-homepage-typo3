@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Project\Classes;
 
+use Project\Classes\ContentService\Models\TtContent;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
@@ -24,6 +25,17 @@ abstract class Base
 	 * @var TypoScriptFrontendController
 	 */
 	private $frontendController;
+	/**
+	 * @var TtContent
+	 */
+	public $element;
+
+	/**
+	 * Renders the content element.
+	 *
+	 * @return string
+	 */
+	abstract public function render(): string;
 
 	/**
 	 * Renders a template.

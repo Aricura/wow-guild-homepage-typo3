@@ -18,7 +18,6 @@ use Project\Classes\Helper\Config;
  * @property int    sorting
  * @property int    deleted
  * @property int    hidden
- * @property int    sys_language_uid
  * @property int    tx_wow_class_uid
  * @property string name
  * @property string background_image
@@ -31,6 +30,14 @@ class TxWowClassSpecialisation extends AbstractModel
 	 * @var string
 	 */
 	protected $table = 'tx_wow_class_specialisations';
+	/**
+	 * Column name where the language index of the model is stored in.
+	 * This information may be empty if the model has no language index / isn't translatable.
+	 * Default set to 'sys_language_uid'.
+	 *
+	 * @var string
+	 */
+	protected $languageIndexColumnName = '';
 	/**
 	 * @var TxWowClass
 	 */

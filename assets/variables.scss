@@ -26,6 +26,9 @@ $containerWidth_XL: 1320px;
 // container inner spacing left + right
 $containerInnerSpacingLR: calc(#{$gridGutterWidth} / 2);
 
+// default border radius
+$borderRadius: 4px;
+
 // slider transition
 $sliderTransition: all 1000ms cubic-bezier(1.000, 0.000, 0.000, 1.000);
 $sliderTransitionTiming: cubic-bezier(1.000, 0.000, 0.000, 1.000);

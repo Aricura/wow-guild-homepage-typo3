@@ -1,0 +1,5 @@
+tt_content.project_content_carousel = USER_INT
+tt_content.project_content_carousel {
+    userFunc = Project\Classes\Helper\Renderer->handle
+    controller = Project\Classes\Controller\ContentCarousel
+}

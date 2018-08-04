@@ -19,7 +19,6 @@ use Project\Classes\Helper\Config;
  * @property int    sorting
  * @property int    deleted
  * @property int    hidden
- * @property int    sys_language_uid
  * @property int    foreign_id
  * @property int    tx_wow_fraction_uid
  * @property int    mask
@@ -32,6 +31,14 @@ class TxWowRace extends AbstractModel
 	 * @var string
 	 */
 	protected $table = 'tx_wow_races';
+	/**
+	 * Column name where the language index of the model is stored in.
+	 * This information may be empty if the model has no language index / isn't translatable.
+	 * Default set to 'sys_language_uid'.
+	 *
+	 * @var string
+	 */
+	protected $languageIndexColumnName = '';
 
 	/**
 	 * Fetches a single race model by its unique foreign id.

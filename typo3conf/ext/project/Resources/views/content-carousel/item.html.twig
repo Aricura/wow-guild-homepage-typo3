@@ -1,0 +1,21 @@
+<div class="content-carousel-slide" data-overlay="content-carousel-slide-overlay-{{ slide.getKey }}">
+    {# background image #}
+    <div class="content-carousel-slide-background">
+        <figure class="image image--landscape">
+            <img src="{{ slide.getLandscapeImage.getPublicUrl }}" alt="{{ slide.getImage.getAlternative }}" title="{{ slide.getImage.getTitle }}"/>
+        </figure>
+        <figure class="image image--portrait">
+            <img src="{{ slide.getPortraitImage.getPublicUrl }}" alt="{{ slide.getImage.getAlternative }}" title="{{ slide.getImage.getTitle }}"/>
+        </figure>
+    </div>
+    {# overlay content template #}
+    <script id="content-carousel-slide-overlay-{{ slide.getKey }}" type="text/template">
+        <div class="content-carousel-overlay--title">
+            <h2 class="heading heading--3 heading--primary heading--bold">{{ slide.getTitle }}</h2>
+        </div>
+        <div class="content-carousel-overlay--teaser">
+            <p class="teaser teaser--desktop">{{ slide.getTeaserText }}</p>
+            <p class="teaser teaser--mobile">{{ slide.getMobileTeaserText }}</p>
+        </div>
+    </script>
+</div>

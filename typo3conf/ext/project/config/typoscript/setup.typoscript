@@ -131,3 +131,8 @@ config {
 #### LANGUAGE CONDITIONS ####
 #############################
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:project/config/typoscript/include/l10n.typoscript">
+
+#############################
+####       PLUGINS       ####
+#############################
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:project/config/typoscript/plugins.typoscript">

@@ -19,7 +19,6 @@ use Project\Classes\Helper\Config;
  * @property int    sorting
  * @property int    deleted
  * @property int    hidden
- * @property int    sys_language_uid
  * @property int    tx_wow_battle_group_uid
  * @property string slug
  * @property string name
@@ -34,6 +33,14 @@ class TxWowRealm extends AbstractModel
 	 * @var string
 	 */
 	protected $table = 'tx_wow_realms';
+	/**
+	 * Column name where the language index of the model is stored in.
+	 * This information may be empty if the model has no language index / isn't translatable.
+	 * Default set to 'sys_language_uid'.
+	 *
+	 * @var string
+	 */
+	protected $languageIndexColumnName = '';
 
 	/**
 	 * Fetches a single realm model by its unique slug.

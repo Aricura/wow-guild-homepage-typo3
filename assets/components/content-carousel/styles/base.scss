@@ -1,0 +1,268 @@
+@import '../../../variables';
+@import '../../../base/styles/functions/color';
+
+.content-carousel {
+    position: relative;
+    height: 75vh;
+    overflow: hidden;
+
+    &-slides {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: #{$sliderTransition};
+        transition-timing-function: #{$sliderTransitionTiming};
+        transform: translateX(0);
+    }
+
+    &-slide {
+        position: relative;
+        align-self: center;
+        display: block;
+        width: 100%;
+        height: 100%;
+        flex-shrink: 0;
+
+        &-background {
+            height: 100%;
+
+            .image {
+                width: 100%;
+                height: 100%;
+
+                img {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+        }
+    }
+
+    &-overlay {
+        position: absolute;
+        top: 50%;
+        left: #{$containerInnerSpacingLR};
+        right: #{$containerInnerSpacingLR};
+        transform: translateY(-50%);
+        display: block;
+        padding: 30px 20px;
+        border-radius: #{$borderRadius};
+        background: rgba(color('void'), .7);
+
+        &-container {
+            transition: #{$defaultOverlayTransition};
+
+            &.in-progress {
+                opacity: 0;
+            }
+        }
+
+        &--title {
+            position: relative;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+
+            &:after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                display: block;
+                width: 111px;
+                border-bottom: 2px solid color('primary');
+            }
+        }
+
+        &--teaser {
+            color: color('base');
+
+            .teaser {
+                margin: 0;
+
+                &--desktop {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &-controls {
+        margin-top: 20px;
+        font-size: 0;
+        line-height: 0;
+        text-align: center;
+
+        &--prev,
+        &--next {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            margin-left: 14px;
+            background: rgba(color('base'), .25);
+            border-radius: 50%;
+            z-index: 9;
+
+            &:hover {
+                background: rgba(color('base'), .5);
+            }
+
+            &:before {
+                content: '';
+                position: absolute;
+                top: 16px;
+                width: 10px;
+                height: 10px;
+                border-left: 2px solid color('base');
+                border-bottom: 2px solid color('base');
+            }
+        }
+
+        &--prev {
+            &:before {
+                left: 17px;
+                transform: rotate(45deg);
+            }
+        }
+
+        &--next {
+            &:before {
+                right: 17px;
+                transform: rotate(225deg);
+            }
+        }
+    }
+}
+
+/* use portrait background images */
+@media (orientation: portrait) {
+    .content-carousel {
+        &-slide {
+            &-background {
+                .image {
+                    &--landscape {
+                        display: none;
+                    }
+
+                    &--portrait {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* use landscape background images */
+@media (orientation: landscape), #{$mediaMinLG} {
+    .content-carousel {
+        &-slide {
+            &-background {
+                .image {
+                    &--landscape {
+                        display: block;
+                    }
+
+                    &--portrait {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* mobile landscape */
+@media (orientation: landscape) and (max-width: 820px) {
+    .content-carousel {
+        &-overlay {
+            &--title {
+                padding-bottom: 0;
+
+                &:after {
+                    display: none;
+                }
+            }
+
+            &--teaser {
+                display: none;
+            }
+        }
+    }
+}
+
+/* iPhone X landscape */
+@media (orientation: landscape) and #{$mediaMinSM} and (max-width: 820px) {
+    .content-carousel {
+        &-overlay {
+            left: #{$gridGutterWidth};
+            right: #{$gridGutterWidth};
+        }
+    }
+}
+
+@media #{$mediaMinSM} {
+    .content-carousel {
+        height: calc(100vh - #{$headerHeight});
+    }
+}
+
+@media #{$mediaMinSM} and (orientation: portrait), #{$mediaMinMD} {
+    .content-carousel {
+        &-overlay {
+            top: auto;
+            left: calc((100vw - #{$containerWidth_SM}) / 2);
+            right: calc((100vw - #{$containerWidth_SM}) / 2);
+            bottom: calc((100% - #{$containerWidth_SM}) / 2);
+            transform: none;
+            width: auto;
+
+            &--teaser {
+                .teaser {
+                    &--desktop {
+                        display: block;
+                    }
+
+                    &--mobile {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        &-controls {
+            text-align: right;
+            margin-top: 10px;
+        }
+    }
+}
+
+@media #{$mediaMinMD} {
+    .content-carousel {
+        height: 75vh;
+
+        &-overlay {
+            left: calc((100vw - #{$containerWidth_MD}) / 2);
+            right: auto;
+            bottom: calc((100vw - #{$containerWidth_MD}) / 2);
+            width: 620px;
+            padding: 60px 40px;
+        }
+    }
+}
+
+@media #{$mediaMinLG} {
+    .content-carousel {
+        &-overlay {
+            left: 5%;
+            bottom: 5%;
+            padding: 60px;
+        }
+    }
+}
