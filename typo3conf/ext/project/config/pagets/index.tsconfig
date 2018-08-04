@@ -7,3 +7,5 @@ mod.SHARED {
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:project/config/pagets/TCEMAIN.tsconfig">
 
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:project/config/pagets/backend_layouts/default.tsconfig">
+
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:project/config/pagets/wizards.tsconfig">

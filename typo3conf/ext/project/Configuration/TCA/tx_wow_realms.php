@@ -20,7 +20,7 @@ return [
 		'sortby' => 'sorting',
 		'delete' => 'deleted',
 		'dividers2tabs' => true,
-		'languageField' => 'sys_language_uid',
+		'languageField' => '',
 		'enablecolumns' => [
 			'disabled' => 'hidden',
 		],
@@ -34,22 +34,12 @@ return [
 				'default' => '0',
 			],
 		],
-		'sys_language_uid' => [
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.language',
-			'config' => [
-				'type' => 'select',
-				'foreign_table' => 'sys_language',
-				'foreign_table_where' => 'ORDER BY sys_language.title',
-				'items' => [
-					['LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1],
-				],
-			],
-		],
 		'tx_wow_battle_group_uid' => [
 			'displayCond' => 'FIELD:sys_language_uid:<=:0',
 			'label' => 'Battle Group',
 			'config' => [
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'tx_wow_battle_groups',
 				'foreign_table_where' => 'AND tx_wow_battle_groups.deleted = 0 AND tx_wow_battle_groups.hidden = 0',
 				'minitems' => 1,

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
 //<editor-fold desc="Change Fields" defaultstate="collapsed">
 $GLOBALS['TCA']['tt_content']['columns']['subheader']['config']['type'] = 'text';
 $GLOBALS['TCA']['tt_content']['columns']['subheader']['config']['rows'] = '1';
@@ -16,4 +18,49 @@ $GLOBALS['TCA']['tt_content']['columns']['media']['config']['maxitems'] = 1;
 $GLOBALS['TCA']['tt_content']['columns']['media']['config']['appearance']['fileUploadAllowed'] = false;
 
 $GLOBALS['TCA']['tt_content']['columns']['bodytext']['config']['enableRichtext'] = true;
+//</editor-fold>
+
+//<editor-fold desc="Add Fields" defaultstate="collapsed">
+$fields = [
+	'tx_project_content_carousel_slides' => [
+		'label' => 'Content Carousel Items',
+		'config' => [
+			'type' => 'inline',
+			'foreign_table' => 'tx_project_content_carousel_slides',
+			'foreign_field' => 'parent_id',
+			'foreign_table_field' => 'parent_table',
+			'minitems' => 0,
+			'maxitems' => 99,
+			'appearance' => [
+				'useSortable' => true,
+				'collapseAll' => true,
+				'expandSingle' => true,
+				'newRecordLinkAddTitle' => false,
+				'showPossibleLocalizationRecords' => true,
+				'showAllLocalizationLink' => true,
+			],
+		],
+	],
+];
+
+ExtensionManagementUtility::addTCAcolumns('tt_content', $fields);
+//</editor-fold>
+
+//<editor-fold desc="Function: Add Plugin" defaultstate="collapsed">
+$addPlugin = function (string $name, string $identifier, array $fields) {
+	$key = 'project_'.$identifier;
+	$icon = 'content-text';
+
+	ExtensionManagementUtility::addPlugin([$name, $key, $icon], 'CType', 'project');
+
+	$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$key] = $icon;
+	$GLOBALS['TCA']['tt_content']['types'][$key] = ['showitem' => \implode(',', $fields)];
+};
+//</editor-fold>
+
+//<editor-fold desc="Plugin: Content Carousel" defaultstate="collapsed">
+$addPlugin('Content Carousel', 'content_carousel', [
+	'CType',
+	'tx_project_content_carousel_slides',
+]);
 //</editor-fold>

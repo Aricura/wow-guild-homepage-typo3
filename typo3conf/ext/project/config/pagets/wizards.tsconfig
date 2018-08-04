@@ -1,0 +1,17 @@
+mod.wizards.newContentElement.wizardItems {
+    content {
+        header = Default Page Content
+        show = *
+
+        elements {
+            project_content_carousel {
+                title = Content Carousel
+                description =
+                iconIdentifier = content-plugin
+                tt_content_defValues {
+                    CType = project_content_carousel
+                }
+            }
+        }
+    }
+}

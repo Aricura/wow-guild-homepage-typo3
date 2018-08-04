@@ -14,7 +14,7 @@ mod {
                             1 {
                                 columns {
                                     1 {
-                                        name = Inhalt
+                                        name = Content
                                         colPos = 0
                                     }
                                 }

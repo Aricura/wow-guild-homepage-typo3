@@ -20,7 +20,7 @@ return [
 		'sortby' => 'sorting',
 		'delete' => 'deleted',
 		'dividers2tabs' => true,
-		'languageField' => 'sys_language_uid',
+		'languageField' => '',
 		'enablecolumns' => [
 			'disabled' => 'hidden',
 		],
@@ -32,17 +32,6 @@ return [
 			'config' => [
 				'type' => 'check',
 				'default' => '0',
-			],
-		],
-		'sys_language_uid' => [
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.language',
-			'config' => [
-				'type' => 'select',
-				'foreign_table' => 'sys_language',
-				'foreign_table_where' => 'ORDER BY sys_language.title',
-				'items' => [
-					['LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1],
-				],
 			],
 		],
 		'slug' => [

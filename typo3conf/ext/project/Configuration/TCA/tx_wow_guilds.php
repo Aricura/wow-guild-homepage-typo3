@@ -39,6 +39,7 @@ return [
 			'label' => 'Realm',
 			'config' => [
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'tx_wow_realms',
 				'foreign_table_where' => 'AND tx_wow_realms.deleted = 0 AND tx_wow_realms.hidden = 0',
 				'minitems' => 1,
@@ -51,6 +52,7 @@ return [
 			'label' => 'Fraction',
 			'config' => [
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'tx_wow_fractions',
 				'foreign_table_where' => 'AND tx_wow_fractions.deleted = 0 AND tx_wow_fractions.hidden = 0',
 				'minitems' => 1,

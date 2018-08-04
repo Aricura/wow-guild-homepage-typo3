@@ -1,16 +1,19 @@
-CREATE TABLE tx_wow_battle_groups (
-  uid              INT(11)    NOT NULL AUTO_INCREMENT,
-  pid              INT(11)    NOT NULL DEFAULT '0',
-  tstamp           INT(11)    NOT NULL DEFAULT '0',
-  crdate           INT(11)    NOT NULL DEFAULT '0',
-  cruser_id        INT(11)    NOT NULL DEFAULT '0',
-  sorting          INT(11)    NOT NULL DEFAULT '0',
-  deleted          TINYINT(1) NOT NULL DEFAULT '0',
-  hidden           TINYINT(1) NOT NULL DEFAULT '0',
-  sys_language_uid INT(11)    NOT NULL DEFAULT '0',
+CREATE TABLE tt_content (
+  tx_project_content_carousel_slides INT(11)
+);
 
-  slug             VARCHAR(255),
-  name             VARCHAR(255),
+CREATE TABLE tx_wow_battle_groups (
+  uid       INT(11)    NOT NULL AUTO_INCREMENT,
+  pid       INT(11)    NOT NULL DEFAULT '0',
+  tstamp    INT(11)    NOT NULL DEFAULT '0',
+  crdate    INT(11)    NOT NULL DEFAULT '0',
+  cruser_id INT(11)    NOT NULL DEFAULT '0',
+  sorting   INT(11)    NOT NULL DEFAULT '0',
+  deleted   TINYINT(1) NOT NULL DEFAULT '0',
+  hidden    TINYINT(1) NOT NULL DEFAULT '0',
+
+  slug      VARCHAR(255),
+  name      VARCHAR(255),
 
   PRIMARY KEY (uid),
   KEY parent (pid)
@@ -25,7 +28,6 @@ CREATE TABLE tx_wow_realms (
   sorting                 INT(11)    NOT NULL DEFAULT '0',
   deleted                 TINYINT(1) NOT NULL DEFAULT '0',
   hidden                  TINYINT(1) NOT NULL DEFAULT '0',
-  sys_language_uid        INT(11)    NOT NULL DEFAULT '0',
 
   tx_wow_battle_group_uid INT(11),
   slug                    VARCHAR(255),
@@ -39,18 +41,17 @@ CREATE TABLE tx_wow_realms (
 );
 
 CREATE TABLE tx_wow_fractions (
-  uid              INT(11)    NOT NULL AUTO_INCREMENT,
-  pid              INT(11)    NOT NULL DEFAULT '0',
-  tstamp           INT(11)    NOT NULL DEFAULT '0',
-  crdate           INT(11)    NOT NULL DEFAULT '0',
-  cruser_id        INT(11)    NOT NULL DEFAULT '0',
-  sorting          INT(11)    NOT NULL DEFAULT '0',
-  deleted          TINYINT(1) NOT NULL DEFAULT '0',
-  hidden           TINYINT(1) NOT NULL DEFAULT '0',
-  sys_language_uid INT(11)    NOT NULL DEFAULT '0',
+  uid       INT(11)    NOT NULL AUTO_INCREMENT,
+  pid       INT(11)    NOT NULL DEFAULT '0',
+  tstamp    INT(11)    NOT NULL DEFAULT '0',
+  crdate    INT(11)    NOT NULL DEFAULT '0',
+  cruser_id INT(11)    NOT NULL DEFAULT '0',
+  sorting   INT(11)    NOT NULL DEFAULT '0',
+  deleted   TINYINT(1) NOT NULL DEFAULT '0',
+  hidden    TINYINT(1) NOT NULL DEFAULT '0',
 
-  slug             VARCHAR(255),
-  name             VARCHAR(255),
+  slug      VARCHAR(255),
+  name      VARCHAR(255),
 
   PRIMARY KEY (uid),
   KEY parent (pid)
@@ -65,7 +66,6 @@ CREATE TABLE tx_wow_races (
   sorting             INT(11)    NOT NULL DEFAULT '0',
   deleted             TINYINT(1) NOT NULL DEFAULT '0',
   hidden              TINYINT(1) NOT NULL DEFAULT '0',
-  sys_language_uid    INT(11)    NOT NULL DEFAULT '0',
 
   foreign_id          INT(11),
   tx_wow_fraction_uid INT(11),
@@ -77,20 +77,19 @@ CREATE TABLE tx_wow_races (
 );
 
 CREATE TABLE tx_wow_classes (
-  uid              INT(11)    NOT NULL AUTO_INCREMENT,
-  pid              INT(11)    NOT NULL DEFAULT '0',
-  tstamp           INT(11)    NOT NULL DEFAULT '0',
-  crdate           INT(11)    NOT NULL DEFAULT '0',
-  cruser_id        INT(11)    NOT NULL DEFAULT '0',
-  sorting          INT(11)    NOT NULL DEFAULT '0',
-  deleted          TINYINT(1) NOT NULL DEFAULT '0',
-  hidden           TINYINT(1) NOT NULL DEFAULT '0',
-  sys_language_uid INT(11)    NOT NULL DEFAULT '0',
+  uid        INT(11)    NOT NULL AUTO_INCREMENT,
+  pid        INT(11)    NOT NULL DEFAULT '0',
+  tstamp     INT(11)    NOT NULL DEFAULT '0',
+  crdate     INT(11)    NOT NULL DEFAULT '0',
+  cruser_id  INT(11)    NOT NULL DEFAULT '0',
+  sorting    INT(11)    NOT NULL DEFAULT '0',
+  deleted    TINYINT(1) NOT NULL DEFAULT '0',
+  hidden     TINYINT(1) NOT NULL DEFAULT '0',
 
-  foreign_id       INT(11),
-  mask             INT(11),
-  name             VARCHAR(255),
-  power_type       VARCHAR(255),
+  foreign_id INT(11),
+  mask       INT(11),
+  name       VARCHAR(255),
+  power_type VARCHAR(255),
 
   PRIMARY KEY (uid),
   KEY parent (pid)
@@ -105,7 +104,6 @@ CREATE TABLE tx_wow_class_specialisations (
   sorting          INT(11)    NOT NULL DEFAULT '0',
   deleted          TINYINT(1) NOT NULL DEFAULT '0',
   hidden           TINYINT(1) NOT NULL DEFAULT '0',
-  sys_language_uid INT(11)    NOT NULL DEFAULT '0',
 
   tx_wow_class_uid INT(11),
   name             VARCHAR(255),
@@ -163,6 +161,27 @@ CREATE TABLE tx_wow_guild_members (
   last_modified                   DATETIME            DEFAULT NULL,
   is_raid_member                  TINYINT(1),
 
+  PRIMARY KEY (uid),
+  KEY parent (pid)
+);
+
+CREATE TABLE tx_project_content_carousel_slides (
+  uid          INT(11)    NOT NULL AUTO_INCREMENT,
+  pid          INT(11)    NOT NULL DEFAULT '0',
+  tstamp       INT(11)    NOT NULL DEFAULT '0',
+  crdate       INT(11)    NOT NULL DEFAULT '0',
+  cruser_id    INT(11)    NOT NULL DEFAULT '0',
+  sorting      INT(11)    NOT NULL DEFAULT '0',
+  deleted      TINYINT(1) NOT NULL DEFAULT '0',
+  hidden       TINYINT(1) NOT NULL DEFAULT '0',
+  starttime    INT(11)    NOT NULL DEFAULT '0',
+  endtime      INT(11)    NOT NULL DEFAULT '0',
+  parent_id    INT(11)             DEFAULT NULL,
+  parent_table VARCHAR(255)        DEFAULT NULL,
+
+  title        VARCHAR(100),
+  bodytext     VARCHAR(255),
+  image        INT(11)             DEFAULT NULL,
   PRIMARY KEY (uid),
   KEY parent (pid)
 );

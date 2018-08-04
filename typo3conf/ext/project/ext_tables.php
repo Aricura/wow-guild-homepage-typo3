@@ -14,3 +14,5 @@ ExtensionManagementUtility::allowTableOnStandardPages('tx_wow_classes');
 ExtensionManagementUtility::allowTableOnStandardPages('tx_wow_class_specialisations');
 ExtensionManagementUtility::allowTableOnStandardPages('tx_wow_guilds');
 ExtensionManagementUtility::allowTableOnStandardPages('tx_wow_guild_members');
+
+ExtensionManagementUtility::allowTableOnStandardPages('tx_project_content_carousel_slides');

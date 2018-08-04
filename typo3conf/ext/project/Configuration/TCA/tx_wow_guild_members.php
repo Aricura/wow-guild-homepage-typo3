@@ -39,6 +39,7 @@ return [
 			'label' => 'Guild',
 			'config' => [
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'tx_wow_guilds',
 				'foreign_table_where' => 'AND tx_wow_guilds.deleted = 0 AND tx_wow_guilds.hidden = 0',
 				'minitems' => 1,
@@ -51,6 +52,7 @@ return [
 			'label' => 'Realm',
 			'config' => [
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'tx_wow_realms',
 				'foreign_table_where' => 'AND tx_wow_realms.deleted = 0 AND tx_wow_realms.hidden = 0',
 				'minitems' => 1,
@@ -63,6 +65,7 @@ return [
 			'label' => 'Race',
 			'config' => [
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'tx_wow_races',
 				'foreign_table_where' => 'AND tx_wow_races.deleted = 0 AND tx_wow_races.hidden = 0',
 				'minitems' => 1,
@@ -75,6 +78,7 @@ return [
 			'label' => 'Class',
 			'config' => [
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'tx_wow_classes',
 				'foreign_table_where' => 'AND tx_wow_classes.deleted = 0 AND tx_wow_classes.hidden = 0',
 				'minitems' => 1,
@@ -87,6 +91,7 @@ return [
 			'label' => 'Specialisation',
 			'config' => [
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'tx_wow_class_specialisations',
 				'foreign_table_where' => 'AND tx_wow_class_specialisations.deleted = 0 AND tx_wow_class_specialisations.hidden = 0',
 				'minitems' => 0,
@@ -107,6 +112,7 @@ return [
 			'label' => 'Gender',
 			'config' => [
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'items' => [
 					['Male', 0],
 					['Female', 1],
