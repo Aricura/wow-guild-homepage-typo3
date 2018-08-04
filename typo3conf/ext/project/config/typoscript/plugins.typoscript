@@ -3,3 +3,9 @@ tt_content.project_content_carousel {
     userFunc = Project\Classes\Helper\Renderer->handle
     controller = Project\Classes\Controller\ContentCarousel
 }
+
+tt_content.project_content_wheel = USER_INT
+tt_content.project_content_wheel {
+    userFunc = Project\Classes\Helper\Renderer->handle
+    controller = Project\Classes\Controller\ContentWheel
+}

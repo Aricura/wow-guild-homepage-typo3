@@ -1,5 +1,7 @@
 CREATE TABLE tt_content (
-  tx_project_content_carousel_slides INT(11)
+  tx_project_content_carousel_slides INT(11),
+  tx_project_image_square            INT(11),
+  tx_project_content_wheel_slides    INT(11)
 );
 
 CREATE TABLE tx_wow_battle_groups (
@@ -182,6 +184,26 @@ CREATE TABLE tx_project_content_carousel_slides (
   title        VARCHAR(100),
   bodytext     VARCHAR(255),
   image        INT(11)             DEFAULT NULL,
+  PRIMARY KEY (uid),
+  KEY parent (pid)
+);
+
+CREATE TABLE tx_project_content_wheel_slides (
+  uid          INT(11)    NOT NULL AUTO_INCREMENT,
+  pid          INT(11)    NOT NULL DEFAULT '0',
+  tstamp       INT(11)    NOT NULL DEFAULT '0',
+  crdate       INT(11)    NOT NULL DEFAULT '0',
+  cruser_id    INT(11)    NOT NULL DEFAULT '0',
+  sorting      INT(11)    NOT NULL DEFAULT '0',
+  deleted      TINYINT(1) NOT NULL DEFAULT '0',
+  hidden       TINYINT(1) NOT NULL DEFAULT '0',
+  starttime    INT(11)    NOT NULL DEFAULT '0',
+  endtime      INT(11)    NOT NULL DEFAULT '0',
+  parent_id    INT(11)             DEFAULT NULL,
+  parent_table VARCHAR(255)        DEFAULT NULL,
+
+  title        VARCHAR(100),
+  bodytext     MEDIUMTEXT,
   PRIMARY KEY (uid),
   KEY parent (pid)
 );

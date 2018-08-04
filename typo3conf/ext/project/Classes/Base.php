@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Project\Classes;
 
 use Project\Classes\ContentService\Models\TtContent;
+use Project\Classes\TwigExtension\Sprite;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
@@ -38,6 +39,18 @@ abstract class Base
 	abstract public function render(): string;
 
 	/**
+	 * Renders a template and injects the entire tt_content element.
+	 *
+	 * @param string $name The template name
+	 *
+	 * @return string
+	 */
+	protected function twig(string $name): string
+	{
+		return $this->twigArray($name, ['element' => $this->element]);
+	}
+
+	/**
 	 * Renders a template.
 	 *
 	 * @param string $name    The template name
@@ -45,7 +58,7 @@ abstract class Base
 	 *
 	 * @return string
 	 */
-	protected function twig(string $name, array $context = []): string
+	protected function twigArray(string $name, array $context = []): string
 	{
 		if (!$this->twigLoader) {
 			$this->twigLoader = new \Twig_Loader_Filesystem(\dirname(__FILE__) . '/../Resources/views/');
@@ -53,6 +66,8 @@ abstract class Base
 
 		if (!$this->twigEnvironment) {
 			$this->twigEnvironment = new \Twig_Environment($this->twigLoader);
+
+			$this->twigEnvironment->addExtension(new Sprite());
 		}
 
 		try {

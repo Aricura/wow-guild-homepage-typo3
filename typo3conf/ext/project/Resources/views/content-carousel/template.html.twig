@@ -1,7 +1,7 @@
-<section class="content-carousel js-slider">
+<section class="content-carousel js-slider" id="c{{ element.getKey }}">
     {# slides #}
     <div class="content-carousel-slides js-slider-slides">
-        {% for slide in slides %}
+        {% for slide in element.getContentCarouselSlides %}
             {{ include('content-carousel/item.html.twig', {
                 'slide': slide,
             }) }}
@@ -12,7 +12,7 @@
         {# overlay template placeholder #}
         <div class="content-carousel-overlay-container js-slider-overlay-container"></div>
 
-        {% if slides|length > 1 %}
+        {% if element.getContentCarouselSlides|length > 1 %}
             {# controls #}
             <div class="content-carousel-controls">
                 <a class="content-carousel-controls--prev js-slider-prev" href="javascript:void(0);"></a>

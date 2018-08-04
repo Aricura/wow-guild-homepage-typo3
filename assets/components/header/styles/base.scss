@@ -1,5 +1,6 @@
 @import '../../../variables';
 @import '../../../base/styles/functions/color';
+@import '../../../base/styles/functions/size';
 
 header {
     display: block;
@@ -17,8 +18,13 @@ header {
             margin-right: #{$containerInnerSpacingLR};
         }
 
-        strong {
+        * {
+            font-weight: 400;
+            font-size: calc(#{size('base')} + .05vw);
+            line-height: 1.5;
             color: color('primary');
+            margin: 0;
+            padding: 0;
         }
     }
 

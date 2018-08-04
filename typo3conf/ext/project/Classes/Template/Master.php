@@ -23,6 +23,6 @@ class Master extends Base
 			'page' => Page::find((int)$this->frontendController()->id),
 		];
 
-		return $this->twig('page/master.html.twig', $twigData);
+		return $this->twigArray('page/master.html.twig', $twigData);
 	}
 }

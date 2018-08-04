@@ -64,7 +64,7 @@ class Header extends Base
 			'L' => (int)$this->frontendController()->sys_language_uid,
 		];
 
-		return $this->twig('page/head.html.twig', $twigData);
+		return $this->twigArray('page/head.html.twig', $twigData);
 	}
 
 	/**

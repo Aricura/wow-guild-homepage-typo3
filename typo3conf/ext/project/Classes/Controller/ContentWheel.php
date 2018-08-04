@@ -9,7 +9,7 @@ use Project\Classes\Base;
 /**
  * Renders the master template of the website.
  */
-class ContentCarousel extends Base
+class ContentWheel extends Base
 {
 
 	/**
@@ -17,6 +17,6 @@ class ContentCarousel extends Base
 	 */
 	public function render(): string
 	{
-		return $this->twig('content-carousel/template.html.twig');
+		return $this->twig('content-wheel/template.html.twig');
 	}
 }

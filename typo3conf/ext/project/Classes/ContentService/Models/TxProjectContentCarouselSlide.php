@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace Project\Classes\ContentService\Models;
 
 use Project\Classes\Helper\CropImage;
-use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\ProcessedFile;
-use TYPO3\CMS\Core\Resource\ProcessedFileRepository;
 use Typo3ContentService\Models\AbstractModel;
 
 /**
@@ -28,7 +26,7 @@ use Typo3ContentService\Models\AbstractModel;
  * @property string bodytext
  * @property int    image
  */
-class TxProjectContentCarouseSlide extends AbstractModel
+class TxProjectContentCarouselSlide extends AbstractModel
 {
 
 	/**

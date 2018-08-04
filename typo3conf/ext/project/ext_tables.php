@@ -16,3 +16,4 @@ ExtensionManagementUtility::allowTableOnStandardPages('tx_wow_guilds');
 ExtensionManagementUtility::allowTableOnStandardPages('tx_wow_guild_members');
 
 ExtensionManagementUtility::allowTableOnStandardPages('tx_project_content_carousel_slides');
+ExtensionManagementUtility::allowTableOnStandardPages('tx_project_content_wheel_slides');
