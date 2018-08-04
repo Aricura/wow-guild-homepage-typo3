@@ -1,0 +1,7 @@
+@import '../../../variables';
+
+@media #{$mediaMinMD} {
+    main {
+        margin-top: #{$headerHeight};
+    }
+}
