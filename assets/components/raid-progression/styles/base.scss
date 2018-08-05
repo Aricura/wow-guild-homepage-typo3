@@ -369,8 +369,8 @@
 
 @media #{$mediaMinLG} {
     .raid-progression {
-        margin-top: 100px;
-        margin-bottom: 100px;
+        margin-top: 150px;
+        margin-bottom: 150px;
 
         &.raids--2,
         &.raids--3 {
@@ -386,6 +386,18 @@
                             margin-left: 10px;
                         }
                     }
+                }
+            }
+        }
+
+        .raid-item {
+            .content{
+                transition: all 500ms ease;
+            }
+
+            &:hover {
+                .content {
+                    bottom: -200px;
                 }
             }
         }

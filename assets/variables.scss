@@ -11,6 +11,7 @@ $mediaMinSM: (min-width: 768px);
 $mediaMinMD: (min-width: 1024px);
 $mediaMinLG: (min-width: 1320px);
 $mediaMinXL: (min-width: 1550px);
+$mediaMinXXL: (min-width: 1921px);
 
 // default grid span
 $gridGutterWidth: 30px;
@@ -24,6 +25,7 @@ $containerWidth_SM: calc(100% - 2 * #{$gridGutterWidth});
 $containerWidth_MD: 960px;
 $containerWidth_LG: 1120px;
 $containerWidth_XL: 1320px;
+$containerWidth_XXL: 1760px;
 
 // container inner spacing left + right
 $containerInnerSpacingLR: calc(#{$gridGutterWidth} / 2);

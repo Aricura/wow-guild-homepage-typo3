@@ -42,3 +42,9 @@
         width: #{$containerWidth_XL};
     }
 }
+
+@media #{$mediaMinXXL} {
+    .container {
+        width: #{$containerWidth_XXL};
+    }
+}

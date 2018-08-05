@@ -148,6 +148,7 @@ $dotWidth: 24px;
                     line-height: 0;
                     outline: 0;
                     transition: all 500ms ease;
+                    cursor: pointer;
 
                     &::before {
                         content: '';
@@ -299,6 +300,31 @@ $dotWidth: 24px;
 
 @media #{$mediaMinMD} {
     .content-wheel {
+        .heading--2 {
+            position: relative;
+            padding-bottom: 10px;
+
+            &::after {
+                content: '';
+                position: absolute;
+                width: 33%;
+                transform: translateX(-50%) scaleX(0);
+                height: 4px;
+                bottom: 0;
+                left: 50%;
+                background-color: color('primary');
+                transform-origin: bottom right;
+                transition: transform 0.25s ease-out;
+            }
+
+            &:hover {
+                &::after {
+                    transform: translateX(-50%) scaleX(1);
+                    transform-origin: bottom left;
+                }
+            }
+        }
+
         .col-left,
         .col-right {
             float: left;
@@ -336,7 +362,7 @@ $dotWidth: 24px;
 
         .col-left {
             width: 45%;
-            margin-top: 50px;
+            margin-top: 40px;
 
             .wheel {
                 width: 300px;
@@ -349,6 +375,7 @@ $dotWidth: 24px;
 
         .col-right {
             width: 55%;
+            margin-top: 40px;
         }
     }
 }
