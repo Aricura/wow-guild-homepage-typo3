@@ -9,3 +9,9 @@ tt_content.project_content_wheel {
     userFunc = Project\Classes\Helper\Renderer->handle
     controller = Project\Classes\Controller\ContentWheel
 }
+
+tt_content.project_raid_progression = USER_INT
+tt_content.project_raid_progression {
+    userFunc = Project\Classes\Helper\Renderer->handle
+    controller = Project\Classes\Controller\RaidProgression
+}

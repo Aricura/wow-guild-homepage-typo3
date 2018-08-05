@@ -1,7 +1,8 @@
 CREATE TABLE tt_content (
   tx_project_content_carousel_slides INT(11),
   tx_project_image_square            INT(11),
-  tx_project_content_wheel_slides    INT(11)
+  tx_project_content_wheel_slides    INT(11),
+  tx_wow_raids                       VARCHAR(255)
 );
 
 CREATE TABLE tx_wow_battle_groups (

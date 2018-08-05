@@ -21,6 +21,15 @@ mod.wizards.newContentElement.wizardItems {
                     CType = project_content_wheel
                 }
             }
+
+            project_raid_progression {
+                title = Raid Progression
+                description =
+                iconIdentifier = content-plugin
+                tt_content_defValues {
+                    CType = project_raid_progression
+                }
+            }
         }
     }
 }

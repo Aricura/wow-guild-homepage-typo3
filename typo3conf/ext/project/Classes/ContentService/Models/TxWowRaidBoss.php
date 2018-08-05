@@ -55,7 +55,7 @@ class TxWowRaidBoss extends AbstractModel
 	 */
 	public function isSlainOnNormal(): bool
 	{
-		return null === $this->first_kill_normal || '' === $this->first_kill_normal;
+		return null !== $this->first_kill_normal && '' !== $this->first_kill_normal;
 	}
 
 	/**
@@ -65,7 +65,7 @@ class TxWowRaidBoss extends AbstractModel
 	 */
 	public function isSlainOnHeroic(): bool
 	{
-		return null === $this->first_kill_heroic || '' === $this->first_kill_heroic;
+		return null !== $this->first_kill_heroic && '' !== $this->first_kill_heroic;
 	}
 
 	/**
@@ -75,7 +75,7 @@ class TxWowRaidBoss extends AbstractModel
 	 */
 	public function isSlainOnMythic(): bool
 	{
-		return null === $this->first_kill_mythic || '' === $this->first_kill_mythic;
+		return null !== $this->first_kill_mythic && '' !== $this->first_kill_mythic;
 	}
 
 	/**
@@ -95,7 +95,7 @@ class TxWowRaidBoss extends AbstractModel
 	 */
 	public function getHeroicFirstKillDate(): \DateTime
 	{
-		return new \DateTime($this->first_kill_normal);
+		return new \DateTime($this->first_kill_heroic);
 	}
 
 	/**
@@ -105,6 +105,6 @@ class TxWowRaidBoss extends AbstractModel
 	 */
 	public function getMythicFirstKillDate(): \DateTime
 	{
-		return new \DateTime($this->first_kill_normal);
+		return new \DateTime($this->first_kill_mythic);
 	}
 }

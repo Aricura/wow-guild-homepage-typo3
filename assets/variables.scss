@@ -1,3 +1,5 @@
+@import './base/styles/functions/color';
+
 // SIZES
 // SM >= 768px
 // MD >= 1024px
@@ -18,9 +20,9 @@ $headerHeight: 90px;
 
 // container width
 $containerWidth: 100%;
-$containerWidth_SM: calc(100% - #{$gridGutterWidth});
+$containerWidth_SM: calc(100% - 2 * #{$gridGutterWidth});
 $containerWidth_MD: 960px;
-$containerWidth_LG: 1018px;
+$containerWidth_LG: 1120px;
 $containerWidth_XL: 1320px;
 
 // container inner spacing left + right
@@ -28,6 +30,9 @@ $containerInnerSpacingLR: calc(#{$gridGutterWidth} / 2);
 
 // default border radius
 $borderRadius: 4px;
+
+// default box shadow
+$boxShadow: 0 0 30px rgba(color('main'), .2);
 
 // slider transition
 $sliderTransition: all 1000ms cubic-bezier(1.000, 0.000, 0.000, 1.000);

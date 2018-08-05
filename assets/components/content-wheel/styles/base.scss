@@ -147,6 +147,7 @@ $dotWidth: 24px;
                     font-size: 0;
                     line-height: 0;
                     outline: 0;
+                    transition: all 500ms ease;
 
                     &::before {
                         content: '';
@@ -263,7 +264,7 @@ $dotWidth: 24px;
                 width: 100%;
                 height: 100%;
                 flex-shrink: 0;
-                padding: 0 #{$containerInnerSpacingLR};
+                padding: 0;
 
                 &-container {
                     display: flex;

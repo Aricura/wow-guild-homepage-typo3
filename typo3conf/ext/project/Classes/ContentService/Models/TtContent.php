@@ -13,6 +13,7 @@ use TYPO3\CMS\Core\Resource\ProcessedFile;
  * @property int tx_project_content_carousel_slides
  * @property int tx_project_content_wheel_slides
  * @property int tx_project_image_square
+ * @property int tx_wow_raids
  */
 class TtContent extends \Typo3ContentService\Models\TtContent
 {
@@ -55,5 +56,22 @@ class TtContent extends \Typo3ContentService\Models\TtContent
 		$image = $this->resolveFile('tx_project_image_square');
 
 		return CropImage::getProcessedFile($image, 'square');
+	}
+
+	/**
+	 * Returns all raids defined by the progression plugin.
+	 *
+	 * @return array|TxWowRaid[]
+	 */
+	public function getRaids(): array
+	{
+		$raidUids = \explode(',', $this->tx_wow_raids);
+		$raids = [];
+
+		foreach ($raidUids as $raidUid) {
+			$raids[] = TxWowRaid::find((int)$raidUid);
+		}
+
+		return $raids;
 	}
 }

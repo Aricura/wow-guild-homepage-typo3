@@ -7,9 +7,9 @@ namespace Project\Classes\Controller;
 use Project\Classes\Base;
 
 /**
- * Renders the content carousel (header) plugin.
+ * Renders the raid progression plugin.
  */
-class ContentCarousel extends Base
+class RaidProgression extends Base
 {
 
 	/**
@@ -17,6 +17,6 @@ class ContentCarousel extends Base
 	 */
 	public function render(): string
 	{
-		return $this->twig('content-carousel/template.html.twig');
+		return $this->twig('raid-progression/template.html.twig');
 	}
 }

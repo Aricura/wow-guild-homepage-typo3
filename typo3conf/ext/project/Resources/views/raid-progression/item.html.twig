@@ -1,0 +1,25 @@
+<div clasS="raid-item">
+    <figure class="image">
+        <img src="{{ raid.getImage.getPublicUrl }}" alt="{{ raid.getImage.getAlternative }}" title="{{ raid.getImage.getTitle }}"/>
+    </figure>
+    <div class="content">
+        <p class="heading heading--5 heading--primary heading--bold">{{ raid.title }}</p>
+        <ul>
+            <li class="{{ raid.isNormalClear ? 'cleared' : 'in-progress' }}">
+                <p class="heading heading--3 heading--bold">{{ raid.getNormalBossKills }}</p>
+                <p class="difficulty">normal</p>
+                <i class="icon"></i>
+            </li>
+            <li class="{{ raid.isHeroicClear ? 'cleared' : 'in-progress' }}">
+                <p class="heading heading--3 heading--bold">{{ raid.getHeroicBossKills }}</p>
+                <p class="difficulty">heroic</p>
+                <i class="icon"></i>
+            </li>
+            <li class="{{ raid.isMythicClear ? 'cleared' : 'in-progress' }}">
+                <p class="heading heading--3 heading--bold">{{ raid.getMythicBossKills }}</p>
+                <p class="difficulty">mythic</p>
+                <i class="icon"></i>
+            </li>
+        </ul>
+    </div>
+</div>

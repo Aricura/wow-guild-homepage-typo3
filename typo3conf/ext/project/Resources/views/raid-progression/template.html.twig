@@ -1,0 +1,11 @@
+<section class="raid-progression raids--{{ element.getRaids|length }}" id="c{{ element.getKey }}">
+    <div class="container">
+        <div class="raid-items">
+            {% for raid in element.getRaids %}
+                {{ include('raid-progression/item.html.twig', {
+                    'raid': raid,
+                }) }}
+            {% endfor %}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,303 @@
+@import '../../../variables';
+@import '../../../base/styles/functions/color';
+@import '../../../base/styles/functions/size';
+
+.raid-progression {
+    margin: 40px 0;
+
+    .raid-item {
+        margin-bottom: #{$gridGutterWidth};
+        box-shadow: #{$boxShadow};
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .image {
+            width: 100%;
+            height: 100%;
+
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                border-top-left-radius: #{$borderRadius};
+                border-top-right-radius: #{$borderRadius};
+            }
+        }
+
+        .content {
+            padding: 20px;
+            border: 1px solid rgba(color('soft'), .5);
+            border-top: none;
+            border-bottom-left-radius: #{$borderRadius};
+            border-bottom-right-radius: #{$borderRadius};
+
+            .heading {
+                text-align: center;
+            }
+
+            ul {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                list-style: none;
+                padding: 20px 20px 0;
+
+                li {
+                    display: inline-block;
+
+                    .heading {
+                        margin-bottom: 15px;
+                    }
+
+                    .difficulty {
+                        font-size: 60%;
+                        text-transform: uppercase;
+                    }
+
+                    .icon {
+                        display: none;
+                    }
+
+                    &.cleared {
+                        .heading {
+                            color: color('success');
+                        }
+                    }
+
+                    &.in-progress {
+                        .heading {
+                            color: color('primary');
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media #{$mediaMinSM} {
+    .raid-progression {
+        .raid-items {
+            margin-left: calc(-#{$gridGutterWidth} / 2);
+            margin-right: calc(-#{$gridGutterWidth} / 2);
+
+            &::after {
+                content: '';
+                display: table;
+                clear: both;
+            }
+        }
+
+        .raid-item {
+            float: left;
+            width: calc(50% - #{$gridGutterWidth});
+            margin-left: #{$containerInnerSpacingLR};
+            margin-right: #{$containerInnerSpacingLR};
+
+            .content {
+                padding-top: 30px;
+                padding-bottom: 30px;
+
+                ul {
+                    padding: 30px 50px 0;
+
+                    li {
+                        &.cleared,
+                        &.in-progress {
+                            .heading {
+                                color: color('main');
+                            }
+                        }
+
+                        .heading {
+                            margin-bottom: 5px;
+                        }
+
+                        .icon {
+                            position: relative;
+                            display: block;
+                            height: 30px;
+
+                            &::before,
+                            &::after {
+                                content: '';
+                                position: absolute;
+                                height: 4px;
+                                border-radius: #{$borderRadius};
+                            }
+                        }
+
+                        &.in-progress {
+                            .icon {
+                                &::before,
+                                &::after {
+                                    top: 50%;
+                                    left: 50%;
+                                    width: 20px;
+                                    background: color('primary');
+                                }
+
+                                &::before {
+                                    transform: translate(-50%, -50%) rotate(45deg);
+                                }
+
+                                &::after {
+                                    transform: translate(-50%, -50%) rotate(-45deg);
+                                }
+                            }
+                        }
+
+                        &.cleared {
+                            .icon {
+                                &::before,
+                                &::after {
+                                    background: color('success');
+                                }
+
+                                &::before {
+                                    top: calc(50% + 1px);
+                                    right: calc(50% + 2px);
+                                    width: 8px;
+                                    transform: rotate(45deg);
+                                }
+
+                                &::after {
+                                    top: calc(50% - 2px);
+                                    left: calc(50% - 8px);
+                                    width: 20px;
+                                    transform: rotate(-45deg);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media #{$mediaMinMD} {
+    .raid-progression {
+        margin-top: 60px;
+        margin-bottom: 60px;
+
+        .raid-item {
+            position: relative;
+            overflow: hidden;
+
+            .image {
+                img {
+                    border-radius: #{$borderRadius};
+                }
+            }
+
+            .content {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border: none;
+                background: rgba(color('void'), .7);
+                padding: 15px 25px 5px;
+
+                .heading {
+                    text-align: right;
+                }
+
+                ul {
+                    display: block;
+                    padding: 0;
+                    margin-top: 20px;
+                    text-align: right;
+
+                    li {
+                        padding-left: 10px;
+                        margin-left: 10px;
+
+                        .heading {
+                            font-size: calc(#{size('four')} + .25vw);
+                            text-align: center;
+                        }
+
+                        .difficulty {
+                            font-size: 10px;
+                            line-height: 10px;
+                            color: color('base');
+                        }
+
+                        .icon {
+                            display: none;
+                        }
+
+                        &.cleared,
+                        &.in-progress {
+                            .heading {
+                                color: color('base');
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.raids--3 {
+            .raid-item {
+                width: calc(33.33% - #{$gridGutterWidth});
+
+                &:nth-child(2) {
+                    width: calc(33.34% - #{$gridGutterWidth});
+                }
+
+                .content {
+                    padding: 10px 15px 5px;
+
+                    .heading {
+                        font-size: calc(#{size('six')} + .25vw);
+                    }
+
+                    ul {
+                        margin-top: 10px;
+
+                        li {
+                            padding-left: 5px;
+                            margin-left: 5px;
+
+                            .heading {
+                                font-size: calc(#{size('five')} + .25vw);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media #{$mediaMinLG} {
+    .raid-progression {
+        margin-top: 100px;
+        margin-bottom: 100px;
+
+        &.raids--2,
+        &.raids--3 {
+            .raid-item {
+                .content {
+                    padding: 15px 20px 10px;
+
+                    ul {
+                        margin-top: 20px;
+
+                        li {
+                            padding-left: 10px;
+                            margin-left: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

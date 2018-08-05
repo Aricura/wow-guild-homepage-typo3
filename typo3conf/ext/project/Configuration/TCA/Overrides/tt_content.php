@@ -98,6 +98,17 @@ $fields = [
 			],
 		],
 	],
+	'tx_wow_raids' => [
+		'label' => 'Raids',
+		'config' => [
+			'type' => 'select',
+			'foreign_table' => 'tx_wow_raids',
+			'foreign_table_where' => '',
+			'minitems' => 2,
+			'maxitems' => 3,
+			'multiple' => false,
+		],
+	],
 ];
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', $fields);
@@ -128,5 +139,12 @@ $addPlugin('Content Wheel', 'content_wheel', [
 	'header',
 	'tx_project_image_square;Wheel Image (square)',
 	'tx_project_content_wheel_slides',
+]);
+//</editor-fold>
+
+//<editor-fold desc="Plugin: Raid Progression" defaultstate="collapsed">
+$addPlugin('Raid Progression', 'raid_progression', [
+	'CType',
+	'tx_wow_raids',
 ]);
 //</editor-fold>

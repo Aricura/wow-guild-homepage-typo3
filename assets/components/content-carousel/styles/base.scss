@@ -54,6 +54,7 @@
         padding: 30px 20px;
         border-radius: #{$borderRadius};
         background: rgba(color('void'), .7);
+        box-shadow: #{$boxShadow};
 
         &-container {
             transition: #{$defaultOverlayTransition};

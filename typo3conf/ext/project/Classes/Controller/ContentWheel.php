@@ -7,7 +7,7 @@ namespace Project\Classes\Controller;
 use Project\Classes\Base;
 
 /**
- * Renders the master template of the website.
+ * Renders the content wheel plugin.
  */
 class ContentWheel extends Base
 {
