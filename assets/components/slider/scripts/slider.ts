@@ -145,7 +145,7 @@ export default class extends Component {
         const sliderItemWidthPercentage = (100.0 * firstSliderItemWidth / this.sliderContainer.offsetWidth).toFixed(0);
 
         // slider animation is done using CSS transform-X
-        const transform = -sliderItemWidthPercentage * sliderIndex;
+        const transform = -sliderItemWidthPercentage * this.currentIndex;
         this.sliderContainer.style.transform = 'translateX(' + transform + '%)';
 
         // update the overlay content using the template defined by the new slider (if there is an overlay)
@@ -166,6 +166,14 @@ export default class extends Component {
                     }, 500);
                 }
             }
+        }
+
+        if (this.dots && this.dots.length > 0) {
+            for(let index = 0; index < this.dots.length; index++) {
+                this.dots[index].classList.remove('active');
+            }
+
+            this.dots[this.currentIndex].classList.add('active');
         }
     }
 }
