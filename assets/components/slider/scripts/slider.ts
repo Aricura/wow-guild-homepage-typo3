@@ -7,9 +7,11 @@ export default class extends Component {
     private buttonPrevious: HTMLElement;
     private buttonNext: HTMLElement;
     private overlayContainer: HTMLElement;
+    private dots: NodeListOf<HTMLElement>;
     private numberOfSlides: number = 0;
     private currentIndex: number = 0;
-    private swipePositionX = 0;
+    private swipePositionX: number = 0;
+    private autoSliderInterval: number = 0;
 
     public run (): void {
         this.setup();
@@ -21,9 +23,23 @@ export default class extends Component {
         this.buttonPrevious = this.element.querySelector('.js-slider-prev') as HTMLInputElement;
         this.buttonNext = this.element.querySelector('.js-slider-next') as HTMLInputElement;
         this.overlayContainer = this.element.querySelector('.js-slider-overlay-container') as HTMLInputElement;
+        this.dots = this.element.querySelectorAll('.js-slider-dot') as NodeListOf<HTMLElement>;
 
         this.numberOfSlides = this.sliderContainer.children.length;
         this.moveToIndex(this.currentIndex);
+
+        const autoPlay = !!(this.element.dataset.auto || 0);
+
+        if (autoPlay) {
+            const speed = Number(this.element.dataset.interval || 5000);
+            let that = this;
+
+            this.autoSliderInterval = window.setInterval(function() {
+                that.moveToIndex(that.currentIndex + 1);
+            }, speed);
+
+            this.element.classList.add('slider--auto-play');
+        }
     }
 
     private bind (): void {
@@ -36,6 +52,12 @@ export default class extends Component {
 
         if (this.buttonNext) {
             this.buttonNext.addEventListener('click', this.onControlNextClicked.bind(this));
+        }
+
+        if (this.dots && this.dots.length > 0) {
+            for(let index = 0; index < this.dots.length; index++) {
+                this.dots[index].addEventListener('click', this.onSliderDotClicked.bind(this));
+            }
         }
     }
 
@@ -58,8 +80,10 @@ export default class extends Component {
         const swipeThreshold = 50;
 
         if (swipeDistanceX < -swipeThreshold) {
+            this.stopAutoPlay();
             this.moveToIndex(this.currentIndex + 1);
         } else if (swipeDistanceX > swipeThreshold) {
+            this.stopAutoPlay();
             this.moveToIndex(this.currentIndex - 1);
         }
     }
@@ -68,6 +92,7 @@ export default class extends Component {
      * The previous control button is clicked.
      */
     private onControlPreviousClicked (): void {
+        this.stopAutoPlay();
         this.moveToIndex(this.currentIndex - 1);
     }
 
@@ -75,7 +100,24 @@ export default class extends Component {
      * The next control button is clicked.
      */
     private onControlNextClicked (): void {
+        this.stopAutoPlay();
         this.moveToIndex(this.currentIndex + 1);
+    }
+
+    private onSliderDotClicked (event: MouseEvent): void {
+        const element = event.target as HTMLElement;
+        const index = parseInt(element.dataset.index!);
+
+        this.stopAutoPlay();
+        this.moveToIndex(index);
+    }
+
+    private stopAutoPlay (): void {
+        if (this.autoSliderInterval) {
+            window.clearInterval(this.autoSliderInterval);
+            this.autoSliderInterval = 0;
+            this.element.classList.remove('slider--auto-play');
+        }
     }
 
     /**

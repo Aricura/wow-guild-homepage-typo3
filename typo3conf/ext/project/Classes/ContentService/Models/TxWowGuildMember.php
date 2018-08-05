@@ -52,6 +52,40 @@ class TxWowGuildMember extends AbstractModel
 	protected $languageIndexColumnName = '';
 
 	/**
+	 * @return \Project\Classes\ContentService\Models\TxWowClass
+	 */
+	public function getClass(): TxWowClass
+	{
+		return TxWowClass::find($this->tx_wow_class_uid);
+	}
+
+	/**
+	 * @return \Project\Classes\ContentService\Models\TxWowClassSpecialisation
+	 */
+	public function getSpecialisation(): TxWowClassSpecialisation
+	{
+		return TxWowClassSpecialisation::find($this->tx_wow_class_specialisation_uid);
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getThumbnailPath(): string
+	{
+		return \sprintf('https://render-eu.worldofwarcraft.com/character/%s', $this->thumbnail);
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getProfilePicturePath(): string
+	{
+		$url = \str_replace('avatar', 'main', $this->getThumbnailPath());
+
+		return $url.'?alt=/wow/static/images/2d/profilemain/class/6-1.jpg';
+	}
+
+	/**
 	 * Fetches a single guild member model by its unique parent guild and name combination.
 	 *
 	 * @param TxWowGuild $guild

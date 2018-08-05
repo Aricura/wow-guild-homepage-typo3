@@ -41,6 +41,18 @@ class TxWowClass extends AbstractModel
 	protected $languageIndexColumnName = '';
 
 	/**
+	 * Returns the absolute web file path for this class.
+	 *
+	 * @return string
+	 */
+	public function getIconPath(): string
+	{
+		$fileName = \str_replace(' ', '-', \mb_strtolower(\trim($this->name)));
+
+		return \sprintf('/dist/images/classes/%s.png', $fileName);
+	}
+
+	/**
 	 * Fetches a single class model by its unique foreign id.
 	 *
 	 * @param int $foreignId

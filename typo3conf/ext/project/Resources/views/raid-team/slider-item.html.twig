@@ -1,0 +1,11 @@
+<div class="raid-member">
+    <figure class="image">
+        <img src="{{ member.getProfilePicturePath }}" alt="{{ member.name }}" title="{{ member.name }}"/>
+    </figure>
+    <div class="overlay">
+        <div class="bottom-left">
+            <p class="heading heading--4 heading--bold">{{ member.name }}</p>
+            <p class="class class--{{ member.getClass.name|lower }}">{{ member.getSpecialisation.name }} {{ member.getClass.name }}</p>
+        </div>
+    </div>
+</div>

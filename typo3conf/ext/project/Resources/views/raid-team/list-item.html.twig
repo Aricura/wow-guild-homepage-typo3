@@ -1,0 +1,7 @@
+<li{% if loop.first %} class="separator"{% endif %}>
+    <a href="javascript:void(0);" class="js-slider-dot" data-index="{{ offset + loop.index0 }}">
+        <img class="icon icon--class" src="{{ member.getClass.getIconPath }}">
+        <img class="icon icon--specialisation" src="{{ member.getSpecialisation.getIconPath }}">
+        <span class="class class--{{ member.getClass.name|lower }}">{{ member.name }}</span>
+    </a>
+</li>

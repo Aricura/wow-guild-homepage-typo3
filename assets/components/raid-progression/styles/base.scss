@@ -61,18 +61,16 @@
     }
 
     .wow-progress {
-        .facts {
-            padding: 20px;
-            border: 1px solid rgba(color('soft'), .5);
-            border-radius: #{$borderRadius};
-        }
+        background: #272727;
+        padding: 40px 0;
+        margin-top: 50px;
 
         .heading {
             text-align: center;
         }
 
         ul {
-            margin-top: 10px;
+            margin-top: 25px;
             list-style: none;
 
             &::after {
@@ -88,6 +86,7 @@
                 text-align: center;
 
                 p {
+                    color: color('base');
                     font-size: 60%;
                     text-transform: uppercase;
 
@@ -214,15 +213,6 @@
         }
 
         .wow-progress {
-            background: #272727;
-            padding: 40px 0;
-            margin-top: 50px;
-
-            .facts {
-                padding: 0;
-                border: none;
-            }
-
             .heading {
                 font-size: calc(#{size('three')} + .25vw);
             }
@@ -231,7 +221,6 @@
                 display: flex;
                 align-items: flex-end;
                 justify-content: space-between;
-                margin-top: 25px;
 
                 li {
                     &,
@@ -242,7 +231,6 @@
                         margin: 0;
 
                         p {
-                            color: color('base');
                             font-size: 75%;
 
                             span {

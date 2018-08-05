@@ -25,6 +25,10 @@ use Project\Classes\Helper\Config;
  */
 class TxWowClassSpecialisation extends AbstractModel
 {
+	const ROLE_TANK = 'tank';
+	const ROLE_MELEE = 'melee';
+	const ROLE_RANGE = 'range';
+	const ROLE_HEAL = 'heal';
 
 	/**
 	 * @var string
@@ -48,7 +52,7 @@ class TxWowClassSpecialisation extends AbstractModel
 	 *
 	 * @return string
 	 */
-	public function getIconUrl()
+	public function getIconPath()
 	{
 		return \sprintf('https://render-eu.worldofwarcraft.com/icons/56/%s.jpg', $this->icon);
 	}
@@ -175,19 +179,19 @@ class TxWowClassSpecialisation extends AbstractModel
 	public function getRoleName(): string
 	{
 		if ($this->isTank()) {
-			return 'tank';
+			return self::ROLE_TANK;
 		}
 
 		if ($this->isMeleeDps()) {
-			return 'melee';
+			return self::ROLE_MELEE;
 		}
 
 		if ($this->isRangedDps()) {
-			return 'range';
+			return self::ROLE_RANGE;
 		}
 
 		if ($this->isHealer()) {
-			return 'healer';
+			return self::ROLE_HEAL;
 		}
 
 		return '';

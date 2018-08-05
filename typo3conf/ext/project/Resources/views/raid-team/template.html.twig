@@ -1,0 +1,72 @@
+<section class="raid-team js-slider" id="c{{ element.getKey }}" data-auto="true">
+    <div class="container">
+        <h2 class="heading heading--2 heading--primary">{{ element.header }}</h2>
+
+        <div class="col-left">
+            <div class="slider-wrapper">
+                <div class="slider-container js-slider-slides">
+                    {% for member in element.tanks %}
+                        {{ include('raid-team/slider-item.html.twig', {
+                            'member': member,
+                        }) }}
+                    {% endfor %}
+                    {% for member in element.melees %}
+                        {{ include('raid-team/slider-item.html.twig', {
+                            'member': member,
+                        }) }}
+                    {% endfor %}
+                    {% for member in element.ranges %}
+                        {{ include('raid-team/slider-item.html.twig', {
+                            'member': member,
+                        }) }}
+                    {% endfor %}
+                    {% for member in element.heals %}
+                        {{ include('raid-team/slider-item.html.twig', {
+                            'member': member,
+                        }) }}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="slider-controls">
+                <a class="slider-controls--prev js-slider-prev" href="javascript:void(0);"></a>
+                <a class="slider-controls--next js-slider-next" href="javascript:void(0);"></a>
+            </div>
+        </div>
+
+        <div class="col-right">
+            <div class="list-container">
+                <ul>
+                    {% for member in element.tanks %}
+                        {{ include('raid-team/list-item.html.twig', {
+                        'member': member,
+                        'loop': loop,
+                        'offset': 0,
+                        }) }}
+                    {% endfor %}
+                    {% for member in element.melees %}
+                        {{ include('raid-team/list-item.html.twig', {
+                            'member': member,
+                            'loop': loop,
+                            'offset': element.tanks|length,
+                        }) }}
+                    {% endfor %}
+                    {% for member in element.ranges %}
+                        {{ include('raid-team/list-item.html.twig', {
+                            'member': member,
+                            'loop': loop,
+                            'offset': (element.tanks|length + element.melees|length),
+                        }) }}
+                    {% endfor %}
+                    {% for member in element.heals %}
+                        {{ include('raid-team/list-item.html.twig', {
+                            'member': member,
+                            'loop': loop,
+                            'offset': (element.tanks|length + element.melees|length + element.heals|length),
+                        }) }}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

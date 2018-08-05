@@ -31,3 +31,57 @@ button.invisible {
 .text-justify {
     text-align: justify;
 }
+
+.class {
+    &.class-- {
+        &death.knight,
+        &death-knight {
+            color: #c41f3b;
+        }
+
+        &demon.hunter,
+        &demon-hunter {
+            color: #a330c9;
+        }
+
+        &druid {
+            color: #ff7d0a;
+        }
+
+        &hunter {
+            color: #abd473;
+        }
+
+        &mage {
+            color: #69ccf0;
+        }
+
+        &monk {
+            color: #00ff96;
+        }
+
+        &paladin {
+            color: #f58cba;
+        }
+
+        &priest {
+            color: #ffffff;
+        }
+
+        &rogue {
+            color: #fff569;
+        }
+
+        &shaman {
+            color: #0070de;
+        }
+
+        &warlock {
+            color: #9482c9;
+        }
+
+        &warrior {
+            color: #c79c6e;
+        }
+    }
+}
