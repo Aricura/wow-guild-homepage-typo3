@@ -3,8 +3,6 @@
 @import '../../../base/styles/functions/size';
 
 .raid-progression {
-    margin: 40px 0;
-
     .raid-item {
         margin-bottom: #{$gridGutterWidth};
         box-shadow: #{$boxShadow};
@@ -268,9 +266,6 @@
 
 @media #{$mediaMinMD} {
     .raid-progression {
-        margin-top: 60px;
-        margin-bottom: 60px;
-
         .raid-item {
             position: relative;
             overflow: hidden;
@@ -369,9 +364,6 @@
 
 @media #{$mediaMinLG} {
     .raid-progression {
-        margin-top: 150px;
-        margin-bottom: 150px;
-
         &.raids--2,
         &.raids--3 {
             .raid-item {
