@@ -15,20 +15,26 @@
                     {% endfor %}
                 </ul>
             </div>
+            <div class="slider-controls">
+                <a class="slider-controls--prev js-wheel-prev" href="javascript:void(0);"></a>
+                <a class="slider-controls--next js-wheel-next" href="javascript:void(0);"></a>
+            </div>
         </div>
 
         <div class="col-right">
-            {% for slide in element.getContentWheelSlides %}
-                <div class="panel js-wheel-panel">
-                    <div class="panel-header">
-                        <h3 class="heading heading--5 heading--primary">{{ slide.getTitle }}</h3>
-                        {{ sprite_inline('arrow') }}
+            <div class="panel-container">
+                {% for slide in element.getContentWheelSlides %}
+                    <div class="panel js-wheel-panel">
+                        <div class="panel-header">
+                            <h3 class="heading heading--5 heading--primary">{{ slide.getTitle }}</h3>
+                            {{ sprite_inline('arrow') }}
+                        </div>
+                        <div class="panel-body">
+                            <div class="bodytext">{{ slide.getBodyText|raw }}</div>
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        <div class="bodytext">{{ slide.getBodyText|raw }}</div>
-                    </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 </section>

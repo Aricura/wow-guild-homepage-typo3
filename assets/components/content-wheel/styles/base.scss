@@ -21,6 +21,8 @@ $dotWidth: 24px;
     }
 
     .col-right {
+        overflow: hidden;
+
         .panel {
             margin-bottom: 2px;
 
@@ -66,6 +68,10 @@ $dotWidth: 24px;
             &.active {
                 .panel {
                     &-header {
+                        .heading {
+                            font-weight: bold;
+                        }
+
                         .icon {
                             transform: translateY(-50%) rotate(-90deg);
                         }
@@ -236,20 +242,36 @@ $dotWidth: 24px;
                     }
                 }
             }
+
+            .slider-controls {
+                text-align: right;
+                margin-top: -40px;
+
+                &--prev,
+                &--next {
+                    background: rgba(color('void'), .25);
+
+                    &:hover {
+                        background: rgba(color('void'), .5);
+                    }
+                }
+            }
         }
 
         .col-right {
-            display: flex;
-            align-items: flex-start;
-            transition: #{$sliderTransition};
-            transition-timing-function: #{$sliderTransitionTiming};
-            transform: translateX(0);
-
             .panel {
                 width: 100%;
                 height: 100%;
                 flex-shrink: 0;
                 padding: 0 #{$containerInnerSpacingLR};
+
+                &-container {
+                    display: flex;
+                    align-items: flex-start;
+                    transition: #{$sliderTransition};
+                    transition-timing-function: #{$sliderTransitionTiming};
+                    transform: translateX(0);
+                }
 
                 &-header {
                     background: none;
@@ -270,6 +292,62 @@ $dotWidth: 24px;
                     display: block;
                 }
             }
+        }
+    }
+}
+
+@media #{$mediaMinMD} {
+    .content-wheel {
+        .col-left,
+        .col-right {
+            float: left;
+        }
+
+        .col-left {
+            width: 40%;
+            margin-top: 40px;
+            margin-bottom: 0;
+
+            .wheel {
+                width: 260px;
+            }
+
+            .slider-controls {
+                margin-top: 30px;
+                text-align: center;
+            }
+        }
+
+        .col-right {
+            width: 60%;
+        }
+    }
+}
+
+@media #{$mediaMinXL} {
+    .content-wheel {
+        margin-top: 100px;
+        margin-bottom: 100px;
+
+        .heading {
+            margin-bottom: 70px;
+        }
+
+        .col-left {
+            width: 45%;
+            margin-top: 50px;
+
+            .wheel {
+                width: 300px;
+            }
+
+            .slider-controls {
+                margin-top: 50px;
+            }
+        }
+
+        .col-right {
+            width: 55%;
         }
     }
 }

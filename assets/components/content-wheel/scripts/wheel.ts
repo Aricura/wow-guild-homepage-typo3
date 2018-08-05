@@ -6,6 +6,10 @@ export default class extends Component {
     private container: HTMLElement;
     private panels: NodeListOf<HTMLElement>;
     private items: NodeListOf<HTMLElement>;
+    private buttonPrevious: HTMLElement;
+    private buttonNext: HTMLElement;
+    private numberOfSlides: number = 0;
+    private currentIndex: number = 0;
 
     public run (): void {
         this.setup();
@@ -16,7 +20,10 @@ export default class extends Component {
         this.container = this.element.querySelector('.js-wheel-container') as HTMLElement;
         this.panels = this.element.querySelectorAll('.js-wheel-panel') as NodeListOf<HTMLElement>;
         this.items = this.element.querySelectorAll('.js-wheel-item') as NodeListOf<HTMLElement>;
+        this.buttonPrevious = this.element.querySelector('.js-wheel-prev') as HTMLInputElement;
+        this.buttonNext = this.element.querySelector('.js-wheel-next') as HTMLInputElement;
 
+        this.numberOfSlides = this.items.length;
         this.moveToIndex(0);
     }
 
@@ -33,6 +40,14 @@ export default class extends Component {
                 panelHeader.addEventListener('click', this.onPanelHeaderClicked.bind(this));
             }
         }
+
+        if (this.buttonPrevious) {
+            this.buttonPrevious.addEventListener('click', this.onControlPreviousClicked.bind(this));
+        }
+
+        if (this.buttonNext) {
+            this.buttonNext.addEventListener('click', this.onControlNextClicked.bind(this));
+        }
     }
 
     private moveToIndex (position: number): void {
@@ -41,16 +56,33 @@ export default class extends Component {
             return;
         }
 
+        // check if the new slider index doesn't exceed the bounds
+        if (position >= this.numberOfSlides) {
+            position = 0;
+        } else if (position < 0) {
+            position = this.numberOfSlides - 1;
+        }
+
+        // store the nex index
+        this.currentIndex = position;
+
         for(let index = 0; index < this.items.length; index++) {
             this.items[index].classList.remove('active');
         }
 
-        this.items[position].classList.add('active');
-
         const panelContainer = this.panels[0].parentElement as HTMLElement;
-
-        const transform = -100 * position;
+        const transform = -100 * this.currentIndex;
         panelContainer.style.transform = 'translateX(' + transform + '%)';
+
+        this.items[this.currentIndex].classList.add('active');
+    }
+
+    private onControlPreviousClicked (): void {
+        this.moveToIndex(this.currentIndex - 1);
+    }
+
+    private onControlNextClicked (): void {
+        this.moveToIndex(this.currentIndex + 1);
     }
 
     private onWheelItemClicked (event: MouseEvent): void {

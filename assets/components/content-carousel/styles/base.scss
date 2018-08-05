@@ -92,51 +92,9 @@
         }
     }
 
-    &-controls {
+    .slider-controls {
         margin-top: 20px;
-        font-size: 0;
-        line-height: 0;
         text-align: center;
-
-        &--prev,
-        &--next {
-            position: relative;
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            margin-left: 14px;
-            background: rgba(color('base'), .25);
-            border-radius: 50%;
-            z-index: 9;
-
-            &:hover {
-                background: rgba(color('base'), .5);
-            }
-
-            &:before {
-                content: '';
-                position: absolute;
-                top: 16px;
-                width: 10px;
-                height: 10px;
-                border-left: 2px solid color('base');
-                border-bottom: 2px solid color('base');
-            }
-        }
-
-        &--prev {
-            &:before {
-                left: 17px;
-                transform: rotate(45deg);
-            }
-        }
-
-        &--next {
-            &:before {
-                right: 17px;
-                transform: rotate(225deg);
-            }
-        }
     }
 }
 
@@ -236,7 +194,7 @@
             }
         }
 
-        &-controls {
+        .slider-controls {
             text-align: right;
             margin-top: 10px;
         }
