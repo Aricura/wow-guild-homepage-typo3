@@ -15,3 +15,9 @@ tt_content.project_raid_progression {
     userFunc = Project\Classes\Helper\Renderer->handle
     controller = Project\Classes\Controller\RaidProgression
 }
+
+tt_content.project_raid_team = USER_INT
+tt_content.project_raid_team {
+    userFunc = Project\Classes\Helper\Renderer->handle
+    controller = Project\Classes\Controller\RaidTeam
+}

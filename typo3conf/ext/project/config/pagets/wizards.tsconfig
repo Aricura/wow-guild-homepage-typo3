@@ -30,6 +30,15 @@ mod.wizards.newContentElement.wizardItems {
                     CType = project_raid_progression
                 }
             }
+
+            project_raid_team {
+                title = Raid Team
+                description =
+                iconIdentifier = content-plugin
+                tt_content_defValues {
+                    CType = project_raid_team
+                }
+            }
         }
     }
 }

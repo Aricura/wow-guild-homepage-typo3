@@ -162,3 +162,10 @@ $addPlugin('Raid Progression', 'raid_progression', [
 	'tx_wow_guild_uid;Fetch wowprogress.com Stats from Guild',
 ]);
 //</editor-fold>
+
+//<editor-fold desc="Plugin: Raid Team" defaultstate="collapsed">
+$addPlugin('Raid Team', 'raid_team', [
+	'CType',
+	'header',
+]);
+//</editor-fold>
