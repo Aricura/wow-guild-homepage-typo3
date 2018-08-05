@@ -207,3 +207,44 @@ CREATE TABLE tx_project_content_wheel_slides (
   PRIMARY KEY (uid),
   KEY parent (pid)
 );
+
+CREATE TABLE tx_wow_raids (
+  uid                INT(11)    NOT NULL AUTO_INCREMENT,
+  pid                INT(11)    NOT NULL DEFAULT '0',
+  tstamp             INT(11)    NOT NULL DEFAULT '0',
+  crdate             INT(11)    NOT NULL DEFAULT '0',
+  cruser_id          INT(11)    NOT NULL DEFAULT '0',
+  sorting            INT(11)    NOT NULL DEFAULT '0',
+  deleted            TINYINT(1) NOT NULL DEFAULT '0',
+  hidden             TINYINT(1) NOT NULL DEFAULT '0',
+  starttime          INT(11)    NOT NULL DEFAULT '0',
+  endtime            INT(11)    NOT NULL DEFAULT '0',
+
+  title              VARCHAR(100),
+  image              INT(11)             DEFAULT NULL,
+  tx_wow_raid_bosses INT(11),
+  PRIMARY KEY (uid),
+  KEY parent (pid)
+);
+
+CREATE TABLE tx_wow_raid_bosses (
+  uid               INT(11)    NOT NULL AUTO_INCREMENT,
+  pid               INT(11)    NOT NULL DEFAULT '0',
+  tstamp            INT(11)    NOT NULL DEFAULT '0',
+  crdate            INT(11)    NOT NULL DEFAULT '0',
+  cruser_id         INT(11)    NOT NULL DEFAULT '0',
+  sorting           INT(11)    NOT NULL DEFAULT '0',
+  deleted           TINYINT(1) NOT NULL DEFAULT '0',
+  hidden            TINYINT(1) NOT NULL DEFAULT '0',
+  starttime         INT(11)    NOT NULL DEFAULT '0',
+  endtime           INT(11)    NOT NULL DEFAULT '0',
+  parent_id         INT(11)             DEFAULT NULL,
+  parent_table      VARCHAR(255)        DEFAULT NULL,
+
+  title             VARCHAR(100),
+  first_kill_normal DATE                DEFAULT NULL,
+  first_kill_heroic DATE                DEFAULT NULL,
+  first_kill_mythic DATE                DEFAULT NULL,
+  PRIMARY KEY (uid),
+  KEY parent (pid)
+);

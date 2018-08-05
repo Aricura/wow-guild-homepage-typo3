@@ -10,10 +10,10 @@ if (!\defined('TYPO3_MODE')) {
 
 return [
 	'ctrl' => [
-		'title' => 'Content Wheel Slide',
+		'title' => 'World of Warcraft Raid Boss',
 		'label' => 'title',
 		'label_alt' => 'title',
-		'hideTable' => false,
+		'hideTable' => true,
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -35,26 +35,44 @@ return [
 			],
 		],
 		'title' => [
-			'label' => 'Title',
+			'label' => 'Raid Boss Name',
 			'config' => [
 				'type' => 'input',
 				'max' => 100,
 				'eval' => 'trim,required',
 			],
 		],
-		'bodytext' => [
-			'label' => 'Text',
+		'first_kill_normal' => [
+			'label' => 'Normal First Kill Date',
 			'config' => [
-				'type' => 'text',
-				'enableRichtext' => true,
-				'eval' => 'trim,required',
+				'type' => 'input',
+				'eval' => 'date',
+				'dbType' => 'date',
+			],
+		],
+		'first_kill_heroic' => [
+			'label' => 'Heroic First Kill Date',
+			'config' => [
+				'type' => 'input',
+				'eval' => 'date',
+				'dbType' => 'date',
+			],
+		],
+		'first_kill_mythic' => [
+			'label' => 'Mythic First Kill Date',
+			'config' => [
+				'type' => 'input',
+				'eval' => 'date',
+				'dbType' => 'date',
 			],
 		],
 	],
 	'types' => [
 		'0' => ['showitem' => \implode(',', [
 			'title',
-			'bodytext',
+			'first_kill_normal',
+			'first_kill_heroic',
+			'first_kill_mythic',
 		])],
 	],
 ];
