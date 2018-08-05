@@ -43,6 +43,14 @@ class TxWowGuild extends AbstractModel
 	protected $languageIndexColumnName = '';
 
 	/**
+	 * @return \Project\Classes\ContentService\Models\TxWowRealm
+	 */
+	public function getRealm(): TxWowRealm
+	{
+		return TxWowRealm::find($this->tx_wow_realm_uid);
+	}
+
+	/**
 	 * Seed all information about all guilds.
 	 */
 	public static function seed()
@@ -55,7 +63,7 @@ class TxWowGuild extends AbstractModel
 
 		/** @var self $guild */
 		foreach ($guilds as $guild) {
-			$realm = TxWowRealm::find($guild->tx_wow_realm_uid);
+			$realm = $guild->getRealm();
 			$response = $battleNet->get(\sprintf('guild/%s/%s', $realm->name, $guild->name), ['fields' => 'members']);
 
 			if (!$response->success()) {

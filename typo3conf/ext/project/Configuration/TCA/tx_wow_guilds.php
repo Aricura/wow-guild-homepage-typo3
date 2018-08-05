@@ -35,7 +35,6 @@ return [
 			],
 		],
 		'tx_wow_realm_uid' => [
-			'displayCond' => 'FIELD:sys_language_uid:<=:0',
 			'label' => 'Realm',
 			'config' => [
 				'type' => 'select',
@@ -48,7 +47,6 @@ return [
 			],
 		],
 		'tx_wow_fraction_uid' => [
-			'displayCond' => 'FIELD:sys_language_uid:<=:0',
 			'label' => 'Fraction',
 			'config' => [
 				'type' => 'select',

@@ -14,6 +14,7 @@ use TYPO3\CMS\Core\Resource\ProcessedFile;
  * @property int tx_project_content_wheel_slides
  * @property int tx_project_image_square
  * @property int tx_wow_raids
+ * @property int tx_wow_guild_uid
  */
 class TtContent extends \Typo3ContentService\Models\TtContent
 {
@@ -73,5 +74,13 @@ class TtContent extends \Typo3ContentService\Models\TtContent
 		}
 
 		return $raids;
+	}
+
+	/**
+	 * @return \Project\Classes\ContentService\Models\TxWowGuild
+	 */
+	public function getGuild(): TxWowGuild
+	{
+		return TxWowGuild::find((int) $this->tx_wow_guild_uid);
 	}
 }

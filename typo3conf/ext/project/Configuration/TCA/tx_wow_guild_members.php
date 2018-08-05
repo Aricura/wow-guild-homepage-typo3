@@ -35,7 +35,6 @@ return [
 			],
 		],
 		'tx_wow_guild_uid' => [
-			'displayCond' => 'FIELD:sys_language_uid:<=:0',
 			'label' => 'Guild',
 			'config' => [
 				'type' => 'select',
@@ -48,7 +47,6 @@ return [
 			],
 		],
 		'tx_wow_realm_uid' => [
-			'displayCond' => 'FIELD:sys_language_uid:<=:0',
 			'label' => 'Realm',
 			'config' => [
 				'type' => 'select',
@@ -61,7 +59,6 @@ return [
 			],
 		],
 		'tx_wow_race_uid' => [
-			'displayCond' => 'FIELD:sys_language_uid:<=:0',
 			'label' => 'Race',
 			'config' => [
 				'type' => 'select',
@@ -74,7 +71,6 @@ return [
 			],
 		],
 		'tx_wow_class_uid' => [
-			'displayCond' => 'FIELD:sys_language_uid:<=:0',
 			'label' => 'Class',
 			'config' => [
 				'type' => 'select',
@@ -87,7 +83,6 @@ return [
 			],
 		],
 		'tx_wow_class_specialisation_uid' => [
-			'displayCond' => 'FIELD:sys_language_uid:<=:0',
 			'label' => 'Specialisation',
 			'config' => [
 				'type' => 'select',

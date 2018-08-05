@@ -109,6 +109,18 @@ $fields = [
 			'multiple' => false,
 		],
 	],
+	'tx_wow_guild_uid' => [
+		'label' => 'World of Warcraft Guild',
+		'config' => [
+			'type' => 'select',
+			'renderType' => 'selectSingle',
+			'foreign_table' => 'tx_wow_guilds',
+			'foreign_table_where' => 'AND tx_wow_guilds.deleted = 0 AND tx_wow_guilds.hidden = 0',
+			'minitems' => 1,
+			'maxitems' => 1,
+			'multiple' => false,
+		],
+	],
 ];
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', $fields);
@@ -146,5 +158,7 @@ $addPlugin('Content Wheel', 'content_wheel', [
 $addPlugin('Raid Progression', 'raid_progression', [
 	'CType',
 	'tx_wow_raids',
+	'subheader;wowprogress.com Header (Tier xyz)',
+	'tx_wow_guild_uid;Fetch wowprogress.com Stats from Guild',
 ]);
 //</editor-fold>

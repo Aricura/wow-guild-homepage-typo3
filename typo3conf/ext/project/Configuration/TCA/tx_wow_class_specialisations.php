@@ -35,7 +35,6 @@ return [
 			],
 		],
 		'tx_wow_class_uid' => [
-			'displayCond' => 'FIELD:sys_language_uid:<=:0',
 			'label' => 'Class',
 			'config' => [
 				'type' => 'select',

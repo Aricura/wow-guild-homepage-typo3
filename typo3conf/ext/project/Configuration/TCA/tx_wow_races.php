@@ -44,7 +44,6 @@ return [
 			],
 		],
 		'tx_wow_fraction_uid' => [
-			'displayCond' => 'FIELD:sys_language_uid:<=:0',
 			'label' => 'Fraction',
 			'config' => [
 				'type' => 'select',

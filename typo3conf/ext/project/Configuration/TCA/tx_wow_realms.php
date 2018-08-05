@@ -35,7 +35,6 @@ return [
 			],
 		],
 		'tx_wow_battle_group_uid' => [
-			'displayCond' => 'FIELD:sys_language_uid:<=:0',
 			'label' => 'Battle Group',
 			'config' => [
 				'type' => 'select',

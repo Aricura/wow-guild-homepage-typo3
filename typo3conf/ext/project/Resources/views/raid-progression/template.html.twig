@@ -8,4 +8,24 @@
             {% endfor %}
         </div>
     </div>
+
+    <div class="wow-progress">
+        <div class="container">
+            <div class="facts">
+                <h3 class="heading heading--5 heading--primary heading--bold">{{ element.subheader }}</h3>
+
+                <ul>
+                    <li>
+                        <p><span>{{ element.rank.getWorldRank|number_format(0, ',', '.') }}</span> World Rank</p>
+                    </li>
+                    <li>
+                        <p><span>{{ element.rank.getRealmRank|number_format(0, ',', '.') }}</span> Realm Rank</p>
+                    </li>
+                    <li>
+                        <p><span>{{ element.rank.getAreaRank|number_format(0, ',', '.') }}</span> Area Rank</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </section>
