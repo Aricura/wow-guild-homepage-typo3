@@ -137,8 +137,31 @@
 
 @media #{$mediaMinMD} {
     .raid-team {
-        .heading {
+        .heading--2 {
+            position: relative;
+            padding-bottom: 10px;
             margin-bottom: 50px;
+
+            &::after {
+                content: '';
+                position: absolute;
+                width: 33%;
+                max-width: 200px;
+                transform: translateX(-50%) scaleX(0);
+                height: 4px;
+                bottom: 0;
+                left: 50%;
+                background-color: color('primary');
+                transform-origin: bottom right;
+                transition: transform 0.25s ease-out;
+            }
+
+            &:hover {
+                &::after {
+                    transform: translateX(-50%) scaleX(1);
+                    transform-origin: bottom left;
+                }
+            }
         }
 
         .col-left,
@@ -248,6 +271,10 @@
 
 @media #{$mediaMinXL} {
     .raid-team {
+        .heading--2 {
+            margin-bottom: 80px;
+        }
+
         .col-right {
             ul {
                 li {
