@@ -121,6 +121,15 @@ $fields = [
 			'multiple' => false,
 		],
 	],
+	'tx_project_navigation_title' => [
+		'label' => 'Navigation Title',
+		'config' => [
+			'type' => 'text',
+			'max' => 255,
+			'eval' => 'trim',
+			'rows' => 1,
+		],
+	],
 ];
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', $fields);
@@ -133,6 +142,8 @@ $addPlugin = function (string $name, string $identifier, array $fields) {
 
 	ExtensionManagementUtility::addPlugin([$name, $key, $icon], 'CType', 'project');
 
+	$fields = \array_merge(['CType', 'tx_project_navigation_title'], $fields);
+
 	$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$key] = $icon;
 	$GLOBALS['TCA']['tt_content']['types'][$key] = ['showitem' => \implode(',', $fields)];
 };
@@ -140,14 +151,12 @@ $addPlugin = function (string $name, string $identifier, array $fields) {
 
 //<editor-fold desc="Plugin: Content Carousel" defaultstate="collapsed">
 $addPlugin('Content Carousel', 'content_carousel', [
-	'CType',
 	'tx_project_content_carousel_slides',
 ]);
 //</editor-fold>
 
 //<editor-fold desc="Plugin: Content Wheel" defaultstate="collapsed">
 $addPlugin('Content Wheel', 'content_wheel', [
-	'CType',
 	'header',
 	'tx_project_image_square;Wheel Image (square)',
 	'tx_project_content_wheel_slides',
@@ -156,7 +165,6 @@ $addPlugin('Content Wheel', 'content_wheel', [
 
 //<editor-fold desc="Plugin: Raid Progression" defaultstate="collapsed">
 $addPlugin('Raid Progression', 'raid_progression', [
-	'CType',
 	'tx_wow_raids',
 	'subheader;wowprogress.com Header (Tier xyz)',
 	'tx_wow_guild_uid;Fetch wowprogress.com Stats from Guild',
@@ -165,7 +173,6 @@ $addPlugin('Raid Progression', 'raid_progression', [
 
 //<editor-fold desc="Plugin: Raid Team" defaultstate="collapsed">
 $addPlugin('Raid Team', 'raid_team', [
-	'CType',
 	'header',
 ]);
 //</editor-fold>

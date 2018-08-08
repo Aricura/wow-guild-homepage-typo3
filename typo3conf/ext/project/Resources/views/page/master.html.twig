@@ -6,10 +6,9 @@
         </a>
 
         <ul class="navigation">
-            <li><a href="javascript:void(0);">About</a></li>
-            <li><a href="javascript:void(0);">Progress</a></li>
-            <li><a href="javascript:void(0);">Team</a></li>
-            <li><a href="javascript:void(0);">Recruitment</a></li>
+            {% for uid,title in navigation %}
+                <li><a href="#c{{ uid }}" class="js-scroll-to">{{ title }}</a></li>
+            {% endfor %}
         </ul>
     </div>
 </header>

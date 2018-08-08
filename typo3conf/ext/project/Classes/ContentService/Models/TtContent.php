@@ -15,6 +15,7 @@ use TYPO3\CMS\Core\Resource\ProcessedFile;
  * @property int tx_project_image_square
  * @property int tx_wow_raids
  * @property int tx_wow_guild_uid
+ * @property int tx_project_navigation_title
  */
 class TtContent extends \Typo3ContentService\Models\TtContent
 {
@@ -82,5 +83,13 @@ class TtContent extends \Typo3ContentService\Models\TtContent
 	public function getGuild(): TxWowGuild
 	{
 		return TxWowGuild::find((int) $this->tx_wow_guild_uid);
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getNavTitle(): string
+	{
+		return (string) $this->tx_project_navigation_title;
 	}
 }

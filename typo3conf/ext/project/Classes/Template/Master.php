@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Project\Classes\Template;
 
 use Project\Classes\Base;
-use Typo3ContentService\Models\Page;
+use Project\Classes\ContentService\Models\Page;
 
 /**
  * Renders the master template of the website.
@@ -18,9 +18,18 @@ class Master extends Base
 	 */
 	public function render(): string
 	{
+		$rootPage = Page::find(1);
+		$navigation = [];
+
+		foreach($rootPage->getContentElements() as $element) {
+			if ('' !== $element->getNavTitle()) {
+				$navigation[$element->getKey()] = $element->getNavTitle();
+			}
+		}
+
 		$twigData = [
-			'root' => Page::find(1),
-			'page' => Page::find((int)$this->frontendController()->id),
+			'root' => $rootPage,
+			'navigation' => $navigation,
 		];
 
 		return $this->twigArray('page/master.html.twig', $twigData);
