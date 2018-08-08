@@ -1,0 +1,23 @@
+@import '../../../../base/styles/functions/color';
+
+.heading--underline-small {
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: block;
+        width: 111px;
+        border-bottom: 2px solid color('main');
+    }
+
+    &.heading--primary {
+        &::after {
+            border-bottom-color: color('primary');
+        }
+    }
+}

@@ -11,7 +11,7 @@ $mediaMinSM: (min-width: 768px);
 $mediaMinMD: (min-width: 1024px);
 $mediaMinLG: (min-width: 1320px);
 $mediaMinXL: (min-width: 1550px);
-$mediaMinXXL: (min-width: 1921px);
+$mediaMinXXL: (min-width: 2100px);
 
 // default grid span
 $gridGutterWidth: 30px;
@@ -32,9 +32,6 @@ $containerInnerSpacingLR: calc(#{$gridGutterWidth} / 2);
 
 // default border radius
 $borderRadius: 4px;
-
-// default box shadow
-$boxShadow: 0 0 30px rgba(color('main'), .2);
 
 // slider transition
 $sliderTransition: all 1000ms cubic-bezier(1.000, 0.000, 0.000, 1.000);

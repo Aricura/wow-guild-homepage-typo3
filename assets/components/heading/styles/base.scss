@@ -1,4 +1,3 @@
-@import '../../../base/styles/functions/color';
 @import '../../../base/styles/functions/font';
 @import '../../../base/styles/functions/size';
 
@@ -7,80 +6,33 @@
     display: block;
     color: inherit;
     font-family: font('main');
-    font-weight: inherit;
+    font-weight: 300;
     text-decoration: none;
     overflow-wrap: break-word;
     line-height: 1.1;
 }
 
-// Null Heading
-.heading--0 {
-    font-size: size('minor');
-}
 
-// Display Heading
-.heading--display {
-    font-size: calc(#{size('base')} + 3.5vw);
-}
-
-// Primary Heading
 .heading--1 {
     font-size: calc(#{size('one')} + .25vw);
-
-    &.heading--shroom {
-        font-size: calc(#{size('base')} + .5vw);
-    }
 }
 
-// Secondary Heading
 .heading--2 {
     font-size: calc(#{size('two')} + .25vw);
-
-    &.heading--shroom {
-        font-size: calc(#{size('base')} + 1.25vw);
-    }
 }
 
-// Tertiary Heading
 .heading--3 {
     font-size: calc(#{size('three')} + .25vw);
-
-    &.heading--shroom {
-        font-size: calc(#{size('base')} + 1vw);
-    }
 }
 
-// Quaternary Heading
 .heading--4 {
     font-size: calc(#{size('four')} + .25vw);
-
-    &.heading--shroom {
-        font-size: calc(#{size('base')} + .5vw);
-    }
 }
 
-// Quinary Heading
 .heading--5 {
     font-size: calc(#{size('five')} + .25vw);
-
-    &.heading--shroom {
-        font-size: calc(#{size('base')} + .5vw);
-    }
 }
 
-// Senary Heading
 .heading--6 {
     font-size: calc(#{size('six')} + .25vw);
-
-    &.heading--shroom {
-        font-size: calc(#{size('base')} + .5vw);
-    }
-}
-
-// create a full width block for mobile devices
-@media (max-width: 480px) {
-    .heading-xs-block {
-        display: block;
-        margin-top: .2em;
-    }
 }

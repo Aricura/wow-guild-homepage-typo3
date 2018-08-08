@@ -3,7 +3,7 @@
 @import '../../../base/styles/functions/size';
 
 .raid-team {
-    .heading {
+    .heading--underline-big {
         text-align: center;
         margin-bottom: 30px;
     }
@@ -13,7 +13,8 @@
 
         .slider {
             &-wrapper {
-                border: 1px solid rgba(color('soft'), .5);
+                box-shadow: 0 6px 20px color('void');
+                border: 1px solid color('void');
                 border-radius: #{$borderRadius};
                 overflow: hidden;
             }
@@ -28,7 +29,7 @@
             }
 
             &-controls {
-                margin-top: 10px;
+                margin-top: 20px;
                 text-align: center;
 
                 &--prev,
@@ -99,7 +100,7 @@
                     position: relative;
                     display: block;
                     padding: 15px 10px 15px 75px;
-                    background: rgba(color('void'), .8);
+                    background-image: repeating-linear-gradient(-45deg, color('main'), color('main'), 1px, color('void') 2px, color('void') 2px);
                     border: 1px solid color('void');
                     border-radius: #{$borderRadius};
                     color: color('base');
@@ -107,10 +108,6 @@
                     &.active,
                     &:hover {
                         background: rgba(color('void'), .9);
-
-                        span {
-                            font-weight: 700;
-                        }
                     }
 
                     .icon {
@@ -137,33 +134,6 @@
 
 @media #{$mediaMinMD} {
     .raid-team {
-        .heading--2 {
-            position: relative;
-            padding-bottom: 10px;
-            margin-bottom: 50px;
-
-            &::after {
-                content: '';
-                position: absolute;
-                width: 33%;
-                max-width: 200px;
-                transform: translateX(-50%) scaleX(0);
-                height: 4px;
-                bottom: 0;
-                left: 50%;
-                background-color: color('primary');
-                transform-origin: bottom right;
-                transition: transform 0.25s ease-out;
-            }
-
-            &:hover {
-                &::after {
-                    transform: translateX(-50%) scaleX(1);
-                    transform-origin: bottom left;
-                }
-            }
-        }
-
         .col-left,
         .col-right {
             float: left;
@@ -194,10 +164,6 @@
             }
 
             .slider {
-                &-wrapper {
-                    border-width: 4px;
-                }
-
                 &-controls {
                     margin-top: 0;
 
@@ -271,7 +237,7 @@
 
 @media #{$mediaMinXL} {
     .raid-team {
-        .heading--2 {
+        .heading--underline-big {
             margin-bottom: 80px;
         }
 

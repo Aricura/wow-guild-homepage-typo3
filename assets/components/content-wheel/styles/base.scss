@@ -5,7 +5,7 @@
 $dotWidth: 24px;
 
 .content-wheel {
-    .heading {
+    .heading--underline-big {
         text-align: center;
         margin-bottom: 30px;
     }
@@ -66,10 +66,6 @@ $dotWidth: 24px;
             &.active {
                 .panel {
                     &-header {
-                        .heading {
-                            font-weight: bold;
-                        }
-
                         .icon {
                             transform: translateY(-50%) rotate(-90deg);
                         }
@@ -90,7 +86,7 @@ $dotWidth: 24px;
             overflow: hidden;
         }
 
-        .heading {
+        .heading--underline-big {
             margin-bottom: 50px;
         }
 
@@ -295,31 +291,6 @@ $dotWidth: 24px;
 
 @media #{$mediaMinMD} {
     .content-wheel {
-        .heading--2 {
-            position: relative;
-            padding-bottom: 10px;
-
-            &::after {
-                content: '';
-                position: absolute;
-                width: 33%;
-                transform: translateX(-50%) scaleX(0);
-                height: 4px;
-                bottom: 0;
-                left: 50%;
-                background-color: color('primary');
-                transform-origin: bottom right;
-                transition: transform 0.25s ease-out;
-            }
-
-            &:hover {
-                &::after {
-                    transform: translateX(-50%) scaleX(1);
-                    transform-origin: bottom left;
-                }
-            }
-        }
-
         .col-left,
         .col-right {
             float: left;
@@ -348,7 +319,7 @@ $dotWidth: 24px;
 
 @media #{$mediaMinXL} {
     .content-wheel {
-        .heading {
+        .heading--underline-big {
             margin-bottom: 70px;
         }
 

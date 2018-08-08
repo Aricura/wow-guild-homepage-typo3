@@ -7,10 +7,6 @@ section {
     &:first-child {
         padding-top: 0;
     }
-
-    &:last-child {
-        padding-bottom: 0;
-    }
 }
 
 @media #{$mediaMinSM} {
@@ -31,6 +27,13 @@ section {
     section {
         padding-top: 80px;
         padding-bottom: 80px;
+
+        &:nth-child(2) {
+            background-image: url('/dist/images/logo_horde.png');
+            background-position: 95% 25px;
+            background-repeat: no-repeat;
+            background-size: 150px;
+        }
     }
 }
 

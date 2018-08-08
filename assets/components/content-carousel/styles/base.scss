@@ -56,29 +56,13 @@
         padding: 30px 20px;
         border-radius: #{$borderRadius};
         background: rgba(color('void'), .7);
-        box-shadow: #{$boxShadow};
+        box-shadow: 0 6px 20px color('void');
 
         &-container {
             transition: #{$defaultOverlayTransition};
 
             &.in-progress {
                 opacity: 0;
-            }
-        }
-
-        &--title {
-            position: relative;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
-
-            &:after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                display: block;
-                width: 111px;
-                border-bottom: 2px solid color('primary');
             }
         }
 
@@ -144,10 +128,12 @@
     .content-carousel {
         &-overlay {
             &--title {
-                padding-bottom: 0;
+                .heading--underline-small {
+                    padding-bottom: 0;
 
-                &:after {
-                    display: none;
+                    &:after {
+                        display: none;
+                    }
                 }
             }
 

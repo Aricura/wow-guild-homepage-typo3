@@ -5,7 +5,7 @@
 .raid-progression {
     .raid-item {
         margin-bottom: #{$gridGutterWidth};
-        box-shadow: #{$boxShadow};
+        box-shadow: 0 6px 20px color('void');
 
         .image {
             width: 100%;
@@ -254,6 +254,9 @@
 
 @media #{$mediaMinMD} {
     .raid-progression {
+        padding-top: 60px;
+        padding-bottom: 0;
+
         .raid-item {
             position: relative;
             overflow: hidden;
@@ -275,6 +278,7 @@
 
                 .heading {
                     text-align: right;
+                    margin-bottom: 5px;
                 }
 
                 ul {
@@ -343,10 +347,19 @@
                 }
             }
         }
-    }
 
-    .wow-progress {
-        padding-bottom: 50px;
+        .wow-progress {
+            padding-top: 50px;
+            padding-bottom: 50px;
+            background: url('/dist/images/battle-for-azeroth-banner.jpg');
+            background-position: top right;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            .heading--primary {
+                color: color('base');
+            }
+        }
     }
 }
 
@@ -372,14 +385,21 @@
 
         .raid-item {
             .content{
-                transition: all 500ms ease;
+                transition: all 750ms ease;
+                opacity: 1;
             }
 
             &:hover {
                 .content {
                     bottom: -200px;
+                    opacity: 0;
                 }
             }
+        }
+
+        .wow-progress {
+            padding-top: 60px;
+            padding-bottom: 60px;
         }
     }
 }
