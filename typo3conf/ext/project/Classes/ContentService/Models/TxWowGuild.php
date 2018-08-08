@@ -51,6 +51,14 @@ class TxWowGuild extends AbstractModel
 	}
 
 	/**
+	 * @return \Project\Classes\ContentService\Models\TxWowFraction
+	 */
+	public function getFraction(): TxWowFraction
+	{
+		return TxWowFraction::find($this->tx_wow_fraction_uid);
+	}
+
+	/**
 	 * Seed all information about all guilds.
 	 */
 	public static function seed()

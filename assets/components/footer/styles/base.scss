@@ -1,0 +1,22 @@
+@import '../../../variables';
+@import '../../../base/styles/functions/color';
+@import '../../../base/styles/functions/size';
+
+footer {
+    display: block;
+    background: rgba(color('void'), .9);
+    padding: #{$gridGutterWidth} #{$containerInnerSpacingLR};
+
+    p {
+        display: block;
+        text-align: center;
+        color: color('base');
+        opacity: .7;
+    }
+}
+
+@media #{$mediaMinSM} {
+    footer {
+        padding: #{$gridGutterWidth};
+    }
+}
