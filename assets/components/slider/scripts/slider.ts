@@ -105,7 +105,16 @@ export default class extends Component {
     }
 
     private onSliderDotClicked (event: MouseEvent): void {
-        const element = event.target as HTMLElement;
+        let element = event.target as HTMLElement;
+
+        if (!element.classList.contains('js-slider-dot')) {
+            element = element.parentElement as HTMLElement;
+        }
+
+        if (!element.dataset) {
+            return;
+        }
+
         const index = parseInt(element.dataset.index!);
 
         this.stopAutoPlay();
