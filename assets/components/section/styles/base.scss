@@ -41,6 +41,11 @@ section {
     section {
         padding-top: 100px;
         padding-bottom: 100px;
+
+        &:nth-child(2) {
+            background-position: 90% 25px;
+            background-size: 200px;
+        }
     }
 }
 

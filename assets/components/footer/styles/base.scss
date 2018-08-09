@@ -20,3 +20,9 @@ footer {
         padding: #{$gridGutterWidth};
     }
 }
+
+@media #{$mediaMinLG} {
+    footer {
+        padding: 50px;
+    }
+}
