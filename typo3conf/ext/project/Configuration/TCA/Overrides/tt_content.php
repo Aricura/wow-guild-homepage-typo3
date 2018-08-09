@@ -102,9 +102,9 @@ $fields = [
 		'label' => 'Raids',
 		'config' => [
 			'type' => 'select',
-			'renderType' => 'selectSingle',
+			'renderType' => 'selectMultipleSideBySide',
 			'foreign_table' => 'tx_wow_raids',
-			'foreign_table_where' => '',
+			'foreign_table_where' => 'tx_wow_raids.deleted = 0 AND tx_wow_raids.hidden = 0 ORDER BY tx_wow_raids.uid DESC',
 			'minitems' => 2,
 			'maxitems' => 3,
 			'multiple' => false,
