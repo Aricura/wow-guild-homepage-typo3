@@ -10,24 +10,31 @@ editor:
     config:
         format_tags: "p"
 
-        stylesSet: []
+        stylesSet:
+          - { name: 'Headline 1, Primary', element: 'p', attributes: { 'class': 'heading heading--2 heading--primary' } }
+          - { name: 'Headline 2, Primary', element: 'p', attributes: { 'class': 'heading heading--3 heading--primary' } }
+          - { name: 'Headline 2', element: 'p', attributes: { 'class': 'heading heading--3' } }
+          - { name: 'Headline 3', element: 'p', attributes: { 'class': 'heading heading--4' } }
+          - { name: 'Headline 4', element: 'p', attributes: { 'class': 'heading heading--5' } }
+          - { name: 'Separator Primary', element: 'hr', attributes: { 'class': 'separator separator--primary' } }
+          - { name: 'Separator Invisible', element: 'hr', attributes: { 'class': 'separator separator--invisible' } }
+          - { name: 'List Inline', element: 'ul', attributes: { 'class': 'list-inline' } }
 
         toolbarGroups:
           - { name: styles, groups: [ format ] }
           - { name: paragraph, groups: [ list, align ] }
-          - { name: basicstyles, groups: [ basicstyles, cleanup ] }
+          - { name: basicstyles, groups: [ basicstyles ] }
           - { name: links, groups: [ links ] }
+          - { name: insert, groups: [ horizontalrule ] }
+          - "/"
           - { name: clipboard, groups:  [ undo, clipboard ] }
           - { name: document, groups: [ mode ] }
 
         removeButtons:
           - Anchor
-          - Italic
-          - Underline
-          - Strike
-          - Superscript
-          - Subscript
-          - Styles
+          - Image
+          - Table
+          - SpecialChar
 
         justifyClasses:
           - text-left

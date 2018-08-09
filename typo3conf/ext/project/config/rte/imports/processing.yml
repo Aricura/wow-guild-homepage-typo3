@@ -10,6 +10,7 @@ processing:
     - a
     - br
     - em
+    - hr
     - li
     - ol
     - p
@@ -18,7 +19,7 @@ processing:
     - ul
 
   ## Tags that are allowed outside of paragraphs
-  allowTagsOutside: []
+  allowTagsOutside: [hr]
 
   ## allowed default attributes
   allowAttributes: [class]

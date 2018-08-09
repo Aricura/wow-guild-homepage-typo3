@@ -7,7 +7,7 @@
     }
 
     .bodytext {
-        margin-bottom: #{$gridGutterWidth};
+        margin-bottom: 50px;
 
         ul {
             list-style: none;
@@ -28,6 +28,45 @@
                     height: 10px;
                     background: color('primary');
                     border-radius: 50%;
+                }
+            }
+        }
+    }
+}
+
+@media #{$mediaMinSM} {
+    .text-element {
+        .bodytext {
+            .separator {
+                display: block;
+                width: 100%;
+                height: 2px;
+                margin: #{$gridGutterWidth} 0;
+
+                &--primary {
+                    background: color('primary');
+                }
+            }
+
+            .list-inline {
+                display: block;
+                text-align: center;
+
+                li {
+                    display: inline-block;
+                    padding: 0 #{$containerInnerSpacingLR};
+
+                    &::before {
+                        display: none;
+                    }
+
+                    &:first-child {
+                        padding-left: 0;
+                    }
+
+                    &:last-child {
+                        padding-right: 0;
+                    }
                 }
             }
         }
