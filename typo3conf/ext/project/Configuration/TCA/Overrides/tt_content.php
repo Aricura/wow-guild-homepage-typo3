@@ -102,6 +102,7 @@ $fields = [
 		'label' => 'Raids',
 		'config' => [
 			'type' => 'select',
+			'renderType' => 'selectSingle',
 			'foreign_table' => 'tx_wow_raids',
 			'foreign_table_where' => '',
 			'minitems' => 2,

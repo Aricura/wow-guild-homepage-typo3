@@ -355,6 +355,8 @@
             background-position: top right;
             background-repeat: no-repeat;
             background-size: cover;
+            border-top: 2px solid color('void');
+            border-bottom: 2px solid color('void');
 
             .heading--primary {
                 color: color('base');

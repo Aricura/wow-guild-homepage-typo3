@@ -187,6 +187,7 @@ CREATE TABLE tx_project_content_carousel_slides (
   title        VARCHAR(100),
   bodytext     VARCHAR(255),
   image        INT(11)             DEFAULT NULL,
+
   PRIMARY KEY (uid),
   KEY parent (pid)
 );
@@ -207,6 +208,7 @@ CREATE TABLE tx_project_content_wheel_slides (
 
   title        VARCHAR(100),
   bodytext     MEDIUMTEXT,
+
   PRIMARY KEY (uid),
   KEY parent (pid)
 );
@@ -226,6 +228,7 @@ CREATE TABLE tx_wow_raids (
   title              VARCHAR(100),
   image              INT(11)             DEFAULT NULL,
   tx_wow_raid_bosses INT(11),
+
   PRIMARY KEY (uid),
   KEY parent (pid)
 );
@@ -248,6 +251,27 @@ CREATE TABLE tx_wow_raid_bosses (
   first_kill_normal DATE                DEFAULT NULL,
   first_kill_heroic DATE                DEFAULT NULL,
   first_kill_mythic DATE                DEFAULT NULL,
+
+  PRIMARY KEY (uid),
+  KEY parent (pid)
+);
+
+CREATE TABLE tx_wow_battle_tags (
+  uid                  INT(11)    NOT NULL AUTO_INCREMENT,
+  pid                  INT(11)    NOT NULL DEFAULT '0',
+  tstamp               INT(11)    NOT NULL DEFAULT '0',
+  crdate               INT(11)    NOT NULL DEFAULT '0',
+  cruser_id            INT(11)    NOT NULL DEFAULT '0',
+  sorting              INT(11)    NOT NULL DEFAULT '0',
+  deleted              TINYINT(1) NOT NULL DEFAULT '0',
+  hidden               TINYINT(1) NOT NULL DEFAULT '0',
+  starttime            INT(11)    NOT NULL DEFAULT '0',
+  endtime              INT(11)    NOT NULL DEFAULT '0',
+
+  battle_tag           VARCHAR(64),
+  name                 VARCHAR(255),
+  tx_wow_guild_members VARCHAR(255),
+
   PRIMARY KEY (uid),
   KEY parent (pid)
 );

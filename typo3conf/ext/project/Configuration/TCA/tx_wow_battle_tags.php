@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 if (!\defined('TYPO3_MODE')) {
@@ -10,10 +11,10 @@ if (!\defined('TYPO3_MODE')) {
 
 return [
 	'ctrl' => [
-		'title' => 'World of Warcraft Raid Boss',
-		'label' => 'title',
-		'label_alt' => 'title',
-		'hideTable' => true,
+		'title' => 'World of Warcraft Battle Tags',
+		'label' => 'battle_tag',
+		'label_alt' => 'battle_tag',
+		'hideTable' => false,
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -34,48 +35,40 @@ return [
 				'default' => '0',
 			],
 		],
-		'title' => [
-			'label' => 'Raid Boss Name',
+		'battle_tag' => [
+			'label' => 'Battle Tag',
 			'config' => [
 				'type' => 'input',
-				'max' => 100,
+				'max' => 64,
 				'eval' => 'trim,required',
 			],
 		],
-		'first_kill_normal' => [
-			'label' => 'Normal First Kill Date',
+		'name' => [
+			'label' => 'Name',
 			'config' => [
 				'type' => 'input',
-				'renderType' => 'inputDateTime',
-				'eval' => 'date',
-				'dbType' => 'date',
+				'max' => 64,
+				'eval' => 'trim,required',
 			],
 		],
-		'first_kill_heroic' => [
-			'label' => 'Heroic First Kill Date',
+		'tx_wow_guild_members' => [
+			'label' => 'Characters',
 			'config' => [
-				'type' => 'input',
-				'renderType' => 'inputDateTime',
-				'eval' => 'date',
-				'dbType' => 'date',
-			],
-		],
-		'first_kill_mythic' => [
-			'label' => 'Mythic First Kill Date',
-			'config' => [
-				'type' => 'input',
-				'renderType' => 'inputDateTime',
-				'eval' => 'date',
-				'dbType' => 'date',
+				'type' => 'select',
+				'renderType' => 'selectMultipleSideBySide',
+				'foreign_table' => 'tx_wow_guild_members',
+				'foreign_table_where' => 'AND tx_wow_guild_members.deleted = 0 AND tx_wow_guild_members.hidden = 0 ORDER BY tx_wow_guild_members.name ASC',
+				'minitems' => 0,
+				'maxitems' => 9,
+				'multiple' => false,
 			],
 		],
 	],
 	'types' => [
 		'0' => ['showitem' => \implode(',', [
-			'title',
-			'first_kill_normal',
-			'first_kill_heroic',
-			'first_kill_mythic',
+			'battle_tag',
+			'name',
+			'tx_wow_guild_members',
 		])],
 	],
 ];
