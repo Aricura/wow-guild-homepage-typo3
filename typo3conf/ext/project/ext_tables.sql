@@ -4,7 +4,10 @@ CREATE TABLE tt_content (
   tx_project_content_wheel_slides    INT(11),
   tx_wow_raids                       VARCHAR(255),
   tx_wow_guild_uid                   INT(11),
-  tx_project_navigation_title        VARCHAR(255)
+  tx_project_navigation_title        VARCHAR(255),
+  tx_project_bodytext_two            MEDIUMTEXT,
+  tx_project_bodytext_three          MEDIUMTEXT,
+  tx_project_bodytext_four           MEDIUMTEXT
 );
 
 CREATE TABLE tx_wow_battle_groups (

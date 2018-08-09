@@ -5,7 +5,7 @@
 .raid-team {
     .heading--underline-big {
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: #{$gridGutterWidth};
     }
 
     .col-left {

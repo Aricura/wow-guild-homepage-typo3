@@ -7,7 +7,7 @@ $dotWidth: 24px;
 .content-wheel {
     .heading--underline-big {
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: #{$gridGutterWidth};
     }
 
     .col-left {
@@ -92,14 +92,14 @@ $dotWidth: 24px;
 
         .col-left {
             display: block;
-            margin-bottom: 30px;
+            margin-bottom: #{$gridGutterWidth};
 
             .wheel {
                 position: relative;
                 display: block;
                 width: 300px;
                 margin: 0 auto;
-                padding: 30px;
+                padding: #{$gridGutterWidth};
                 border: 2px solid color('primary');
                 border-radius: 50%;
 
@@ -306,7 +306,7 @@ $dotWidth: 24px;
             }
 
             .slider-controls {
-                margin-top: 30px;
+                margin-top: #{$gridGutterWidth};
                 text-align: center;
             }
         }

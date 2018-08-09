@@ -21,3 +21,9 @@ tt_content.project_raid_team {
     userFunc = Project\Classes\Helper\Renderer->handle
     controller = Project\Classes\Controller\RaidTeam
 }
+
+tt_content.project_text = USER_INT
+tt_content.project_text {
+    userFunc = Project\Classes\Helper\Renderer->handle
+    controller = Project\Classes\Controller\Text
+}

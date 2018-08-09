@@ -1,0 +1,73 @@
+@import '../../../variables';
+
+.text-element {
+    .heading--underline-big {
+        text-align: center;
+        margin-bottom: #{$gridGutterWidth};
+    }
+
+    .bodytext {
+        margin-bottom: #{$gridGutterWidth};
+
+        ul {
+            list-style: none;
+            margin: #{$containerInnerSpacingLR} 0 #{$gridGutterWidth};
+            padding: 0;
+
+            li {
+                position: relative;
+                padding-left: #{$gridGutterWidth};
+                margin-bottom: 8px;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: 5px;
+                    top: 7px;
+                    width: 10px;
+                    height: 10px;
+                    background: color('primary');
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}
+
+@media #{$mediaMinMD} {
+    .text-element {
+        .heading--underline-big {
+            margin-bottom: 50px;
+        }
+
+        .clear {
+            &::after {
+                content: '';
+                display: table;
+                clear: both;
+            }
+        }
+
+        .col-left,
+        .col-right {
+            float: left;
+            width: 50%;
+        }
+
+        .col-left {
+            padding-right: #{$containerInnerSpacingLR};
+        }
+
+        .col-right {
+            padding-left: #{$containerInnerSpacingLR};
+        }
+    }
+}
+
+@media #{$mediaMinXL} {
+    .text-element {
+        .heading--underline-big {
+            margin-bottom: 70px;
+        }
+    }
+}

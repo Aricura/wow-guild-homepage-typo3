@@ -39,6 +39,15 @@ mod.wizards.newContentElement.wizardItems {
                     CType = project_raid_team
                 }
             }
+
+            project_text {
+                title = Text Element
+                description =
+                iconIdentifier = content-plugin
+                tt_content_defValues {
+                    CType = project_text
+                }
+            }
         }
     }
 }

@@ -1,0 +1,46 @@
+<section class="text-element" id="c{{ element.getKey }}">
+    <div class="container">
+        {% if  element.header|length > 0 %}
+            <h2 class="heading heading--2 heading--primary heading--underline-big">{{ element.header }}</h2>
+        {% endif %}
+
+        {# top#}
+        {% if element.getBodytext|length > 0 %}
+            <div class="bodytext">
+                {{ element.getBodytext|raw }}
+            </div>
+        {% endif %}
+
+        {# left and right #}
+        {% if element.getBodytextTwo|length > 0 and element.getBodytextThree|length > 0 %}
+            <div class="clear">
+                <div class="col-left">
+                    <div class="bodytext">
+                        {{ element.getBodytextTwo|raw }}
+                    </div>
+                </div>
+
+                <div class="col-right">
+                    <div class="bodytext">
+                        {{ element.getBodytextThree|raw }}
+                    </div>
+                </div>
+            </div>
+        {% elseif element.getBodytextTwo|length > 0 %}
+            <div class="bodytext">
+                {{ element.getBodytextTwo|raw }}
+            </div>
+        {% elseif element.getBodytextThree|length > 0 %}
+            <div class="bodytext">
+                {{ element.getBodytextThree|raw }}
+            </div>
+        {% endif %}
+
+        {# bottom #}
+        {% if element.getBodytextFour|length > 0 %}
+            <div class="bodytext">
+                {{ element.getBodytextFour|raw }}
+            </div>
+        {% endif %}
+    </div>
+</section>

@@ -133,11 +133,11 @@
             margin-right: #{$containerInnerSpacingLR};
 
             .content {
-                padding-top: 30px;
-                padding-bottom: 30px;
+                padding-top: #{$gridGutterWidth};
+                padding-bottom: #{$gridGutterWidth};
 
                 ul {
-                    padding: 30px 50px 0;
+                    padding: #{$gridGutterWidth} 50px 0;
 
                     li {
                         &.cleared,

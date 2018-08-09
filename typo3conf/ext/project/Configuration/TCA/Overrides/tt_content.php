@@ -131,6 +131,30 @@ $fields = [
 			'rows' => 1,
 		],
 	],
+	'tx_project_bodytext_two' => [
+		'label' => 'Bodytext',
+		'config' => [
+			'type' => 'text',
+			'eval' => 'trim',
+			'enableRichtext' => true,
+		],
+	],
+	'tx_project_bodytext_three' => [
+		'label' => 'Bodytext',
+		'config' => [
+			'type' => 'text',
+			'eval' => 'trim',
+			'enableRichtext' => true,
+		],
+	],
+	'tx_project_bodytext_four' => [
+		'label' => 'Bodytext',
+		'config' => [
+			'type' => 'text',
+			'eval' => 'trim',
+			'enableRichtext' => true,
+		],
+	],
 ];
 
 ExtensionManagementUtility::addTCAcolumns('tt_content', $fields);
@@ -175,5 +199,15 @@ $addPlugin('Raid Progression', 'raid_progression', [
 //<editor-fold desc="Plugin: Raid Team" defaultstate="collapsed">
 $addPlugin('Raid Team', 'raid_team', [
 	'header',
+]);
+//</editor-fold>
+
+//<editor-fold desc="Plugin: Text Element" defaultstate="collapsed">
+$addPlugin('Text Element', 'text', [
+	'header',
+	'bodytext;Text oben',
+	'tx_project_bodytext_two;Text links',
+	'tx_project_bodytext_three;Text rechts',
+	'tx_project_bodytext_four;Text unten',
 ]);
 //</editor-fold>
