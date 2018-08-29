@@ -10,6 +10,7 @@
 ### TYPO3
 /typo3_src/typo3/
 /typo3_src/vendor/
+/typo3_src/_.htaccess
 /typo3conf/*
 !/typo3conf/LocalConfiguration.php
 !/typo3conf/l10n/

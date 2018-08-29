@@ -1,23 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "dcd1ea8af7d60e52badcb6a8a01e497d",
+    "content-hash": "70f6268c9770ca944991b06308cdd6f1",
     "packages": [
         {
             "name": "aricura/typo3-content-service",
-            "version": "0.0.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Aricura/Typo3-Content-Service.git",
-                "reference": "db0967afb9838ce2a1675fc6d101293302fae62b"
+                "reference": "9eb894411e74e94739709a6e15154b5562902a36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Aricura/Typo3-Content-Service/zipball/db0967afb9838ce2a1675fc6d101293302fae62b",
-                "reference": "db0967afb9838ce2a1675fc6d101293302fae62b",
+                "url": "https://api.github.com/repos/Aricura/Typo3-Content-Service/zipball/9eb894411e74e94739709a6e15154b5562902a36",
+                "reference": "9eb894411e74e94739709a6e15154b5562902a36",
                 "shasum": ""
             },
             "require": {
@@ -63,10 +63,10 @@
                 "typo3 models"
             ],
             "support": {
-                "source": "https://github.com/Aricura/Typo3-Content-Service/tree/0.0.1",
+                "source": "https://github.com/Aricura/Typo3-Content-Service/tree/0.0.4",
                 "issues": "https://github.com/Aricura/Typo3-Content-Service/issues"
             },
-            "time": "2018-08-06T16:51:37+00:00"
+            "time": "2018-08-22T13:00:46+00:00"
         },
         {
             "name": "cogpowered/finediff",
@@ -1402,16 +1402,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.10",
+            "version": "v5.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "dd71cc1638ed7aebbb33f2e2b0edd2cf6ea73d97"
+                "reference": "181b89f18a90f8925ef805f950d47a7190e9b950"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/dd71cc1638ed7aebbb33f2e2b0edd2cf6ea73d97",
-                "reference": "dd71cc1638ed7aebbb33f2e2b0edd2cf6ea73d97",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/181b89f18a90f8925ef805f950d47a7190e9b950",
+                "reference": "181b89f18a90f8925ef805f950d47a7190e9b950",
                 "shasum": ""
             },
             "require": {
@@ -1452,29 +1452,32 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2018-07-27T08:58:59+00:00"
+            "time": "2018-07-31T09:26:32+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.8.0",
+            "version": "v1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "7cc359f1b7b80fc25ed7796be7d96adc9b354bae"
+                "reference": "e3d826245268269cd66f8326bd8bc066687b4a19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/7cc359f1b7b80fc25ed7796be7d96adc9b354bae",
-                "reference": "7cc359f1b7b80fc25ed7796be7d96adc9b354bae",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/e3d826245268269cd66f8326bd8bc066687b4a19",
+                "reference": "e3d826245268269cd66f8326bd8bc066687b4a19",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
+            "suggest": {
+                "ext-ctype": "For best performance"
+            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.8-dev"
+                    "dev-master": "1.9-dev"
                 }
             },
             "autoload": {
@@ -1507,7 +1510,7 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2018-04-30T19:57:29+00:00"
+            "time": "2018-08-06T14:22:27+00:00"
         },
         {
             "name": "symfony/polyfill-intl-icu",
@@ -1569,16 +1572,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.8.0",
+            "version": "v1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "3296adf6a6454a050679cde90f95350ad604b171"
+                "reference": "d0cd638f4634c16d8df4508e847f14e9e43168b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/3296adf6a6454a050679cde90f95350ad604b171",
-                "reference": "3296adf6a6454a050679cde90f95350ad604b171",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/d0cd638f4634c16d8df4508e847f14e9e43168b8",
+                "reference": "d0cd638f4634c16d8df4508e847f14e9e43168b8",
                 "shasum": ""
             },
             "require": {
@@ -1590,7 +1593,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.8-dev"
+                    "dev-master": "1.9-dev"
                 }
             },
             "autoload": {
@@ -1624,7 +1627,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2018-04-26T10:06:28+00:00"
+            "time": "2018-08-06T14:22:27+00:00"
         },
         {
             "name": "symfony/polyfill-php56",
@@ -2073,22 +2076,23 @@
         },
         {
             "name": "typo3/cms",
-            "version": "v8.7.17",
+            "version": "v8.7.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TYPO3/TYPO3.CMS.git",
-                "reference": "06256af9f2b1ef49fa454c70412ce79de327be97"
+                "reference": "05185631e8b98a81340442ac1dd0b163c2c771cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TYPO3/TYPO3.CMS/zipball/06256af9f2b1ef49fa454c70412ce79de327be97",
-                "reference": "06256af9f2b1ef49fa454c70412ce79de327be97",
+                "url": "https://api.github.com/repos/TYPO3/TYPO3.CMS/zipball/05185631e8b98a81340442ac1dd0b163c2c771cc",
+                "reference": "05185631e8b98a81340442ac1dd0b163c2c771cc",
                 "shasum": ""
             },
             "require": {
                 "cogpowered/finediff": "~0.3.1",
                 "doctrine/dbal": "~2.5.4",
                 "doctrine/instantiator": "~1.0.4",
+                "doctrine/lexer": "^1.0",
                 "ext-json": "*",
                 "ext-pcre": "*",
                 "ext-session": "*",
@@ -2274,7 +2278,7 @@
                 "extbase",
                 "typo3"
             ],
-            "time": "2018-07-12T11:29:19+00:00"
+            "time": "2018-08-21T07:23:21+00:00"
         },
         {
             "name": "typo3/cms-cli",
@@ -2422,7 +2426,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "aricura/typo3-content-service": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
