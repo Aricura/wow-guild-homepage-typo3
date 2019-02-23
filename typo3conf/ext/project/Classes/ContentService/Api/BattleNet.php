@@ -30,6 +30,10 @@ class BattleNet
 	 * @var string
 	 */
 	private $secret;
+	/**
+	 * @var string
+	 */
+	private static $accessToken = '';
 
 	/**
 	 * BattleNet constructor.
@@ -51,12 +55,14 @@ class BattleNet
 	 */
 	public function get(string $path, array $params = [], string $locale = 'en_GB'): BattleNetResponse
 	{
+		$this->fetchAccessToken();
+
 		$url = \sprintf(
-			'%s/%s?locale=%s&apikey=%s',
+			'%s/%s?locale=%s&access_token=%s',
 			\trim(self::BASE_URL, '/'),
 			\ltrim($path, '/'),
 			$locale,
-			$this->clientId
+			self::$accessToken
 		);
 
 		if (\count($params) > 0) {
@@ -75,5 +81,24 @@ class BattleNet
 			$logger->error('Battle.net API Exception: '.$exception->getMessage());
 			return new BattleNetResponse(null, $exception->getMessage());
 		}
+	}
+
+	/**
+	 * Receives the access token to create further requests.
+	 */
+	private function fetchAccessToken()
+	{
+		if (self::$accessToken) {
+			return;
+		}
+
+		$client = new Client([
+			'auth' => [$this->clientId, $this->secret],
+		]);
+
+		$response = $client->post('https://us.battle.net/oauth/token?grant_type=client_credentials', []);
+		$jsonResponse = \json_decode((string) $response->getBody(), true);
+
+		self::$accessToken = \array_key_exists('access_token', $jsonResponse) ? $jsonResponse['access_token'] : '';
 	}
 }
