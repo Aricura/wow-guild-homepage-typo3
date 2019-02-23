@@ -21,7 +21,7 @@ class BattleNet
 	 *
 	 * @var string
 	 */
-	const BASE_URL = 'https://eu.api.battle.net/wow/';
+	const BASE_URL = 'https://eu.api.blizzard.com/wow/';
 	/**
 	 * @var string
 	 */
